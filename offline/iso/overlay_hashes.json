@@ -1,0 +1,178 @@
+{
+ "_comment": "Expected SHA-1/size of Slippi Dolphin 3.6.4 Sys/GameFiles/GALE01 inputs and outputs (GALE01 rev 2). Source: research verify2_manifest.json (xdelta3 3.2.0 and an independent Python VCDIFF decoder agree).",
+ "patched": {
+  "MnExtAll.dat": {
+   "diff": {
+    "size": 149,
+    "sha1": "442fa9e29457248f165a36b1c0a9b47e998e7b6d"
+   },
+   "retail": {
+    "size": 1309449,
+    "sha1": "e3cb546c310183c9eb4fff331f2ee71eab99a353"
+   },
+   "result": {
+    "size": 1309501,
+    "sha1": "e2ab48e6ac0409f6d6f420e85d4cdc77d8e0e2ab"
+   }
+  },
+  "MnExtAll.usd": {
+   "diff": {
+    "size": 150,
+    "sha1": "3df25dc7c1357921f783b72c172cc2c6a9119526"
+   },
+   "retail": {
+    "size": 1315321,
+    "sha1": "6b0f2d64038e4093d88b652ad510c896fbdc07e2"
+   },
+   "result": {
+    "size": 1315373,
+    "sha1": "117d283d650101e5cdca43f2da2dfa9626185d81"
+   }
+  },
+  "MnMaAll.dat": {
+   "diff": {
+    "size": 185895,
+    "sha1": "87dcfb71de2daab4aaf2a36d3c6ddd5ae11643c0"
+   },
+   "retail": {
+    "size": 2150919,
+    "sha1": "a271a800661bfbfc27106bfc801324f3d3f672b3"
+   },
+   "result": {
+    "size": 2178767,
+    "sha1": "317d054fb67de4daf3c10b4446ed0c2e90721c67"
+   }
+  },
+  "MnMaAll.usd": {
+   "diff": {
+    "size": 186319,
+    "sha1": "f2896d7617e5a6e286873c445d08db219196edae"
+   },
+   "retail": {
+    "size": 2155311,
+    "sha1": "46215adc465f2cba610991dab179930437cc28ab"
+   },
+   "result": {
+    "size": 2192567,
+    "sha1": "84f9af06aa425d80ddb33ce091c1d0d451279da9"
+   }
+  },
+  "MnSlMap.dat": {
+   "diff": {
+    "size": 59031,
+    "sha1": "fbaac06e2a556a8e91ad124c0b1b463d1015afef"
+   },
+   "retail": {
+    "size": 681443,
+    "sha1": "ea559c0bb9c494d9338529ac01f3d30d49e20414"
+   },
+   "result": {
+    "size": 702179,
+    "sha1": "7d6892cc3320653470dbbcda381ba36879366e47"
+   }
+  },
+  "MnSlMap.usd": {
+   "diff": {
+    "size": 58850,
+    "sha1": "edd8c66b5895ef80c9811b7f32d8766b4ba0763a"
+   },
+   "retail": {
+    "size": 636811,
+    "sha1": "d2098fbbe5abcd2ac022f5faba673500a150d021"
+   },
+   "result": {
+    "size": 659327,
+    "sha1": "81ce00739f4cba2262a8df032e52a836168601e1"
+   }
+  },
+  "SdMenu.dat": {
+   "diff": {
+    "size": 33387,
+    "sha1": "7bd859becaff0b526035b5b62214165b53f3103b"
+   },
+   "retail": {
+    "size": 317509,
+    "sha1": "b00b1d0d0f3d0b24a6b0e4dae57707c35f4c9e41"
+   },
+   "result": {
+    "size": 323041,
+    "sha1": "c53e451835b8e462f507857ead7b514ea109539e"
+   }
+  },
+  "SdMenu.usd": {
+   "diff": {
+    "size": 34990,
+    "sha1": "fc23fd88d7a7510622655673056f42e955d1db7d"
+   },
+   "retail": {
+    "size": 87557,
+    "sha1": "0eb8d96ef5c10eeb22af42c054bc518c10696d66"
+   },
+   "result": {
+    "size": 96705,
+    "sha1": "2703fdb198ea8832baae255b7ed9fd7790947938"
+   }
+  },
+  "SdSlChr.dat": {
+   "diff": {
+    "size": 2669,
+    "sha1": "901e29e1930d1b6c601a8820cffa9735e8865d4b"
+   },
+   "retail": {
+    "size": 67348,
+    "sha1": "4a3d1eec6e248b40b912fd991dbadd92d16694ef"
+   },
+   "result": {
+    "size": 67636,
+    "sha1": "0b49c4e20744e98c720be825ae5b320c802c1db7"
+   }
+  },
+  "SdSlChr.usd": {
+   "diff": {
+    "size": 2513,
+    "sha1": "4cb4a970fc3e42fc3599266bb2e1032ae291a969"
+   },
+   "retail": {
+    "size": 10900,
+    "sha1": "c661a5fb3aa7aee215423dbfd77042e2ea2824cb"
+   },
+   "result": {
+    "size": 11576,
+    "sha1": "6187ea18828d2b8aa6f8b5bcb2a0ff78e567dd82"
+   }
+  }
+ },
+ "added": {
+  "GameSetup.dat": {
+   "size": 28971,
+   "sha1": "8a8fbefc5da4df53c5f49cbd657caba159091fb4"
+  },
+  "GameSetup_gui.dat": {
+   "size": 1031905,
+   "sha1": "f611b333de3324a11c0d084910e04283c5e364a5"
+  },
+  "MxDb.dat": {
+   "size": 444957,
+   "sha1": "47ed2033b9d96a81d6ab5f04814d6dbdf45a7fb3"
+  },
+  "MxScn.dat": {
+   "size": 10060,
+   "sha1": "d3d9cb016d54abd50d1f6eb57c0532d428fe51a2"
+  },
+  "SlippiCSS.dat": {
+   "size": 24143,
+   "sha1": "3fdbc52fe099ac08ed78083620022a05906bb063"
+  },
+  "slpCSS.dat": {
+   "size": 254495,
+   "sha1": "c70c600663ded2fefe11aeb439f3e61125273651"
+  }
+ },
+ "fixed": {
+  "_comment": "Our one-byte fix on top of a verified overlay result (apply_overlays.fix_item_names, couch feedback item 16): the file the patcher writes; the self-check accepts the 'result' hash or this one.",
+  "SdMenu.usd": {
+   "size": 96705,
+   "sha1": "d8b5fa6ee6454dafdb09b11e41cb4d07a8ea2f83"
+  }
+ }
+}

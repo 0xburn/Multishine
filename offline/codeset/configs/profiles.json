@@ -1,0 +1,255 @@
+{
+  "options": {
+    "boot": {
+      "type": "enum",
+      "values": [
+        "main-menu",
+        "css",
+        "online-css"
+      ],
+      "default": "main-menu",
+      "doc": "04 801BFA20: li r3,1 boots to the main menu (Slippi 3.6.4 behaviour); css = li r3,2 boots to the VS character select screen; online-css (S2 spike) = 04/C2 boot into the Slippi online major scene 8 (CSS), direct mode preset; online-css (S2 spike) = 04/C2 boot into the Slippi online major scene 8 (CSS), direct mode preset"
+    },
+    "delay": {
+      "type": "int",
+      "min": 0,
+      "max": 15,
+      "default": 0,
+      "doc": "constant in-game input delay in frames (EXI-free variant of Recommended: Apply Delay). 0 = group omitted; Slippi 3.6.4 default offline is 2"
+    }
+  },
+  "flags": {
+    "widescreen": "Optional: Widescreen 16:9",
+    "no-screen-shake": "Optional: Disable Screen Shake",
+    "fd-freeze": "Optional: Freeze Final Destination Background",
+    "center-hud": "Optional: Center Align 2P HUD",
+    "flash-red-lcancel": "Optional: Flash Red on Failed L-Cancel",
+    "friendly-indicators": "Optional: Show Friendly Player Indicators",
+    "parity-8char": "PARITY: 8-character name entry (Allow8Characters, Allow8CharactersJapanese, Display8Characters, HandleJpSpace)",
+    "parity-erase-as-back": "PARITY: A on the Erase key acts like B (OnErasePress)",
+    "parity-confirm-a": "PARITY: A-confirm uses the Start-confirm handler (OnConfirmButtonAPress)",
+    "parity-css-bcancel-sfx": "PARITY: CSS B-cancel routed through the random-costume tail, extra SFX 0xB8 (PreventColorResetLastChar)",
+    "parity-skip-stage-number": "PARITY: Classic splash stage-number setup skipped (SkipStageNumberShow)",
+    "normal-lag-reduction": "Recommended: Normal Lag Reduction (CRASHES in mainline Dolphin; experimental)",
+    "no-pdvb": "Hardware-test ladder: drop the PD+VB lag-reduction module (Binary/LagReduction/PD+VB.bin)",
+    "net-online-spike": "S2 SPIKE (opt-in, experimental): Slippi Online game-side core (InitOnlinePlay, B0 TriggerSendInput, StartEngineLoop, rollback hooks, pause/LRAS) + static slots + online scene registration; needs the EXI shim, not the real device",
+    "net-online-css": "S2 SPIKE (opt-in, experimental): online CSS/SSS/VS-splash/results modules (no title menu, no text entry); implies net-online-spike",
+    "rules-after-load": "OWN (opt-in): re-apply the default item switch / item mask / random-stage mask after the memory card save is loaded (hook 0x8015FAE4); a card with an old save no longer overrides the baked defaults",
+    "net-menu": "S8 (opt-in, lab): Slippi's own online title-menu entry (Online Play submenu, app state over B9) and the connect-code text entry (autocomplete over BE, B4 after confirm); needs net-online and the S8 EXI backend (offline/s8), never the real Slippi device or services",
+    "fp-align": "Hardware fix (S8, opt-in): Slippi's user display (Online/Static/UserDisplayFunctions.asm) keeps two floats at 2-mod-4 offsets and uses lfs/stfs on them; a 750 raises an alignment exception there (Dolphin interpreter crashes, JIT hides it). Builds a variant with a word-aligned private buffer layout; same instructions and hooks",
+    "card-silent-create": "OWN (opt-in): memory-card scene creates a missing save silently on a healthy card with free space (Melee's own Yes path; no 'Create Game Data?' question, no 'created' acknowledgement). Six 04 words in gm_801AF250 case 4 and state 7 of gm_Scene_MemCard_OnFrame; damaged/full/no-card prompts unchanged",
+    "flash-white-lcancel": "OWN (opt-in): white flash on a successful L-cancel (Melee's own colour overlay fp->x488 after the landing motion change; C2 0x8008D6EC); off in the online in-game scene",
+    "hitbox-view-training": "OWN (opt-in): hitbox/hurtbox view in Training Mode only (Melee's own collision debug draw, register-only C2 0x800805F0, no memory write)",
+    "tech-card": "OWN (opt-in): tech card on the Vs results screen: per human player L-cancel %, techs and missed techs, wavedashes, shield drops of the match, counted read-only at each motion change (C2 0x800693AC) and drawn under the results panels (C2 0x80175D14); brings Melee's results screen back after a finished Vs match (C2 0x801A5C14, Slippi goes straight to the CSS)",
+    "stock-sss": "OWN (opt-in, card route / STOCK disc): leave out the frozen-Stadium stage-select PRESENTATION modules (StageSelectTextProc 0x8025AC6C, CheckForFrozenOnStageName 0x80259E90, CheckForToggledOnStageName 0x80259E34, IncMaxNames 0x80259FB4, StoreNameId 0x80259FAC): they need Slippi's patched MnSlMap.dat/.usd (extra title text nodes, name animation 31) which a stock disc and a memory card cannot supply; StageSelectTextProc dereferences a node that does not exist (null + 8 -> DSI on hardware and in MMU-on Dolphin, silent garbage in MMU-off Dolphin). The Z toggle (CursorOnHoverStadium) and the in-game frozen-Stadium modules stay",
+    "ms-sss-guard": "OWN (opt-in, card route; used WITH stock-sss and net-online-css): puts the five stage-select presentation modules back as own versions that cannot crash: StageSelectTextProc checks the title tree (jobj->child->next->next) before it walks it and publishes the answer, the two name modules ask for \"Frozen Pokemon Stadium\" (name 31) only when that answer is yes (Slippi's patched MnSlMap served by the Multishine system-files pack, docs/design/MNSLMAP_FROM_CARD.md); on the stock MnSlMap they do nothing, exactly as with stock-sss alone",
+    "ms-rumble-port": "OWN (opt-in, card route; needs net-online): in an online match a rumble request for the local player is dropped when Melee's Options > Rumble setting of the physical controller port is Off (HSD_PadRumbleAdd, C2 0x80378430); the slot's own setting no longer decides (docs/design/ALPHA_OPEN_FINDINGS_2026-11-01.md 69)",
+    "ms-fd-toggle": "OWN (opt-in, card route; needs net-online-css): stage select Z toggles the frozen Final Destination background (own CursorOnHover variant replacing CursorOnHoverStadium; a superset of it: Z on the Final Destination icon flips its own toggle byte in the module body (magic MSFD at body+16), every other icon behaves as stock; no text, the ring only); the engine applies it at match start (docs/research/FROZEN_FD.md). OFF in the card profile until there is a visible indicator",
+    "ms-hud-raise": "OWN (opt-in, card route; needs net-online): Settings > Game > Raise HUD (Off / Small / Medium / Large): the bottom HUD (percent, emblem, stock icons, Slippi name text) is lifted 8 / 16 / 24 px against a CRT's overscan by adding to the y of the HUD position table right after ifAll_802F343C fills it (C2 0x802F368C); the level is a byte in the module header written by the engine",
+    "ms-scale-own": "OWN (opt-in, card route; needs net-online-css): the results-screen scale table (Slippi MoveScaleTable.asm, C2 0x8017A890) is stored as whole percents and turned into the identical 26 IEEE floats on the first call, so the engine file carries no run of the retail disc table (asm/Results/MoveScaleTableOwn.asm)",
+    "ms-hud-delay": "OWN (opt-in, card route; needs net-online-spike): Slippi's in-match 'Delay: %df' HUD text is created only while the engine flag word in the head of the InitInGame C2 body is 1 (Settings > Show technical info, the Debug Lines bit, written by ml_glue.c settings_apply); default 0 = hidden. Variant of Online/Menus/InGame/InitInGame.asm: a 16 byte body header (b START, blrl, flag word, 'MSHD') and one beq over the delay subtext creation",
+    "ms-names": "OWN (opt-in, card route; needs net-online): the online character select header of a Multishine hub flow reads Dojo Mode / Mano a mano Mode / Grandmaster Mode instead of Slippi's Unranked / Direct / Ranked Mode (docs/design/MENU_NAME_PASS.md section 5). Variant of Online/Menus/CSS/LoadCSSText.asm: a 12 byte body header with a marker word the engine writes when a hub row starts a mode, a 13 instruction helper and three names; with the marker 0 (Slippi's own flow, the bridge) the original header words are used unchanged",
+    "card-start-combo": "OWN (opt-in, card route): hold L+R+Z+START on any pad in the main menu to leave towards Slippi's online major scene 8 (DIRECT mode); C2 0x8022DD38"
+  },
+  "flag_groups": {
+    "optional-all": [
+      "widescreen",
+      "no-screen-shake",
+      "fd-freeze",
+      "center-hud",
+      "flash-red-lcancel",
+      "friendly-indicators"
+    ],
+    "parity": [
+      "parity-8char",
+      "parity-erase-as-back",
+      "parity-confirm-a",
+      "parity-css-bcancel-sfx",
+      "parity-skip-stage-number"
+    ],
+    "net-online": [
+      "net-online-spike",
+      "net-online-css"
+    ]
+  },
+  "profiles": {
+    "default": {
+      "doc": "What a Slippi 3.6.4 user gets offline with network/EXI removed: General + EXI-free Recording/Online modules + Lagless FoD, boot to main menu, no delay, all optional/parity codes off + rules-after-load (a memory-card save can no longer override the patched item switch/mask and stage mask; documented divergence from Slippi for card users, docs/research/RULES_VS_SAVED_CARD.md).",
+      "flags": [
+        "rules-after-load"
+      ]
+    },
+    "boot-css": {
+      "doc": "default, but boot straight to the VS character select screen (includes rules-after-load, like default).",
+      "options": {
+        "boot": "css"
+      },
+      "flags": [
+        "rules-after-load"
+      ]
+    },
+    "delay2": {
+      "doc": "default + constant 2-frame in-game delay with the 'Delay: 2f' HUD text (Slippi 3.6.4 default offline delay) (includes rules-after-load, like default).",
+      "options": {
+        "delay": 2
+      },
+      "flags": [
+        "rules-after-load"
+      ]
+    },
+    "slippi-parity": {
+      "doc": "closest to Slippi 3.6.4 offline: delay 2 + all PARITY toggles (includes rules-after-load, like default).",
+      "options": {
+        "delay": 2
+      },
+      "flags": [
+        "parity",
+        "rules-after-load"
+      ]
+    },
+    "all-optional": {
+      "doc": "audit/coverage profile: everything optional enabled (delay 2, all optional codes, all parity toggles) (includes rules-after-load, like default).",
+      "options": {
+        "delay": 2
+      },
+      "flags": [
+        "optional-all",
+        "parity",
+        "rules-after-load"
+      ]
+    },
+    "default-nolag": {
+      "doc": "default minus PD+VB lag reduction (hardware ladder rung H3) (includes rules-after-load, like default).",
+      "flags": [
+        "no-pdvb",
+        "rules-after-load"
+      ]
+    },
+    "net-online-spike": {
+      "doc": "S2 spike: default + Slippi online in-game core, no online menus/CSS (opt-in; audit FAILs are reported, build still produced)",
+      "flags": [
+        "net-online-spike"
+      ],
+      "allow_audit_fail": true
+    },
+    "net-online-spike-css": {
+      "doc": "S2 spike: net-online-spike + online CSS/SSS/VS/results modules, boot straight into the online CSS (no title menu)",
+      "options": {
+        "boot": "online-css"
+      },
+      "flags": [
+        "net-online"
+      ],
+      "allow_audit_fail": true
+    },
+    "net-online-spike-boot": {
+      "doc": "S2 spike: net-online-spike + boot straight into the Slippi online major scene (retail CSS UI under major 8; no online CSS modules, no title menu)",
+      "options": {
+        "boot": "online-css"
+      },
+      "flags": [
+        "net-online-spike"
+      ],
+      "allow_audit_fail": true
+    },
+    "default-rulesfix": {
+      "doc": "ALIAS of default (rules-after-load is now part of default); kept for scripts that name it.",
+      "flags": [
+        "rules-after-load"
+      ]
+    },
+    "net-menu": {
+      "doc": "S8 lab profile (opt-in, NOT a release): default + Slippi online core/CSS (net-online) + Slippi's own online title menu and connect-code entry (net-menu) + the parity text-entry toggles (8-character codes); boots to the main menu.  Answered by offline/s8 against our own lab lobby server; audit FAILs are reported, build still produced",
+      "flags": [
+        "net-online",
+        "net-menu",
+        "parity",
+        "rules-after-load",
+        "fp-align"
+      ],
+      "allow_audit_fail": true
+    },
+    "net-menu-ms": {
+      "doc": "Image 'Multishine online-menu' (docs/CANONICAL_IMAGES.md section 8): Slippi's own online title menu (Online Play submenu) and connect-code entry on the S17 engine image; like net-menu but WITHOUT rules-after-load (image 1 does not carry it); answered by offline/multishine/menus/om (local lab identity, no network); boots to the main menu; audit FAILs are the known S2 classes",
+      "flags": [
+        "net-online",
+        "net-menu",
+        "parity",
+        "fp-align"
+      ],
+      "allow_audit_fail": true
+    },
+    "net-menu-ms-ws": {
+      "doc": "net-menu-ms plus the Slippi widescreen 16:9 module group (13 records) for the RC2 image (docs/design/SETTINGS_WIRING_STATUS.md): the build patches the group and restores the retail words (default OFF); the menu switches the words at run time from the MultishineOptions file (option id 0).  Not a stand-alone profile: used only with a contract that carries ws_toggle.",
+      "flags": [
+        "net-online",
+        "net-menu",
+        "parity",
+        "fp-align",
+        "widescreen"
+      ],
+      "allow_audit_fail": true
+    },
+    "training1": {
+      "doc": "Training test image 1 (docs/design/OWN_TRAINING.md 1b, low-hanging fruit 1+2): default (incl. rules-after-load) + Slippi's red flash on a missed L-cancel + our white flash on a successful one + hitbox view in Training Mode.",
+      "flags": [
+        "rules-after-load",
+        "flash-red-lcancel",
+        "flash-white-lcancel",
+        "hitbox-view-training"
+      ]
+    },
+    "training2": {
+      "doc": "Training test image 2 (docs/design/OWN_TRAINING.md 1d): training1 + the tech card on the Vs results screen.",
+      "flags": [
+        "rules-after-load",
+        "flash-red-lcancel",
+        "flash-white-lcancel",
+        "hitbox-view-training",
+        "tech-card"
+      ]
+    },
+    "cardloader": {
+      "doc": "Stage-1 memory-card loader codeset: default (incl. rules-after-load) + card-silent-create, so the save under the loader's own name (MultishineMelee) is created without a question.",
+      "flags": [
+        "rules-after-load",
+        "card-silent-create",
+        "stock-sss"
+      ]
+    },
+    "net-online-spike-boot-card": {
+      "doc": "Card route, text-only profile (docs/design/CARD_PACKAGE.md section 14): net-online-spike-boot (Slippi online game core, boot hook BootToOnlineCSS: START at the title opens the retail CSS under major scene 8) + card-silent-create (the save under the loader's own name is created without a question).",
+      "options": {
+        "boot": "online-css"
+      },
+      "flags": [
+        "net-online-spike",
+        "card-silent-create",
+        "card-start-combo",
+        "stock-sss"
+      ],
+      "allow_audit_fail": true
+    },
+    "net-menu-ms-ws-card": {
+      "doc": "Card route, RC1 profile (docs/design/CARD_RC1_ROUTE.md): net-menu-ms-ws (the RC1/RC2 codeset: online core, Slippi title menu, parity, fp-align, widescreen group) + card-silent-create (the save under the loader's own name is created without a question) + stock-sss (leaves out the five SSS presentation modules that need Slippi's patched MnSlMap, CARD_PACKAGE.md section 17: a stock disc has none).",
+      "flags": [
+        "net-online",
+        "net-menu",
+        "parity",
+        "fp-align",
+        "widescreen",
+        "card-silent-create",
+        "stock-sss",
+        "ms-sss-guard",
+        "ms-names",
+        "ms-hud-delay",
+        "ms-scale-own",
+        "ms-rumble-port",
+        "ms-hud-raise",
+        "rules-after-load",
+        "ms-fd-toggle"
+      ],
+      "allow_audit_fail": true
+    }
+  }
+}

@@ -1,0 +1,3442 @@
+{
+ "format": "multishine-ui-strings",
+ "version": 1,
+ "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,'-:\"",
+ "caps": {
+  "box": 46,
+  "errorbox": 120,
+  "screen": 36,
+  "row": 40,
+  "help": 46,
+  "title": 28,
+  "label": 11,
+  "popup": 26,
+  "item": 32,
+  "overlay": 52
+ },
+ "strings": [
+  {
+   "id": "boot.name",
+   "text": "Multishine",
+   "max": 10,
+   "kind": "title",
+   "screen": "F1 boot and splash"
+  },
+  {
+   "id": "boot.build",
+   "text": "Build {id}",
+   "max": 14,
+   "kind": "screen",
+   "screen": "F1 boot and splash",
+   "vars": {
+    "id": 8
+   }
+  },
+  {
+   "id": "boot.p_start",
+   "text": "Starting",
+   "max": 8,
+   "kind": "screen",
+   "screen": "F1 boot and splash"
+  },
+  {
+   "id": "boot.p_card",
+   "text": "Reading the memory card",
+   "max": 23,
+   "kind": "screen",
+   "screen": "F1 boot and splash"
+  },
+  {
+   "id": "boot.p_net",
+   "text": "Starting the network",
+   "max": 20,
+   "kind": "screen",
+   "screen": "F1 boot and splash"
+  },
+  {
+   "id": "boot.p_dhcp",
+   "text": "Waiting for an address",
+   "max": 22,
+   "kind": "screen",
+   "screen": "F1 boot and splash"
+  },
+  {
+   "id": "boot.p_server",
+   "text": "Contacting the server",
+   "max": 21,
+   "kind": "screen",
+   "screen": "F1 boot and splash"
+  },
+  {
+   "id": "boot.p_ready",
+   "text": "Ready",
+   "max": 5,
+   "kind": "screen",
+   "screen": "F1 boot and splash"
+  },
+  {
+   "id": "boot.p_slow",
+   "text": "Still waiting for the network",
+   "max": 29,
+   "kind": "screen",
+   "screen": "F1 boot and splash"
+  },
+  {
+   "id": "boot.p_nonet",
+   "text": "No network. Offline play works.",
+   "max": 31,
+   "kind": "screen",
+   "screen": "F1 boot and splash"
+  },
+  {
+   "id": "card.t_new",
+   "text": "Memory Card Setup",
+   "max": 17,
+   "kind": "title",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.new1",
+   "text": "Multishine keeps its settings on",
+   "max": 32,
+   "kind": "screen",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.new2",
+   "text": "the memory card in slot {slot}.",
+   "max": 26,
+   "kind": "screen",
+   "screen": "F2 first run and card",
+   "vars": {
+    "slot": 1
+   }
+  },
+  {
+   "id": "card.new3",
+   "text": "Your Melee save is not touched.",
+   "max": 31,
+   "kind": "screen",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.r_create",
+   "text": "Create The Files",
+   "max": 16,
+   "kind": "item",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.r_later",
+   "text": "Not Now",
+   "max": 7,
+   "kind": "item",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.creating",
+   "text": "Creating the files...",
+   "max": 21,
+   "kind": "screen",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.done",
+   "text": "Done. {n} blocks used.",
+   "max": 21,
+   "kind": "screen",
+   "screen": "F2 first run and card",
+   "vars": {
+    "n": 2
+   }
+  },
+  {
+   "id": "card.nofree",
+   "text": "Not enough free space on the card.",
+   "max": 34,
+   "kind": "box",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.nofree2",
+   "text": "Free up {n} blocks and try again.",
+   "max": 32,
+   "kind": "screen",
+   "screen": "F2 first run and card",
+   "vars": {
+    "n": 2
+   }
+  },
+  {
+   "id": "card.nocard",
+   "text": "No memory card found.",
+   "max": 21,
+   "kind": "box",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.nocard2",
+   "text": "Settings last until power off.",
+   "max": 30,
+   "kind": "screen",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.slotb",
+   "text": "The card in slot B cannot be used.",
+   "max": 34,
+   "kind": "box",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.slotb2",
+   "text": "Using the card in slot A.",
+   "max": 25,
+   "kind": "screen",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.t_dmg",
+   "text": "A File Is Damaged",
+   "max": 17,
+   "kind": "title",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.dmg1",
+   "text": "The file {f} cannot be read.",
+   "max": 33,
+   "kind": "screen",
+   "screen": "F2 first run and card",
+   "vars": {
+    "f": 8
+   }
+  },
+  {
+   "id": "card.dmg2",
+   "text": "Repair rebuilds it from defaults.",
+   "max": 33,
+   "kind": "screen",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.r_repair",
+   "text": "Repair Now",
+   "max": 10,
+   "kind": "item",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.r_leave",
+   "text": "Leave It",
+   "max": 8,
+   "kind": "item",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.repaired",
+   "text": "Repaired. Defaults were restored.",
+   "max": 33,
+   "kind": "screen",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.newer",
+   "text": "A file is from a newer version.",
+   "max": 31,
+   "kind": "box",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.newer2",
+   "text": "It is left as it is.",
+   "max": 20,
+   "kind": "screen",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.verify",
+   "text": "Could not verify the write.",
+   "max": 27,
+   "kind": "box",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.err",
+   "text": "Memory card error. Nothing was changed.",
+   "max": 39,
+   "kind": "box",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "card.melee1",
+   "text": "Your Melee save comes first.",
+   "max": 28,
+   "kind": "screen",
+   "screen": "F2 first run and card"
+  },
+  {
+   "id": "net.nocable",
+   "text": "No network adapter found",
+   "max": 24,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.nocable2",
+   "text": "Check the adapter is plugged in.",
+   "max": 32,
+   "kind": "screen",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.nowifi",
+   "text": "Wi-Fi is not connected",
+   "max": 22,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.nowifi2",
+   "text": "Check the Wi-Fi settings of the Wii.",
+   "max": 36,
+   "kind": "screen",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.nodhcp",
+   "text": "No address from the router",
+   "max": 26,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.nodhcp2",
+   "text": "Check the cable and the router.",
+   "max": 31,
+   "kind": "screen",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.noconn",
+   "text": "No network. Check the cable.",
+   "max": 28,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.noserver",
+   "text": "Couldn't reach the server. Try again.",
+   "max": 37,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.noserver2",
+   "text": "The server may be down. Try later.",
+   "max": 34,
+   "kind": "screen",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.badserver",
+   "text": "Couldn't verify the server",
+   "max": 26,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.tooold",
+   "text": "Update required for online play",
+   "max": 31,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.banned",
+   "text": "You are banned from online play",
+   "max": 31,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.banned2",
+   "text": "See the server website for details.",
+   "max": 35,
+   "kind": "screen",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.full",
+   "text": "The server is full. Try again soon.",
+   "max": 35,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.srvbusy",
+   "text": "Server busy. Try again soon.",
+   "max": 28,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.srvbusy_retry",
+   "text": "Server busy, retrying",
+   "max": 21,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.unavail",
+   "text": "Server unavailable. Try again later.",
+   "max": 36,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.unavail_retry",
+   "text": "Server unavailable, retrying",
+   "max": 28,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.maint",
+   "text": "Server maintenance. Try again later.",
+   "max": 36,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.busy",
+   "text": "Too many requests. Wait a minute.",
+   "max": 33,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.mismatch",
+   "text": "This server uses another game version",
+   "max": 37,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.refused",
+   "text": "The server refused the request",
+   "max": 30,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.lost",
+   "text": "Connection to the server was lost",
+   "max": 33,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.noonline",
+   "text": "Online play is not set up",
+   "max": 25,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.nosetup",
+   "text": "No online setup on the memory card",
+   "max": 34,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.setupdmg",
+   "text": "Online setup on the memory card is damaged",
+   "max": 42,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "net.clear",
+   "text": "Press Z to clear error",
+   "max": 22,
+   "kind": "box",
+   "screen": "F11 network problems"
+  },
+  {
+   "id": "on.t_online",
+   "text": "Online",
+   "max": 6,
+   "kind": "title",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.d_online",
+   "text": "Compete against online opponents.",
+   "max": 33,
+   "kind": "help",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.d_unranked",
+   "text": "Find an opponent online.",
+   "max": 24,
+   "kind": "help",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.d_direct",
+   "text": "Play a specific person.",
+   "max": 23,
+   "kind": "help",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.d_ranked",
+   "text": "Not available in this build.",
+   "max": 28,
+   "kind": "help",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.d_teams",
+   "text": "Not available in this build.",
+   "max": 28,
+   "kind": "help",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.d_login",
+   "text": "Sign in or create an account.",
+   "max": 29,
+   "kind": "help",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.d_logout",
+   "text": "Sign out on this card.",
+   "max": 22,
+   "kind": "help",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.d_update",
+   "text": "A newer version is available.",
+   "max": 29,
+   "kind": "help",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.d_friends",
+   "text": "See friends and invites.",
+   "max": 24,
+   "kind": "help",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.signed",
+   "text": "Signed in as {name}",
+   "max": 25,
+   "kind": "screen",
+   "screen": "F3 online entry",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "on.notsigned",
+   "text": "Not signed in",
+   "max": 13,
+   "kind": "screen",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "on.guest",
+   "text": "Playing as {name}",
+   "max": 23,
+   "kind": "screen",
+   "screen": "F3 online entry",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "on.motd",
+   "text": "{text}",
+   "max": 46,
+   "kind": "box",
+   "screen": "F3 online entry",
+   "vars": {
+    "text": 46
+   }
+  },
+  {
+   "id": "on.notice_up",
+   "text": "Update available",
+   "max": 16,
+   "kind": "screen",
+   "screen": "F3 online entry"
+  },
+  {
+   "id": "un.searching",
+   "text": "Searching for opponent",
+   "max": 22,
+   "kind": "screen",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.elapsed",
+   "text": "Searching  {mm}:{ss}",
+   "max": 16,
+   "kind": "screen",
+   "screen": "F4 Unranked",
+   "vars": {
+    "mm": 2,
+    "ss": 2
+   }
+  },
+  {
+   "id": "un.holdz",
+   "text": "Hold Z to cancel",
+   "max": 16,
+   "kind": "screen",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.holdz_disc",
+   "text": "Hold Z to disconnect",
+   "max": 20,
+   "kind": "screen",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.found",
+   "text": "Opponent found: {name}",
+   "max": 28,
+   "kind": "screen",
+   "screen": "F4 Unranked",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "un.connecting",
+   "text": "Connecting to {name}",
+   "max": 26,
+   "kind": "screen",
+   "screen": "F4 Unranked",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "un.waiting",
+   "text": "Waiting for {name}",
+   "max": 24,
+   "kind": "screen",
+   "screen": "F4 Unranked",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "un.getready",
+   "text": "Both players are ready",
+   "max": 22,
+   "kind": "screen",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.countdown",
+   "text": "Starting in {n}",
+   "max": 13,
+   "kind": "screen",
+   "screen": "F4 Unranked",
+   "vars": {
+    "n": 1
+   }
+  },
+  {
+   "id": "un.playing",
+   "text": "Playing: {name}",
+   "max": 21,
+   "kind": "screen",
+   "screen": "F4 Unranked",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "un.timeout",
+   "text": "No opponent found",
+   "max": 17,
+   "kind": "box",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.timeout2",
+   "text": "Try again in a minute.",
+   "max": 22,
+   "kind": "screen",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.left",
+   "text": "{name} left the game",
+   "max": 26,
+   "kind": "box",
+   "screen": "F4 Unranked",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "un.noconn",
+   "text": "Found an opponent, but couldn't connect to them. Their network or yours may block it. Try again.",
+   "max": 96,
+   "kind": "errorbox",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.oplost",
+   "text": "Connection to the opponent was lost",
+   "max": 35,
+   "kind": "box",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.peer",
+   "text": "Couldn't use your opponent's address",
+   "max": 36,
+   "kind": "box",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.session",
+   "text": "Restart the game to play someone else",
+   "max": 37,
+   "kind": "box",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.r_bot",
+   "text": "Play A Bot Instead",
+   "max": 18,
+   "kind": "item",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.na_ranked",
+   "text": "Grandmaster is not available",
+   "max": 28,
+   "kind": "box",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "un.na_mode",
+   "text": "Online play is not available yet",
+   "max": 32,
+   "kind": "box",
+   "screen": "F4 Unranked"
+  },
+  {
+   "id": "dr.t",
+   "text": "Mano a mano",
+   "max": 11,
+   "kind": "title",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.enter",
+   "text": "Enter a connect code",
+   "max": 20,
+   "kind": "screen",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.mine",
+   "text": "Your code: {code}",
+   "max": 20,
+   "kind": "screen",
+   "screen": "F5 Direct",
+   "vars": {
+    "code": 9
+   }
+  },
+  {
+   "id": "dr.recent",
+   "text": "Recent codes",
+   "max": 12,
+   "kind": "screen",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.wait",
+   "text": "Waiting for {code}",
+   "max": 21,
+   "kind": "screen",
+   "screen": "F5 Direct",
+   "vars": {
+    "code": 9
+   }
+  },
+  {
+   "id": "dr.wait2",
+   "text": "They must enter your code too.",
+   "max": 30,
+   "kind": "screen",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.bad",
+   "text": "That is not a valid connect code",
+   "max": 32,
+   "kind": "box",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.self",
+   "text": "That is your own connect code",
+   "max": 29,
+   "kind": "box",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.timeout",
+   "text": "Nobody entered your code in time",
+   "max": 32,
+   "kind": "box",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.timeout2",
+   "text": "Check the code and ask them to enter yours.",
+   "max": 43,
+   "kind": "box",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.r_invite",
+   "text": "Invite By Link",
+   "max": 14,
+   "kind": "item",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.q_head",
+   "text": "Invite A Friend",
+   "max": 15,
+   "kind": "title",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.q_l1",
+   "text": "Scan this and send the link.",
+   "max": 28,
+   "kind": "screen",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.q_valid",
+   "text": "The link works for {mm}:{ss}",
+   "max": 24,
+   "kind": "screen",
+   "screen": "F5 Direct",
+   "vars": {
+    "mm": 2,
+    "ss": 2
+   }
+  },
+  {
+   "id": "dr.q_used",
+   "text": "The link was opened. Waiting...",
+   "max": 31,
+   "kind": "screen",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "dr.q_exp",
+   "text": "The link has expired.",
+   "max": 21,
+   "kind": "box",
+   "screen": "F5 Direct"
+  },
+  {
+   "id": "li.t",
+   "text": "Sign In",
+   "max": 7,
+   "kind": "title",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.r_qr",
+   "text": "Sign In With A Phone",
+   "max": 20,
+   "kind": "item",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.r_code",
+   "text": "Sign In With A Code",
+   "max": 19,
+   "kind": "item",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.r_new",
+   "text": "New Player, No Email",
+   "max": 20,
+   "kind": "item",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.r_mail",
+   "text": "Sign In With Email",
+   "max": 18,
+   "kind": "item",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.qr_head",
+   "text": "Scan this with your phone",
+   "max": 25,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.qr_code",
+   "text": "Code {c}",
+   "max": 14,
+   "kind": "screen",
+   "screen": "F6 sign in",
+   "vars": {
+    "c": 9
+   }
+  },
+  {
+   "id": "li.qr_wait",
+   "text": "Waiting for approval  {mm}:{ss}",
+   "max": 27,
+   "kind": "screen",
+   "screen": "F6 sign in",
+   "vars": {
+    "mm": 2,
+    "ss": 2
+   }
+  },
+  {
+   "id": "li.qr_new",
+   "text": "The picture changes every minute.",
+   "max": 33,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.qr_url",
+   "text": "Or go to {host}",
+   "max": 27,
+   "kind": "screen",
+   "screen": "F6 sign in",
+   "vars": {
+    "host": 18
+   }
+  },
+  {
+   "id": "li.qr_url2",
+   "text": "and type the code.",
+   "max": 18,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.name_hint",
+   "text": "Up Down: Letter  Left Right: Move",
+   "max": 33,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.name_del",
+   "text": "Y: Delete  A: Done  B: Back",
+   "max": 27,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.name_min",
+   "text": "At least 2 characters.",
+   "max": 22,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.ok",
+   "text": "Signed in as {name}",
+   "max": 25,
+   "kind": "screen",
+   "screen": "F6 sign in",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "li.code",
+   "text": "Your connect code: {code}",
+   "max": 28,
+   "kind": "screen",
+   "screen": "F6 sign in",
+   "vars": {
+    "code": 9
+   }
+  },
+  {
+   "id": "li.saved",
+   "text": "Saved on the memory card in slot {slot}",
+   "max": 34,
+   "kind": "screen",
+   "screen": "F6 sign in",
+   "vars": {
+    "slot": 1
+   }
+  },
+  {
+   "id": "li.nosave",
+   "text": "Not saved. You stay signed in until power off.",
+   "max": 46,
+   "kind": "box",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.r_remember",
+   "text": "Stay Signed In: {v}",
+   "max": 19,
+   "kind": "item",
+   "screen": "F6 sign in",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "li.expired",
+   "text": "That code has expired",
+   "max": 21,
+   "kind": "box",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.expired2",
+   "text": "Press A for a new code.",
+   "max": 23,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.denied",
+   "text": "Sign-in was declined on the phone",
+   "max": 33,
+   "kind": "box",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.revoked",
+   "text": "This sign-in is no longer valid",
+   "max": 31,
+   "kind": "box",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.revoked2",
+   "text": "Sign in again or remove it.",
+   "max": 27,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.othersrv",
+   "text": "This card belongs to another server",
+   "max": 35,
+   "kind": "box",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.name_taken",
+   "text": "That name is not available",
+   "max": 26,
+   "kind": "box",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.name_bad",
+   "text": "That name is not allowed",
+   "max": 24,
+   "kind": "box",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.t_out",
+   "text": "Sign Out",
+   "max": 8,
+   "kind": "title",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.out_ask",
+   "text": "Hold A for 2 seconds to sign out",
+   "max": 32,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.out_done",
+   "text": "Signed out",
+   "max": 10,
+   "kind": "screen",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.out_net",
+   "text": "Signed out here. The server was not told.",
+   "max": 41,
+   "kind": "box",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "ac.t",
+   "text": "Create An Account",
+   "max": 17,
+   "kind": "title",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.web",
+   "text": "Create your account on the website:",
+   "max": 35,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.web2",
+   "text": "Not safe on the console yet.",
+   "max": 28,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.name_head",
+   "text": "Choose a display name",
+   "max": 21,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.tag",
+   "text": "The server adds your tag.",
+   "max": 25,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.code",
+   "text": "Your connect code will be {code}",
+   "max": 35,
+   "kind": "screen",
+   "screen": "F7 account creation",
+   "vars": {
+    "code": 9
+   }
+  },
+  {
+   "id": "ac.email_head",
+   "text": "Email address",
+   "max": 13,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.pass_head",
+   "text": "Password",
+   "max": 8,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.pass_hint",
+   "text": "At least 10 characters.",
+   "max": 23,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.pass_again",
+   "text": "Type the password again",
+   "max": 23,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.mismatch",
+   "text": "The two entries do not match",
+   "max": 28,
+   "kind": "box",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.weak",
+   "text": "The password is too short",
+   "max": 25,
+   "kind": "box",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.email_bad",
+   "text": "That email address does not look right",
+   "max": 38,
+   "kind": "box",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.email_used",
+   "text": "That email address is already in use",
+   "max": 36,
+   "kind": "box",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.verify1",
+   "text": "We sent a message to your email.",
+   "max": 32,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.verify2",
+   "text": "Open the link in it to finish.",
+   "max": 30,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.unverified",
+   "text": "Email not confirmed yet",
+   "max": 23,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.r_resend",
+   "text": "Send It Again",
+   "max": 13,
+   "kind": "item",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.created",
+   "text": "Account created",
+   "max": 15,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "ac.notsecure",
+   "text": "This connection is not encrypted",
+   "max": 32,
+   "kind": "box",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "fr.t",
+   "text": "Friends",
+   "max": 7,
+   "kind": "title",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.none",
+   "text": "No friends yet",
+   "max": 14,
+   "kind": "screen",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.needlogin",
+   "text": "Sign in to use friends",
+   "max": 22,
+   "kind": "box",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.p_off",
+   "text": "offline",
+   "max": 7,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.p_menu",
+   "text": "in menu",
+   "max": 7,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.p_match",
+   "text": "in a match",
+   "max": 10,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.p_online",
+   "text": "online",
+   "max": 6,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.p_search",
+   "text": "searching",
+   "max": 9,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.line",
+   "text": "{name}  {p}",
+   "max": 24,
+   "kind": "item",
+   "screen": "F8 friends and invites",
+   "vars": {
+    "name": 12,
+    "p": 10
+   }
+  },
+  {
+   "id": "fr.r_invite",
+   "text": "Invite To Fight",
+   "max": 15,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.r_add",
+   "text": "Add a friend",
+   "max": 12,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.r_link",
+   "text": "Show My Friend Link",
+   "max": 19,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.r_remove",
+   "text": "Remove friend",
+   "max": 13,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.r_block",
+   "text": "Block",
+   "max": 5,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.sent",
+   "text": "Invite sent to {name}",
+   "max": 27,
+   "kind": "screen",
+   "screen": "F8 friends and invites",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "fr.noanswer",
+   "text": "{name} did not answer",
+   "max": 27,
+   "kind": "box",
+   "screen": "F8 friends and invites",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "fr.waiting",
+   "text": "Waiting for an answer",
+   "max": 21,
+   "kind": "screen",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.pending",
+   "text": "You already have an invite out",
+   "max": 30,
+   "kind": "box",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.full",
+   "text": "The friend list is full",
+   "max": 23,
+   "kind": "box",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.req_t",
+   "text": "Friend request",
+   "max": 14,
+   "kind": "popup",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.req_n",
+   "text": "from {name}",
+   "max": 17,
+   "kind": "popup",
+   "screen": "F8 friends and invites",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "fr.added",
+   "text": "{name} is now your friend",
+   "max": 31,
+   "kind": "screen",
+   "screen": "F8 friends and invites",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "fr.recent_h",
+   "text": "Recent players",
+   "max": 14,
+   "kind": "row",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.recent_add",
+   "text": "Add friend",
+   "max": 10,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.recent_rm",
+   "text": "Remove from recent",
+   "max": 18,
+   "kind": "item",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.recent_note",
+   "text": "Recent player, not a friend yet",
+   "max": 31,
+   "kind": "screen",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "fr.recent_rmd",
+   "text": "Removed from recent",
+   "max": 19,
+   "kind": "screen",
+   "screen": "F8 friends and invites"
+  },
+  {
+   "id": "iv.title",
+   "text": "{name} invites you",
+   "max": 24,
+   "kind": "popup",
+   "screen": "F8 invite popup",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "iv.mode",
+   "text": "to a Mano a mano match",
+   "max": 22,
+   "kind": "popup",
+   "screen": "F8 invite popup"
+  },
+  {
+   "id": "iv.hint_a",
+   "text": "Hold X to accept",
+   "max": 16,
+   "kind": "popup",
+   "screen": "F8 invite popup"
+  },
+  {
+   "id": "iv.hint_r",
+   "text": "Hold Y to decline",
+   "max": 17,
+   "kind": "popup",
+   "screen": "F8 invite popup"
+  },
+  {
+   "id": "iv.hint",
+   "text": "Hold X: Yes  Hold Y: No",
+   "max": 23,
+   "kind": "popup",
+   "screen": "F8 invite popup"
+  },
+  {
+   "id": "iv.accepting",
+   "text": "Accepting...",
+   "max": 12,
+   "kind": "popup",
+   "screen": "F8 invite popup"
+  },
+  {
+   "id": "iv.gone",
+   "text": "The invite has expired",
+   "max": 22,
+   "kind": "popup",
+   "screen": "F8 invite popup"
+  },
+  {
+   "id": "iv.cancel",
+   "text": "{name} cancelled",
+   "max": 22,
+   "kind": "popup",
+   "screen": "F8 invite popup",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "up.t",
+   "text": "Update",
+   "max": 6,
+   "kind": "title",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.checking",
+   "text": "Checking for updates",
+   "max": 20,
+   "kind": "screen",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.uptodate",
+   "text": "You are up to date",
+   "max": 18,
+   "kind": "screen",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.avail",
+   "text": "Version {ver} is available",
+   "max": 30,
+   "kind": "screen",
+   "screen": "F9 update",
+   "vars": {
+    "ver": 9
+   }
+  },
+  {
+   "id": "up.size",
+   "text": "Size {kb} KB, {n} blocks",
+   "max": 23,
+   "kind": "screen",
+   "screen": "F9 update",
+   "vars": {
+    "kb": 4,
+    "n": 2
+   }
+  },
+  {
+   "id": "up.note_head",
+   "text": "What is new",
+   "max": 11,
+   "kind": "screen",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.r_install",
+   "text": "Download And Install",
+   "max": 20,
+   "kind": "item",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.r_later",
+   "text": "Not Now",
+   "max": 7,
+   "kind": "item",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.dl",
+   "text": "Downloading  {pct} percent",
+   "max": 24,
+   "kind": "screen",
+   "screen": "F9 update",
+   "vars": {
+    "pct": 3
+   }
+  },
+  {
+   "id": "up.verify",
+   "text": "Checking the download",
+   "max": 21,
+   "kind": "screen",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.write",
+   "text": "Writing to the memory card",
+   "max": 26,
+   "kind": "screen",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.dontoff",
+   "text": "Do not switch off the console.",
+   "max": 30,
+   "kind": "screen",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.done_live",
+   "text": "Updated. No restart needed.",
+   "max": 27,
+   "kind": "screen",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.done_boot",
+   "text": "Updated. Restart to apply.",
+   "max": 26,
+   "kind": "screen",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.r_restart",
+   "text": "Restart Now",
+   "max": 11,
+   "kind": "item",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.r_rlater",
+   "text": "Restart Later",
+   "max": 13,
+   "kind": "item",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.f_net",
+   "text": "Download failed. Nothing was changed.",
+   "max": 37,
+   "kind": "box",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.f_sig",
+   "text": "The update could not be verified.",
+   "max": 33,
+   "kind": "box",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.f_room",
+   "text": "Not enough room on the card.",
+   "max": 28,
+   "kind": "box",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.f_write",
+   "text": "Could not write to the card.",
+   "max": 28,
+   "kind": "box",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.kept",
+   "text": "Still using version {ver}",
+   "max": 29,
+   "kind": "screen",
+   "screen": "F9 update",
+   "vars": {
+    "ver": 9
+   }
+  },
+  {
+   "id": "up.rollback",
+   "text": "The new version failed. The old one is back.",
+   "max": 44,
+   "kind": "box",
+   "screen": "F9 update"
+  },
+  {
+   "id": "up.chan",
+   "text": "Update Channel: {v}",
+   "max": 22,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 6
+   }
+  },
+  {
+   "id": "hb.hint",
+   "text": "Hold B to leave",
+   "max": 15,
+   "kind": "screen",
+   "screen": "F12 leaving a screen"
+  },
+  {
+   "id": "hb.legacy",
+   "text": "Hold B to exit",
+   "max": 14,
+   "kind": "screen",
+   "screen": "F12 leaving a screen"
+  },
+  {
+   "id": "hb.timer",
+   "text": "Exiting in {t} s",
+   "max": 16,
+   "kind": "screen",
+   "screen": "F12 leaving a screen",
+   "vars": {
+    "t": 3
+   }
+  },
+  {
+   "id": "hb.leaving",
+   "text": "Leaving",
+   "max": 7,
+   "kind": "screen",
+   "screen": "F12 leaving a screen"
+  },
+  {
+   "id": "bot.playing",
+   "text": "Playing bot: {name}",
+   "max": 25,
+   "kind": "screen",
+   "screen": "F13 bot opponent",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "bot.tag",
+   "text": "BOT",
+   "max": 3,
+   "kind": "label",
+   "screen": "F13 bot opponent"
+  },
+  {
+   "id": "bot.list",
+   "text": "{name}  bot",
+   "max": 17,
+   "kind": "item",
+   "screen": "F13 bot opponent",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "bot.notice",
+   "text": "This opponent is a computer player.",
+   "max": 35,
+   "kind": "screen",
+   "screen": "F13 bot opponent"
+  },
+  {
+   "id": "pm.r_again",
+   "text": "Play Again",
+   "max": 10,
+   "kind": "item",
+   "screen": "F14 post match"
+  },
+  {
+   "id": "pm.r_friend",
+   "text": "Add As A Friend",
+   "max": 15,
+   "kind": "item",
+   "screen": "F14 post match"
+  },
+  {
+   "id": "pm.r_invite",
+   "text": "Invite Again",
+   "max": 12,
+   "kind": "item",
+   "screen": "F14 post match"
+  },
+  {
+   "id": "pm.recent",
+   "text": "Recent opponents",
+   "max": 16,
+   "kind": "screen",
+   "screen": "F14 post match"
+  },
+  {
+   "id": "pm.vs",
+   "text": "vs {name}",
+   "max": 15,
+   "kind": "item",
+   "screen": "F14 post match",
+   "vars": {
+    "name": 12
+   }
+  },
+  {
+   "id": "mt.rboff",
+   "text": "Rollback off: low memory, delay only",
+   "max": 36,
+   "kind": "box",
+   "screen": "F15 in a match"
+  },
+  {
+   "id": "mt.slow",
+   "text": "Connection is slow",
+   "max": 18,
+   "kind": "box",
+   "screen": "F15 in a match"
+  },
+  {
+   "id": "mt.disc",
+   "text": "DISCONNECTED",
+   "max": 12,
+   "kind": "box",
+   "screen": "F15 in a match"
+  },
+  {
+   "id": "mt.desync",
+   "text": "DESYNC DETECTED",
+   "max": 15,
+   "kind": "box",
+   "screen": "F15 in a match"
+  },
+  {
+   "id": "mt.risk",
+   "text": "Desync Risk",
+   "max": 11,
+   "kind": "box",
+   "screen": "F15 in a match"
+  },
+  {
+   "id": "op.title",
+   "text": "Multishine Options",
+   "max": 18,
+   "kind": "title",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.page",
+   "text": "{tab}  {i} of {n}",
+   "max": 18,
+   "kind": "title",
+   "screen": "F10 options page",
+   "vars": {
+    "tab": 10,
+    "i": 1,
+    "n": 1
+   }
+  },
+  {
+   "id": "op.foot",
+   "text": "Up Down: Row  Left Right: Change  B: Back",
+   "max": 41,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.foot2",
+   "text": "L R: Page  Z: Default  A: Change",
+   "max": 32,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.saved",
+   "text": "Saved on the memory card in slot {slot}",
+   "max": 34,
+   "kind": "help",
+   "screen": "F10 options page",
+   "vars": {
+    "slot": 1
+   }
+  },
+  {
+   "id": "op.nocard",
+   "text": "No memory card - not saved",
+   "max": 26,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_widescreen",
+   "text": "Widescreen 16:9: {v}",
+   "max": 20,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_widescreen",
+   "text": "Wide picture. Applies from the next scene.",
+   "max": 42,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_shake",
+   "text": "Screen Shake: {v}",
+   "max": 17,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_shake",
+   "text": "Camera shake on big hits.",
+   "max": 25,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_fd",
+   "text": "Freeze FD Background: {v}",
+   "max": 25,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_fd",
+   "text": "Both players should use the same.",
+   "max": 33,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_hud",
+   "text": "Center 2P HUD: {v}",
+   "max": 18,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_hud",
+   "text": "Puts the two HUDs in the middle.",
+   "max": 32,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_lcancel",
+   "text": "L-Cancel Flash: {v}",
+   "max": 28,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 12
+   }
+  },
+  {
+   "id": "op.h_lcancel",
+   "text": "Flash when an L-cancel misses or hits.",
+   "max": 38,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_marker",
+   "text": "Friendly Player Markers: {v}",
+   "max": 28,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_marker",
+   "text": "Shows which character is yours.",
+   "max": 31,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_ucf",
+   "text": "UCF 0.84: On, fixed",
+   "max": 19,
+   "kind": "row",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.h_ucf",
+   "text": "Always on so all players play the same.",
+   "max": 39,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_rollback",
+   "text": "Rollback: on, fixed",
+   "max": 19,
+   "kind": "row",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.h_rollback",
+   "text": "Online play always uses rollback.",
+   "max": 33,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_delay",
+   "text": "Online Delay: {v}",
+   "max": 23,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 9
+   }
+  },
+  {
+   "id": "op.r_preload",
+   "text": "Menu Preload: {v}",
+   "max": 17,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_preload",
+   "text": "Load Friends, Standings, Game Night early.",
+   "max": 42,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_fps",
+   "text": "Frame Rate Readout: {v}",
+   "max": 23,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_fps",
+   "text": "Frames per second, top left. Lab only.",
+   "max": 38,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.h_delay",
+   "text": "Use 2. Use 3 if your ping is above 70.",
+   "max": 38,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_odelay",
+   "text": "Use Delay Offline: {v}",
+   "max": 22,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_odelay",
+   "text": "Practice offline with the online delay.",
+   "max": 39,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_chat",
+   "text": "Quick Chat: {v}",
+   "max": 23,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 11
+   }
+  },
+  {
+   "id": "op.h_chat",
+   "text": "Chat messages from your opponent.",
+   "max": 33,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_chattexts",
+   "text": "Edit Chat Texts",
+   "max": 15,
+   "kind": "row",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_last",
+   "text": "Remember Last Mode: {v}",
+   "max": 23,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_last",
+   "text": "Opens your last mode. Never starts a search.",
+   "max": 44,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_bots",
+   "text": "Play Against Bots: {v}",
+   "max": 22,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.h_bots",
+   "text": "On joins the bot pool in Dojo.",
+   "max": 30,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_net",
+   "text": "Network: {v}",
+   "max": 14,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 5
+   }
+  },
+  {
+   "id": "op.h_net",
+   "text": "Auto picks the right setting. Next boot.",
+   "max": 40,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_server",
+   "text": "Server: {v}",
+   "max": 24,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 16
+   }
+  },
+  {
+   "id": "op.h_server",
+   "text": "Where online play connects. Next boot.",
+   "max": 38,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_presence",
+   "text": "Show When I Am Online: {v}",
+   "max": 30,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 7
+   }
+  },
+  {
+   "id": "op.h_presence",
+   "text": "Only friends can see it.",
+   "max": 24,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_invites",
+   "text": "Invites From: {v}",
+   "max": 21,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 7
+   }
+  },
+  {
+   "id": "op.h_invites",
+   "text": "Who can send you invites.",
+   "max": 25,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_account",
+   "text": "Account",
+   "max": 7,
+   "kind": "row",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_hitbox",
+   "text": "Hitbox View In Training: {v}",
+   "max": 28,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.r_tech",
+   "text": "Tech Card After Matches: {v}",
+   "max": 28,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.r_qreset",
+   "text": "Quick Reset In Training: {v}",
+   "max": 28,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.r_update",
+   "text": "Check For Updates",
+   "max": 17,
+   "kind": "row",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_autoup",
+   "text": "Check At Start: {v}",
+   "max": 19,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 3
+   }
+  },
+  {
+   "id": "op.r_diag",
+   "text": "Info Display: {v}",
+   "max": 18,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 4
+   }
+  },
+  {
+   "id": "op.h_diag",
+   "text": "Shows ping and rollbacks on screen.",
+   "max": 35,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_log",
+   "text": "Write A Log: {v}",
+   "max": 20,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 7
+   }
+  },
+  {
+   "id": "op.h_log",
+   "text": "Only to an SD card, never the memory card.",
+   "max": 42,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.r_slot",
+   "text": "Memory Card Slot: {v}",
+   "max": 22,
+   "kind": "row",
+   "screen": "F10 options page",
+   "vars": {
+    "v": 4
+   }
+  },
+  {
+   "id": "op.r_reset",
+   "text": "Reset All To Defaults",
+   "max": 21,
+   "kind": "row",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.reset_ask",
+   "text": "Hold A for 2 seconds to reset",
+   "max": 29,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.reset_done",
+   "text": "All options are back to defaults",
+   "max": 32,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.fixed",
+   "text": "This one is fixed in this build",
+   "max": 31,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.nextboot",
+   "text": "Applies at the next start",
+   "max": 25,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.locked",
+   "text": "Cannot change while online",
+   "max": 26,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "li.h_remember",
+   "text": "On keeps you signed in on this card.",
+   "max": 36,
+   "kind": "help",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "li.badlogin",
+   "text": "Email or password is not right",
+   "max": 30,
+   "kind": "box",
+   "screen": "F6 sign in"
+  },
+  {
+   "id": "up.manual",
+   "text": "Rebuild the image with the new tool.",
+   "max": 36,
+   "kind": "screen",
+   "screen": "F9 update"
+  },
+  {
+   "id": "ac.web3",
+   "text": "Then sign in with your phone.",
+   "max": 29,
+   "kind": "screen",
+   "screen": "F7 account creation"
+  },
+  {
+   "id": "op.server_warn",
+   "text": "A new server needs a new sign-in.",
+   "max": 33,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.needlogin",
+   "text": "Sign in to use this",
+   "max": 19,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.sync_fail",
+   "text": "Saved here. The server will be told later.",
+   "max": 42,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "ct.t",
+   "text": "Chat Texts",
+   "max": 10,
+   "kind": "title",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "ct.hint",
+   "text": "Change them on your phone.",
+   "max": 26,
+   "kind": "screen",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "ct.up",
+   "text": "Up",
+   "max": 2,
+   "kind": "item",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "ct.left",
+   "text": "Left",
+   "max": 4,
+   "kind": "item",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "ct.right",
+   "text": "Right",
+   "max": 5,
+   "kind": "item",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "ct.down",
+   "text": "Down",
+   "max": 4,
+   "kind": "item",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "ct.line",
+   "text": "{d}: {text}",
+   "max": 32,
+   "kind": "item",
+   "screen": "F10 options page",
+   "vars": {
+    "d": 5,
+    "text": 25
+   }
+  },
+  {
+   "id": "op.tab_game",
+   "text": "Game",
+   "max": 4,
+   "kind": "title",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.tab_online",
+   "text": "Online",
+   "max": 6,
+   "kind": "title",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.tab_network",
+   "text": "Network",
+   "max": 7,
+   "kind": "title",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.tab_account",
+   "text": "Account",
+   "max": 7,
+   "kind": "title",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.tab_training",
+   "text": "Training",
+   "max": 8,
+   "kind": "title",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.tab_system",
+   "text": "System",
+   "max": 6,
+   "kind": "title",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "op.v_default",
+   "text": "Default",
+   "max": 7,
+   "kind": "help",
+   "screen": "F10 options page"
+  },
+  {
+   "id": "ml.d_settings",
+   "text": "Multishine settings",
+   "max": 19,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_friends",
+   "text": "Interact with your friends",
+   "max": 26,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_slippi",
+   "text": "Play against Slippi opponents",
+   "max": 29,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_local",
+   "text": "No Johns.",
+   "max": 9,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_misc",
+   "text": "Mano a mano, Couch, settings",
+   "max": 31,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_orig",
+   "text": "Original game menu",
+   "max": 18,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_mockups",
+   "text": "Screens to try out, with example data",
+   "max": 37,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_tourney",
+   "text": "Play a bracket online",
+   "max": 21,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_standings",
+   "text": "The Grandmaster ladder",
+   "max": 22,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_ranked",
+   "text": "Play ranked matches",
+   "max": 19,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_unranked",
+   "text": "Play unranked matches",
+   "max": 21,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_direct",
+   "text": "Pair directly with code",
+   "max": 23,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_tournament",
+   "text": "Join or create a room",
+   "max": 21,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_teams",
+   "text": "Play two against two online",
+   "max": 27,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.d_party",
+   "text": "Play online with a group",
+   "max": 24,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.foot",
+   "text": "A: Select  B: Back",
+   "max": 18,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.na",
+   "text": "Not available in this build.",
+   "max": 28,
+   "kind": "help",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.n_mt",
+   "text": "Server not available.",
+   "max": 21,
+   "kind": "screen",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.n_acct",
+   "text": "Server not available.",
+   "max": 21,
+   "kind": "screen",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.n_fr",
+   "text": "Server not available.",
+   "max": 21,
+   "kind": "screen",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_mt_join",
+   "text": "Join an event",
+   "max": 13,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_mt_matches",
+   "text": "My matches",
+   "max": 10,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_mt_bracket",
+   "text": "Bracket",
+   "max": 7,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_mt_results",
+   "text": "Results",
+   "max": 7,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_fr_list",
+   "text": "Friend list",
+   "max": 11,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_fr_invites",
+   "text": "Invites",
+   "max": 7,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_fr_blocked",
+   "text": "Blocked",
+   "max": 7,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_acm",
+   "text": "Multishine",
+   "max": 10,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_acs",
+   "text": "Slippi",
+   "max": 6,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.r_gecko",
+   "text": "Gecko Codes",
+   "max": 11,
+   "kind": "item",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "ml.n_mo",
+   "text": "The option pages are not here yet.",
+   "max": 34,
+   "kind": "screen",
+   "screen": "Menu layout"
+  },
+  {
+   "id": "lb.n1",
+   "text": "3 and 4 player games use delay mode.",
+   "max": 36,
+   "kind": "box",
+   "screen": "Delay-only lobbies (3-4 players), DELAY_ONLY_LOBBIES.md 5"
+  },
+  {
+   "id": "lb.n2",
+   "text": "There is no rollback in this mode.",
+   "max": 34,
+   "kind": "box",
+   "screen": "Delay-only lobbies (3-4 players), DELAY_ONLY_LOBBIES.md 5"
+  },
+  {
+   "id": "lb.n3",
+   "text": "Best on wired links in the same region.",
+   "max": 39,
+   "kind": "box",
+   "screen": "Delay-only lobbies (3-4 players), DELAY_ONLY_LOBBIES.md 5"
+  },
+  {
+   "id": "lb.css",
+   "text": "Delay mode: no rollback with 3 or 4",
+   "max": 35,
+   "kind": "help",
+   "screen": "Delay-only lobbies (3-4 players), DELAY_ONLY_LOBBIES.md 5"
+  },
+  {
+   "id": "lb.stage",
+   "text": "This stage is not offered in delay mode.",
+   "max": 40,
+   "kind": "box",
+   "screen": "Delay-only lobbies (3-4 players), DELAY_ONLY_LOBBIES.md 5"
+  },
+  {
+   "id": "up.rein_x",
+   "text": "X installs this same build again, to repair it.",
+   "max": 47,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.rein_foot",
+   "text": "A: Check again  X: Reinstall  B: Back",
+   "max": 37,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.rein_title",
+   "text": "Reinstall build {n}",
+   "max": 20,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)",
+   "vars": {
+    "n": 4
+   }
+  },
+  {
+   "id": "up.rein_size",
+   "text": "Size {kb} KB. The same signed build, written again.",
+   "max": 51,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)",
+   "vars": {
+    "kb": 4
+   }
+  },
+  {
+   "id": "up.rein_done",
+   "text": "Build {n} is installed again.",
+   "max": 30,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)",
+   "vars": {
+    "n": 4
+   }
+  },
+  {
+   "id": "up.small_1",
+   "text": "Small memory card: there is no spare copy.",
+   "max": 42,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.small_2",
+   "text": "A power cut while writing leaves no Multishine.",
+   "max": 47,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.small_3",
+   "text": "It then needs the network or a copy by hand.",
+   "max": 44,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.small_foot",
+   "text": "A: Install anyway  B: Back",
+   "max": 26,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.small_wait1",
+   "text": "Do not turn the power off.",
+   "max": 26,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.small_wait2",
+   "text": "There is no spare copy. Wait until it ends.",
+   "max": 43,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.lost_1",
+   "text": "The file could not be written. Do not switch off.",
+   "max": 49,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.lost_2",
+   "text": "Press A to try again. No Multishine until then.",
+   "max": 47,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.rid_row",
+   "text": "Reset online identity",
+   "max": 21,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.rid_1",
+   "text": "Reset this console's online identity",
+   "max": 36,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.rid_2",
+   "text": "A new Sandbag code. The old code stops working.",
+   "max": 47,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.rid_3",
+   "text": "Your Slippi account file is not touched.",
+   "max": 40,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.rid_hold",
+   "text": "Hold L and A for 2 seconds. B cancels.",
+   "max": 38,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.rid_done",
+   "text": "Done. A new code is made when you go online.",
+   "max": 44,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.sf_row",
+   "text": "Remove my Slippi identity file",
+   "max": 30,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.sf_1",
+   "text": "This deletes MultishineIdentity from the card.",
+   "max": 46,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.sf_2",
+   "text": "No copy is made. You cannot use Slippi online",
+   "max": 45,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.sf_3",
+   "text": "from this card until you put the file back.",
+   "max": 43,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "up.sf_hold",
+   "text": "Hold L and A for 4 seconds. B cancels.",
+   "max": 38,
+   "kind": "overlay",
+   "screen": "Update overlay (sg_ui.c)"
+  },
+  {
+   "id": "css.h_grand",
+   "text": "Grandmaster",
+   "max": 11,
+   "kind": "title",
+   "screen": "Online character select"
+  },
+  {
+   "id": "css.h_dojo",
+   "text": "Dojo",
+   "max": 4,
+   "kind": "title",
+   "screen": "Online character select"
+  },
+  {
+   "id": "css.h_mano",
+   "text": "Mano a mano",
+   "max": 11,
+   "kind": "title",
+   "screen": "Online character select"
+  },
+  {
+   "id": "css.h_gn",
+   "text": "Game Night",
+   "max": 10,
+   "kind": "title",
+   "screen": "Online character select"
+  },
+  {
+   "id": "css.h_slp_un",
+   "text": "Unranked Mode",
+   "max": 13,
+   "kind": "title",
+   "screen": "Online character select"
+  },
+  {
+   "id": "css.h_slp_di",
+   "text": "Direct Mode",
+   "max": 11,
+   "kind": "title",
+   "screen": "Online character select"
+  },
+  {
+   "id": "ns.server",
+   "text": "Server: Lab",
+   "max": 11,
+   "kind": "overlay",
+   "screen": "Settings Online page, lab/dev rows (sg_ui.c), NETSEL_TOGGLES.md"
+  },
+  {
+   "id": "ns.slippi",
+   "text": "Slippi: Real Slippi",
+   "max": 19,
+   "kind": "overlay",
+   "screen": "Settings Online page, lab/dev rows (sg_ui.c), NETSEL_TOGGLES.md"
+  },
+  {
+   "id": "ns.q1",
+   "text": "Unranked and Direct will contact Slippi's real",
+   "max": 46,
+   "kind": "overlay",
+   "screen": "Settings Online page, lab/dev rows (sg_ui.c), NETSEL_TOGGLES.md"
+  },
+  {
+   "id": "ns.q2",
+   "text": "servers. This client is not Slippi.",
+   "max": 35,
+   "kind": "overlay",
+   "screen": "Settings Online page, lab/dev rows (sg_ui.c), NETSEL_TOGGLES.md"
+  },
+  {
+   "id": "ns.q3",
+   "text": "Switch it on.",
+   "max": 13,
+   "kind": "overlay",
+   "screen": "Settings Online page, lab/dev rows (sg_ui.c), NETSEL_TOGGLES.md"
+  },
+  {
+   "id": "ns.inuse_mm",
+   "text": "Slippi: no override, baked name",
+   "max": 31,
+   "kind": "overlay",
+   "screen": "Settings Online page, lab/dev rows (sg_ui.c), NETSEL_TOGGLES.md"
+  },
+  {
+   "id": "st.t_delete",
+   "text": "Delete identity",
+   "max": 15,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_ident",
+   "text": "Device identity",
+   "max": 15,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_ent",
+   "text": "Entropy test",
+   "max": 12,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_ctl",
+   "text": "Controller test",
+   "max": 15,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_slogin",
+   "text": "Send Slippi login",
+   "max": 17,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_server",
+   "text": "Server and Slippi",
+   "max": 17,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_link",
+   "text": "Link this console",
+   "max": 17,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_ready",
+   "text": "Getting ready",
+   "max": 13,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_welcome",
+   "text": "Welcome to Multishine",
+   "max": 21,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_linked",
+   "text": "Linked",
+   "max": 6,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_slrecv",
+   "text": "Slippi login received",
+   "max": 21,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_slsaved",
+   "text": "Slippi login saved",
+   "max": 18,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_about",
+   "text": "About",
+   "max": 5,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_diag",
+   "text": "Diagnostics",
+   "max": 11,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_loading",
+   "text": "Loading",
+   "max": 7,
+   "kind": "title",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.s_picture",
+   "text": "Picture",
+   "max": 7,
+   "kind": "item",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.s_online",
+   "text": "Online",
+   "max": 6,
+   "kind": "item",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.s_tests",
+   "text": "Tests",
+   "max": 5,
+   "kind": "item",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.s_third",
+   "text": "Third party",
+   "max": 11,
+   "kind": "item",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.f_open",
+   "text": "A: Select  B: Back",
+   "max": 18,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.f_chg",
+   "text": "A: Change  B: Back",
+   "max": 18,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.f_lr",
+   "text": "A: Change  B: Back",
+   "max": 18,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.d_start",
+   "text": "Look for an update when the menu starts.",
+   "max": 40,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.d_bak",
+   "text": "Your card and both logins go to slot B.",
+   "max": 39,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.d_ent",
+   "text": "Check the random numbers behind your keys.",
+   "max": 42,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.d_needs",
+   "text": "Needs an account. Link this console first.",
+   "max": 42,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.kept_1",
+   "text": "Kept: Slippi login, console key, Melee save.",
+   "max": 44,
+   "kind": "overlay",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.kept_2",
+   "text": "Kept: console key, Melee save and settings.",
+   "max": 43,
+   "kind": "overlay",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.kept_3",
+   "text": "Kept: your Melee save, settings and codes.",
+   "max": 42,
+   "kind": "overlay",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.acct_note",
+   "text": "Your account is not deleted.",
+   "max": 28,
+   "kind": "overlay",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_prod",
+   "text": "Production",
+   "max": 10,
+   "kind": "item",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.t_dev",
+   "text": "Dev",
+   "max": 3,
+   "kind": "item",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.d_ident",
+   "text": "Name, connect code, Slippi login and delete.",
+   "max": 44,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.d_set_online",
+   "text": "Identity, link, invites and update check.",
+   "max": 41,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.d_set_update",
+   "text": "Look for a newer Multishine build.",
+   "max": 34,
+   "kind": "help",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.l_dl1",
+   "text": "Delete: Multishine only",
+   "max": 23,
+   "kind": "item",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.l_dl2",
+   "text": "Delete: Multishine and Slippi",
+   "max": 29,
+   "kind": "item",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "st.l_dl3",
+   "text": "Delete: everything",
+   "max": 18,
+   "kind": "item",
+   "screen": "Settings look (ml_glue.c pages, sg_ui.c overlay), docs/design/SETTINGS_REDESIGN.md"
+  },
+  {
+   "id": "lb.auto_foot",
+   "text": "Hold X: Stop watching  Start: Join  Hold B: Leave",
+   "max": 49,
+   "kind": "overlay",
+   "screen": "Game Night room lobby (gnb.c), docs/design/ROOM_WATCH_UX.md"
+  },
+  {
+   "id": "lb.auto_line",
+   "text": "Watching every game",
+   "max": 19,
+   "kind": "row",
+   "screen": "Game Night room lobby (gnb.c), docs/design/ROOM_WATCH_UX.md"
+  },
+  {
+   "id": "lb.auto_on",
+   "text": "Watching every game",
+   "max": 19,
+   "kind": "row",
+   "screen": "Game Night room lobby (gnb.c), docs/design/ROOM_WATCH_UX.md"
+  },
+  {
+   "id": "lb.auto_off",
+   "text": "Stopped watching",
+   "max": 16,
+   "kind": "row",
+   "screen": "Game Night room lobby (gnb.c), docs/design/ROOM_WATCH_UX.md"
+  },
+  {
+   "id": "lb.auto_go",
+   "text": "Auto Watch Starting",
+   "max": 19,
+   "kind": "row",
+   "screen": "Game Night room lobby (gnb.c), docs/design/ROOM_WATCH_UX.md"
+  },
+  {
+   "id": "lb.auto_stop",
+   "text": "Auto Watch Stopped",
+   "max": 18,
+   "kind": "row",
+   "screen": "Game Night room lobby (gnb.c), docs/design/ROOM_WATCH_UX.md"
+  },
+  {
+   "id": "lb.noreplay",
+   "text": "No Game To Replay Yet",
+   "max": 21,
+   "kind": "row",
+   "screen": "Game Night room lobby (gnb.c), docs/design/ROOM_WATCH_UX.md"
+  },
+  {
+   "id": "lb.nolive",
+   "text": "No Live Game Yet",
+   "max": 16,
+   "kind": "row",
+   "screen": "Game Night room lobby (gnb.c), docs/design/ROOM_WATCH_UX.md"
+  },
+  {
+   "id": "st.not_on_board",
+   "text": "You are not on the board yet",
+   "max": 28,
+   "kind": "row",
+   "screen": "Standings (stb.c stb_note)"
+  },
+  {
+   "id": "tn.lim_one",
+   "text": "You play in one at a time.",
+   "max": 26,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.lim_host",
+   "text": "Creates it and opens sign-up.",
+   "max": 29,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.lim_start",
+   "text": "Entry closes at the start.",
+   "max": 26,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.size_double",
+   "text": "3 to 64 players.",
+   "max": 16,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.size_single",
+   "text": "2 to 64 players.",
+   "max": 16,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.name_len",
+   "text": "Up to 12 letters.",
+   "max": 17,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.no_other",
+   "text": "You are in another one.",
+   "max": 23,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.full",
+   "text": "The tournament is full.",
+   "max": 23,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.closed",
+   "text": "Entry closed: it started.",
+   "max": 25,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.pass_bad",
+   "text": "Wrong passcode.",
+   "max": 15,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.host_only",
+   "text": "Only the host can do that.",
+   "max": 26,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.name_bad",
+   "text": "That name is not allowed.",
+   "max": 25,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.few",
+   "text": "Not enough entrants yet.",
+   "max": 24,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.ci_closed",
+   "text": "Check-in is not open now.",
+   "max": 25,
+   "kind": "help",
+   "screen": "Tournament"
+  },
+  {
+   "id": "tn.too_many",
+   "text": "You are in another one.",
+   "max": 23,
+   "kind": "help",
+   "screen": "Tournament"
+  }
+ ]
+}

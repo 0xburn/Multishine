@@ -1,0 +1,6040 @@
+{
+ "_spdx": "Copyright (C) 2026 Nigzel / Bjerreman. SPDX-License-Identifier: GPL-3.0-or-later",
+ "_what": "offline/multishine manifest: the compat profiles compile exactly the file set, flags and link order of the existing stage build scripts ( step a/b). 'stage' maps a virtual path (the path the file has in its stage directory, so relative includes resolve unchanged) to the copy under offline/multishine; 'external' lists canonical library files used in place (not copied).",
+ "default_bin_sha1": "3b6c8e4d0cf38b944f388cd69ff28f45208cb919",
+ "common_cflags": [
+  "-Wall",
+  "-Wextra",
+  "-Werror"
+ ],
+ "lr_cflags": [
+  "-ffixed-lr"
+ ],
+ "profiles": {
+  "s17-compat": {
+   "image": "s17",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "../s17/dep/s7_core.c",
+    "offline/s17/dep/s7_core.h": "../s17/dep/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/s12_gc.c": "glue/s17/s12_gc.c",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h",
+    "offline/delay_auto/auto_delay_tab.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=2",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200"
+   ],
+   "options": {
+    "sites": {
+     "default": "off",
+     "when": {
+      "off": [
+       "-DSD_NO_SITES"
+      ]
+     },
+     "doc": "S11 allocation-site tables (sd_sites/st_addr/st_site, 88 KB) and the cold-site/site-profile code. Product default off (RC1 contract cold=0 site_prof=0): compiled out; 'sites=on' is the lab build ( step 1). Image 1 / textonly card and the heap probe since the mainline (offsets the package R glue growth in the card holes; their contracts set neither cold nor site_prof)."
+    }
+   },
+   "pre": [],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS",
+      "-DSD_NO_TESTPROF"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_NO_U2"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    }
+   ],
+   "ld": "offline/s17/net/s12.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "sdshim"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": "all",
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "sdshim"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc"
+    ]
+   },
+   "reference": {
+    "script": "offline/s17/net/build_blob.sh",
+    "elf": "build/offline/s17/net/s17.elf",
+    "bin": "build/offline/s17/net/s17.bin",
+    "stored_bin_valid": true
+   }
+  },
+  "s17-compat-om": {
+   "image": "s17om",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "../s17/dep/s7_core.c",
+    "offline/s17/dep/s7_core.h": "../s17/dep/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/s12_gc.c": "glue/s17/s12_gc.c",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/net/om_backend.c": "menus/om/om_backend.c",
+    "offline/s17/net/om_heap.c": "menus/om/om_heap.c",
+    "offline/s17/net/om_heap_stub.S": "menus/om/om_heap_stub.S",
+    "offline/s17/net/codehist.c": "menus/om/codehist.c",
+    "offline/s17/net/codehist.h": "menus/om/codehist.h",
+    "offline/s17/net/om_card.c": "menus/om/om_card.c",
+    "offline/s17/net/om_card.h": "menus/om/om_card.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h",
+    "offline/delay_auto/auto_delay_tab.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=2",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200"
+   ],
+   "options": {},
+   "pre": [],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS",
+      "-Dsdshim_set_backend=om_set_backend"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_NO_U2"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "om_backend",
+     "src": "offline/s17/net/om_backend.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "codehist",
+     "src": "offline/s17/net/codehist.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "om_card",
+     "src": "offline/s17/net/om_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "om_heap",
+     "src": "offline/s17/net/om_heap.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "om_heap_stub",
+     "src": "offline/s17/net/om_heap_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    }
+   ],
+   "ld": "offline/s17/net/s12.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub",
+    "om_set_backend",
+    "om_heap_stub"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "om_backend",
+    "codehist",
+    "om_card",
+    "om_heap",
+    "om_heap_stub",
+    "sdshim"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": "all",
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "om_backend",
+     "om_heap",
+     "sdshim",
+     "codehist",
+     "om_card"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "om_heap_stub"
+    ]
+   },
+   "derived_from": "s17-compat",
+   "doc": "Image 'Multishine online-menu': the s17-compat blob plus offline/multishine/menus/om/om_backend.c (console-local answers for Slippi's online title menu; s12_gc.c is compiled with -Dsdshim_set_backend=om_set_backend, the copied file is not edited); plus om_heap.c / om_heap_stub.S (AllM/HSD heap boundary of the online major scene, 04 hook at 0x80015900); plus codehist.c / om_card.c (direct-code history on the memory card)",
+   "own": [
+    "offline/s17/net/om_backend.c",
+    "offline/s17/net/om_heap.c",
+    "offline/s17/net/om_heap_stub.S",
+    "offline/s17/net/codehist.c",
+    "offline/s17/net/codehist.h",
+    "offline/s17/net/om_card.c",
+    "offline/s17/net/om_card.h"
+   ]
+  },
+  "s17-compat-od": {
+   "image": "s17od",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "net/s17od/s7_core.c",
+    "offline/s17/dep/s7_core.h": "net/s17od/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/s12_gc.c": "glue/s17od/s12_gc.c",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h": "menus/od/ms_match_rules.h",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/net/om_heap.c": "menus/om/om_heap.c",
+    "offline/s17/net/om_heap_stub.S": "menus/om/om_heap_stub.S",
+    "offline/s17/net/codehist.c": "menus/om/codehist.c",
+    "offline/s17/net/codehist.h": "menus/om/codehist.h",
+    "offline/s17/net/om_card.c": "menus/om/om_card.c",
+    "offline/s17/net/om_card.h": "menus/om/om_card.h",
+    "offline/s17/net/od_backend.c": "menus/od/od_backend.c",
+    "offline/s17/net/od_glue.c": "menus/od/od_glue.c",
+    "offline/s17/net/od_glue.h": "menus/od/od_glue.h",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/client_net/mnc.c",
+    "offline/client_net/mnc.h",
+    "offline/client_net/mw2.c",
+    "offline/client_net/mw2.h",
+    "offline/client_net/mw2_crypto.c",
+    "offline/client_net/mw2_crypto.h",
+    "offline/chat/client_recog.h",
+    "offline/payload_pack/ms_sha256.c",
+    "offline/payload_pack/ms_sha256.h",
+    "offline/payload_pack/ms_lz.h",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h", "offline/delay_auto/auto_delay_tab.h",
+    "offline/net/sddns.c",
+    "offline/net/sddns.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=2",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200",
+    "-I@STAGE@/offline/client_net",
+    "-I@STAGE@/offline/net"
+   ],
+   "options": {},
+   "pre": [],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS",
+      "-Dsdshim_set_backend=od_set_backend"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS",
+      "-DOD_SELECT_LOCK"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_NO_U2"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "od_backend",
+     "src": "offline/s17/net/od_backend.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "od_glue",
+     "src": "offline/s17/net/od_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "mnc",
+     "src": "offline/client_net/mnc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2",
+     "src": "offline/client_net/mw2.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2_crypto",
+     "src": "offline/client_net/mw2_crypto.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "ms_sha256",
+     "src": "offline/payload_pack/ms_sha256.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "codehist",
+     "src": "offline/s17/net/codehist.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DCH_AT"
+     ]
+    },
+    {
+     "obj": "om_card",
+     "src": "offline/s17/net/om_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "om_heap",
+     "src": "offline/s17/net/om_heap.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DOM_ALLM_SHIFT=0x59000u"
+     ]
+    },
+    {
+     "obj": "om_heap_stub",
+     "src": "offline/s17/net/om_heap_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "sddns",
+     "src": "offline/net/sddns.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    }
+   ],
+   "ld": "offline/s17/net/s12.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub",
+    "od_set_backend",
+    "om_heap_stub"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "od_backend",
+    "od_glue",
+    "sddns",
+    "mnc",
+    "mw2",
+    "mw2_crypto",
+    "ms_sha256",
+    "codehist",
+    "om_card",
+    "om_heap",
+    "om_heap_stub",
+    "sdshim"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": "all",
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "om_heap",
+     "sdshim",
+     "codehist",
+     "om_card",
+     "od_backend",
+     "od_glue",
+     "sddns",
+     "mnc",
+     "mw2",
+     "mw2_crypto",
+     "ms_sha256"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "om_heap_stub"
+    ]
+   },
+   "derived_from": "s17-compat-om",
+   "doc": "Image 'Multishine online-direct': s17-compat-om with a real Direct mode. od_backend.c replaces om_backend.c (B4 -> od_glue.c -> the server over wire v2, B3 states and refusal texts, engine answer once the session runs); the engine glue s12_gc.c and the S7 core are COPIES WITH EDITS (glue/s17od, net/s17od: marked OD, diffs listed in ONLINE_GLUE section 6): the server step in the network slice, route by source address, s7_core_set_peer, B5 field offsets and lock-in ready flags (-DOD_SELECT_LOCK); client library mnc/mw2/mw2_crypto/ms_sha256 used in place; the heap policy and the code history are the online-menu image's",
+   "own": [
+    "offline/s17/net/om_heap.c",
+    "offline/s17/net/om_heap_stub.S",
+    "offline/s17/net/codehist.c",
+    "offline/s17/net/codehist.h",
+    "offline/s17/net/om_card.c",
+    "offline/s17/net/om_card.h",
+    "offline/s17/net/od_backend.c",
+    "offline/s17/net/od_glue.c",
+    "offline/s17/net/od_glue.h",
+    "offline/s17/net/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h",
+    "offline/s17/net/s12_gc.c",
+    "offline/s17/dep/s7_core.c",
+    "offline/s17/net/s19_fit.h",
+    "offline/s17/net/s12_macpub.h"
+   ]
+  },
+  "s17-compat-on": {
+   "image": "s17on",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "net/s17od/s7_core.c",
+    "offline/s17/dep/s7_core.h": "net/s17od/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/s12_gc.c": "glue/s17od/s12_gc.c",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h": "menus/od/ms_match_rules.h",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/net/om_heap.c": "menus/om/om_heap.c",
+    "offline/s17/net/om_heap_stub.S": "menus/om/om_heap_stub.S",
+    "offline/s17/net/codehist.c": "menus/om/codehist.c",
+    "offline/s17/net/codehist.h": "menus/om/codehist.h",
+    "offline/s17/net/on_hist.c": "menus/on/on_hist.c",
+    "offline/s17/net/om_card.h": "menus/om/om_card.h",
+    "offline/s17/net/od_glue.c": "menus/od/od_glue.c",
+    "offline/s17/net/od_glue.h": "menus/od/od_glue.h",
+    "offline/s17/net/on_backend.c": "menus/on/on_backend.c",
+    "offline/s17/net/on_card.c": "menus/on/on_card.c",
+    "offline/s17/net/on_card.h": "menus/on/on_card.h",
+    "offline/s17/net/on_cfgrec.c": "menus/on/on_cfgrec.c",
+    "offline/s17/net/on_cfgrec.h": "menus/on/on_cfgrec.h",
+    "offline/s17/ms_fmt.h": "menus/ms_fmt.h",
+    "offline/s17/net/on_bhold.c": "menus/on/on_bhold.c",
+    "offline/s17/net/tmv.c": "menus/on/tmv.c",
+    "offline/s17/net/tmv.h": "menus/on/tmv.h",
+    "offline/s17/net/gnt_tmb.c": "menus/sign/gnt_tmb.c",
+    "offline/s17/net/gnt_tmb.h": "menus/sign/gnt_tmb.h",
+    "offline/s17/net/on_bhold.h": "menus/on/on_bhold.h",
+    "offline/s17/net/fc_log.h": "menus/on/fc_log.h",
+    "offline/s17/net/ld_plan.h": "menus/on/ld_plan.h",
+    "offline/s17/net/on_bhold_sis.S": "menus/on/on_bhold_sis.S",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/client_net/mnc.c",
+    "offline/client_net/mnc.h",
+    "offline/client_net/mw2.c",
+    "offline/client_net/mw2.h",
+    "offline/client_net/mw2_crypto.c",
+    "offline/client_net/mw2_crypto.h",
+    "offline/chat/client_recog.h",
+    "offline/payload_pack/ms_sha256.c",
+    "offline/payload_pack/ms_sha256.h",
+    "offline/payload_pack/ms_lz.h",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h", "offline/delay_auto/auto_delay_tab.h",
+    "offline/net/sddns.c",
+    "offline/net/sddns.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=2",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200",
+    "-I@STAGE@/offline/client_net",
+    "-I@STAGE@/offline/net"
+   ],
+   "options": {},
+   "pre": [],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS",
+      "-Dsdshim_set_backend=od_set_backend",
+      "-DON_BUILD"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS",
+      "-DOD_SELECT_LOCK"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_NO_U2"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "on_backend",
+     "src": "offline/s17/net/on_backend.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "od_glue",
+     "src": "offline/s17/net/od_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "mnc",
+     "src": "offline/client_net/mnc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2",
+     "src": "offline/client_net/mw2.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2_crypto",
+     "src": "offline/client_net/mw2_crypto.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "ms_sha256",
+     "src": "offline/payload_pack/ms_sha256.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "codehist",
+     "src": "offline/s17/net/codehist.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DCH_AT"
+     ]
+    },
+    {
+     "obj": "on_cfgrec",
+     "src": "offline/s17/net/on_cfgrec.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "on_card",
+     "src": "offline/s17/net/on_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "om_heap",
+     "src": "offline/s17/net/om_heap.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DOM_ALLM_SHIFT=0x5F000u"
+     ]
+    },
+    {
+     "obj": "om_heap_stub",
+     "src": "offline/s17/net/om_heap_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "on_bhold",
+     "src": "offline/s17/net/on_bhold.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "on_bhold_sis",
+     "src": "offline/s17/net/on_bhold_sis.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "sddns",
+     "src": "offline/net/sddns.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    }
+   ],
+   "ld": "offline/s17/net/s12.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub",
+    "od_set_backend",
+    "om_heap_stub",
+    "bh_st"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "on_backend",
+    "od_glue",
+    "sddns",
+    "mnc",
+    "mw2",
+    "mw2_crypto",
+    "ms_sha256",
+    "codehist",
+    "on_cfgrec",
+    "on_card",
+    "om_heap",
+    "om_heap_stub",
+    "on_bhold",
+    "on_bhold_sis",
+    "sdshim"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": [
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "pacing",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "on_backend",
+     "od_glue",
+     "sddns",
+     "mnc",
+     "mw2",
+     "mw2_crypto",
+     "ms_sha256",
+     "codehist",
+     "on_cfgrec",
+     "on_card",
+     "om_heap",
+     "om_heap_stub",
+     "on_bhold",
+     "sdshim",
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc"
+    ],
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "om_heap",
+     "sdshim",
+     "codehist",
+     "on_cfgrec",
+     "on_card",
+     "on_backend",
+     "od_glue",
+     "sddns",
+     "mnc",
+     "mw2",
+     "mw2_crypto",
+     "ms_sha256",
+     "on_bhold"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "om_heap_stub",
+     "on_bhold_sis"
+    ]
+   },
+   "derived_from": "s17-compat-od",
+   "doc": "Image 'Multishine online': s17-compat-od (Direct through our server, code history, heap policy, Teams-fixed codeset) with on_backend.c in place of od_backend.c: Ranked and Unranked rows through the server, the server setup and identity read from the memory card file MultishineOnline (on_card.c #includes on_hist.c, the fork of om_card.c with the slot policy: one translation unit shares the card work area; on_cfgrec.c parses the record), and the Ranked result report (BD -> GAME_REPORT, evidence from od_core_final in the s12_gc.c copy under -DON_BUILD). od_glue.c / mnc.c carry the additive report and card-config functions. Hold B for 3 s to leave the CSS, with the hint and the bar (menus/on/on_bhold.c + on_bhold_sis.S, called from s3_tick_body under ON_BUILD; AllM shift 0x5C000 for its ~3 KB; 10.9).",
+   "own": [
+    "offline/s17/net/om_heap.c",
+    "offline/s17/net/om_heap_stub.S",
+    "offline/s17/net/codehist.c",
+    "offline/s17/net/codehist.h",
+    "offline/s17/net/on_hist.c",
+    "offline/s17/net/om_card.h",
+    "offline/s17/net/od_glue.c",
+    "offline/s17/net/od_glue.h",
+    "offline/s17/net/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h",
+    "offline/s17/net/s12_gc.c",
+    "offline/s17/dep/s7_core.c",
+    "offline/s17/net/on_backend.c",
+    "offline/s17/net/on_card.c",
+    "offline/s17/net/on_card.h",
+    "offline/s17/net/on_cfgrec.c",
+    "offline/s17/net/on_cfgrec.h",
+    "offline/s17/ms_fmt.h",
+    "offline/s17/net/tmv.c",
+    "offline/s17/net/tmv.h",
+    "offline/s17/net/gnt_tmb.c",
+    "offline/s17/net/gnt_tmb.h",
+    "offline/s17/net/on_bhold.c",
+    "offline/s17/net/on_bhold.h",
+    "offline/s17/net/fc_log.h",
+    "offline/s17/net/ld_plan.h",
+    "offline/s17/net/on_bhold_sis.S",
+    "offline/s17/net/s19_fit.h",
+    "offline/s17/net/s12_macpub.h"
+   ]
+  },
+  "s17-compat-ond": {
+   "image": "s17ond",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "net/s17od/s7_core.c",
+    "offline/s17/dep/s7_core.h": "net/s17od/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/s12_gc.c": "glue/s17od/s12_gc.c",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h": "menus/od/ms_match_rules.h",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/net/om_heap.c": "menus/om/om_heap.c",
+    "offline/s17/net/om_heap_stub.S": "menus/om/om_heap_stub.S",
+    "offline/s17/net/codehist.c": "menus/om/codehist.c",
+    "offline/s17/net/codehist.h": "menus/om/codehist.h",
+    "offline/s17/net/on_hist.c": "menus/on/on_hist.c",
+    "offline/s17/net/om_card.h": "menus/om/om_card.h",
+    "offline/s17/net/od_glue.c": "menus/od/od_glue.c",
+    "offline/s17/net/od_glue.h": "menus/od/od_glue.h",
+    "offline/s17/net/on_backend.c": "menus/on/on_backend.c",
+    "offline/s17/net/on_card.c": "menus/on/on_card.c",
+    "offline/s17/net/on_card.h": "menus/on/on_card.h",
+    "offline/s17/net/on_cfgrec.c": "menus/on/on_cfgrec.c",
+    "offline/s17/net/on_cfgrec.h": "menus/on/on_cfgrec.h",
+    "offline/s17/ms_fmt.h": "menus/ms_fmt.h",
+    "offline/s17/net/on_bhold.c": "menus/on/on_bhold.c",
+    "offline/s17/net/tmv.c": "menus/on/tmv.c",
+    "offline/s17/net/tmv.h": "menus/on/tmv.h",
+    "offline/s17/net/gnt_tmb.c": "menus/sign/gnt_tmb.c",
+    "offline/s17/net/gnt_tmb.h": "menus/sign/gnt_tmb.h",
+    "offline/s17/net/on_bhold.h": "menus/on/on_bhold.h",
+    "offline/s17/net/fc_log.h": "menus/on/fc_log.h",
+    "offline/s17/net/ld_plan.h": "menus/on/ld_plan.h",
+    "offline/s17/net/on_bhold_sis.S": "menus/on/on_bhold_sis.S",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/client_net/mnc.c",
+    "offline/client_net/mnc.h",
+    "offline/client_net/mw2.c",
+    "offline/client_net/mw2.h",
+    "offline/client_net/mw2_crypto.c",
+    "offline/client_net/mw2_crypto.h",
+    "offline/chat/client_recog.h",
+    "offline/payload_pack/ms_sha256.c",
+    "offline/payload_pack/ms_sha256.h",
+    "offline/payload_pack/ms_lz.h",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h", "offline/delay_auto/auto_delay_tab.h",
+    "offline/net/sddns.c",
+    "offline/net/sddns.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=2",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200",
+    "-I@STAGE@/offline/client_net",
+    "-I@STAGE@/offline/net"
+   ],
+   "options": {},
+   "pre": [],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS",
+      "-Dsdshim_set_backend=od_set_backend",
+      "-DON_BUILD"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS",
+      "-DOD_SELECT_LOCK"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_NO_U2"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "on_backend",
+     "src": "offline/s17/net/on_backend.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DON_DIAG"
+     ]
+    },
+    {
+     "obj": "od_glue",
+     "src": "offline/s17/net/od_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "mnc",
+     "src": "offline/client_net/mnc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2",
+     "src": "offline/client_net/mw2.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2_crypto",
+     "src": "offline/client_net/mw2_crypto.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "ms_sha256",
+     "src": "offline/payload_pack/ms_sha256.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "codehist",
+     "src": "offline/s17/net/codehist.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DCH_AT"
+     ]
+    },
+    {
+     "obj": "on_cfgrec",
+     "src": "offline/s17/net/on_cfgrec.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "on_card",
+     "src": "offline/s17/net/on_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DON_DIAG"
+     ]
+    },
+    {
+     "obj": "om_heap",
+     "src": "offline/s17/net/om_heap.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DOM_ALLM_SHIFT=0x5F000u"
+     ]
+    },
+    {
+     "obj": "om_heap_stub",
+     "src": "offline/s17/net/om_heap_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "on_bhold",
+     "src": "offline/s17/net/on_bhold.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "on_bhold_sis",
+     "src": "offline/s17/net/on_bhold_sis.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "sddns",
+     "src": "offline/net/sddns.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    }
+   ],
+   "ld": "offline/s17/net/s12.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub",
+    "od_set_backend",
+    "om_heap_stub",
+    "bh_st"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "on_backend",
+    "od_glue",
+    "sddns",
+    "mnc",
+    "mw2",
+    "mw2_crypto",
+    "ms_sha256",
+    "codehist",
+    "on_cfgrec",
+    "on_card",
+    "om_heap",
+    "om_heap_stub",
+    "on_bhold",
+    "on_bhold_sis",
+    "sdshim"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": [
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "pacing",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "on_backend",
+     "od_glue",
+     "sddns",
+     "mnc",
+     "mw2",
+     "mw2_crypto",
+     "ms_sha256",
+     "codehist",
+     "on_cfgrec",
+     "on_card",
+     "om_heap",
+     "om_heap_stub",
+     "on_bhold",
+     "sdshim",
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc"
+    ],
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "om_heap",
+     "sdshim",
+     "codehist",
+     "on_cfgrec",
+     "on_card",
+     "on_backend",
+     "od_glue",
+     "sddns",
+     "mnc",
+     "mw2",
+     "mw2_crypto",
+     "ms_sha256",
+     "on_bhold"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "om_heap_stub",
+     "on_bhold_sis"
+    ]
+   },
+   "derived_from": "s17-compat-od",
+   "doc": "Image 'Multishine online' (diagnostic: on-screen card status, -DON_DIAG): s17-compat-od (Direct through our server, code history, heap policy, Teams-fixed codeset) with on_backend.c in place of od_backend.c: Ranked and Unranked rows through the server, the server setup and identity read from the memory card file MultishineOnline (on_card.c #includes on_hist.c, the fork of om_card.c with the slot policy: one translation unit shares the card work area; on_cfgrec.c parses the record), and the Ranked result report (BD -> GAME_REPORT, evidence from od_core_final in the s12_gc.c copy under -DON_BUILD). od_glue.c / mnc.c carry the additive report and card-config functions. Hold B for 3 s to leave the CSS, with the hint and the bar (menus/on/on_bhold.c + on_bhold_sis.S, called from s3_tick_body under ON_BUILD; AllM shift 0x5C000 for its ~3 KB; 10.9).",
+   "own": [
+    "offline/s17/net/om_heap.c",
+    "offline/s17/net/om_heap_stub.S",
+    "offline/s17/net/codehist.c",
+    "offline/s17/net/codehist.h",
+    "offline/s17/net/on_hist.c",
+    "offline/s17/net/om_card.h",
+    "offline/s17/net/od_glue.c",
+    "offline/s17/net/od_glue.h",
+    "offline/s17/net/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h",
+    "offline/s17/net/s12_gc.c",
+    "offline/s17/dep/s7_core.c",
+    "offline/s17/net/on_backend.c",
+    "offline/s17/net/on_card.c",
+    "offline/s17/net/on_card.h",
+    "offline/s17/net/on_cfgrec.c",
+    "offline/s17/net/on_cfgrec.h",
+    "offline/s17/ms_fmt.h",
+    "offline/s17/net/tmv.c",
+    "offline/s17/net/tmv.h",
+    "offline/s17/net/gnt_tmb.c",
+    "offline/s17/net/gnt_tmb.h",
+    "offline/s17/net/on_bhold.c",
+    "offline/s17/net/on_bhold.h",
+    "offline/s17/net/fc_log.h",
+    "offline/s17/net/ld_plan.h",
+    "offline/s17/net/on_bhold_sis.S",
+    "offline/s17/net/s19_fit.h",
+    "offline/s17/net/s12_macpub.h"
+   ]
+  },
+  "s17-compat-hil": {
+   "image": "s17hil",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "../s17/dep/s7_core.c",
+    "offline/s17/dep/s7_core.h": "../s17/dep/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/s12_gc.c": "glue/s17/s12_gc.c",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/hil/hil_dev.c",
+    "offline/hil/hil_dev.h",
+    "offline/hil/hil_glue.inc",
+    "offline/client_net/mw2_crypto.c",
+    "offline/client_net/mw2_crypto.h",
+    "offline/payload_pack/ms_sha256.c",
+    "offline/payload_pack/ms_sha256.h",
+    "offline/payload_pack/ms_lz.h",
+    "build/hil/hil_cfg.h",
+    "offline/hil/hil_page.inc",
+    "offline/hil/hil_ent.inc",
+    "offline/common/xfbpage.h",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h",
+    "offline/delay_auto/auto_delay_tab.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=2",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200",
+    "-DMS_HIL_DEV",
+    "-I@STAGE@/offline/hil",
+    "-I@STAGE@/build/hil",
+    "-I@STAGE@/offline/common"
+   ],
+   "options": {},
+   "pre": [],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_NO_U2"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float",
+      "-DMS_HIL_DEV"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hil_dev",
+     "src": "offline/hil/hil_dev.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "mw2_crypto",
+     "src": "offline/client_net/mw2_crypto.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "ms_sha256",
+     "src": "offline/payload_pack/ms_sha256.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    }
+   ],
+   "ld": "offline/s17/net/s12.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub",
+    "hil_padread_stub"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "sdshim",
+    "hil_dev",
+    "mw2_crypto",
+    "ms_sha256"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": "all",
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "sdshim",
+     "hil_dev",
+     "mw2_crypto",
+     "ms_sha256"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc"
+    ]
+   },
+   "derived_from": [
+    "s17-compat"
+   ],
+   "doc": "LAB ONLY (offline/hil/patches/README.md): s17-compat + the hardware-in-the-loop dev link. Build with MS_HIL_DEV=1 in the environment (build_s17_net.py then adds the pad hook `bl hil_padread_stub` at 0x80376A24). Needs build/hil/hil_cfg.h (hil_host.py gen-header: dev key, host address). Never exported, never a release or online profile.",
+   "own": [
+    "offline/hil/hil_dev.c",
+    "offline/hil/hil_glue.inc",
+    "offline/hil/hil_page.inc",
+    "offline/hil/hil_ent.inc"
+   ]
+  },
+  "s17-compat-ml": {
+   "image": "s17ml",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "../s17/dep/s7_core.c",
+    "offline/s17/dep/s7_core.h": "../s17/dep/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/s12_gc.c": "glue/s17/s12_gc.c",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/net/om_backend.c": "menus/om/om_backend.c",
+    "offline/s17/net/om_heap.c": "menus/om/om_heap.c",
+    "offline/s17/net/om_heap_stub.S": "menus/om/om_heap_stub.S",
+    "offline/s17/net/codehist.c": "menus/om/codehist.c",
+    "offline/s17/net/codehist.h": "menus/om/codehist.h",
+    "offline/s17/net/om_card.c": "menus/om/om_card.c",
+    "offline/s17/net/om_card.h": "menus/om/om_card.h",
+    "offline/s17/ms_fmt.h": "menus/ms_fmt.h",
+    "offline/s17/net/ml_core.c": "menus/ml/ml_core.c",
+    "offline/s17/net/ml_core.h": "menus/ml/ml_core.h",
+    "offline/s17/net/ml_table.h": "menus/ml/ml_table.h",
+    "offline/s17/net/ml_glue.c": "menus/ml/ml_glue.c",
+    "offline/s17/net/ml_stub.S": "menus/ml/ml_stub.S",
+    "offline/s17/net/ml_tex.h": "menus/ml/ml_tex.h",
+    "offline/s17/net/ml_ui.h": "menus/ml/ml_ui.h",
+    "offline/s17/net/ml_nt_geom.h": "menus/ml/ml_nt_geom.h",
+    "offline/s17/net/keyhint.h": "menus/sign/keyhint.h",
+    "offline/s17/net/toast_pill.h": "menus/sign/toast_pill.h",
+    "offline/s17/net/ml_mark_tex.h": "menus/ml/ml_mark_tex.h",
+    "offline/s17/net/ml_mark_level.h": "menus/ml/ml_mark_level.h",
+    "offline/s17/net/ml_music.h": "menus/ml/ml_music.h",
+    "offline/s17/net/ml_font.h": "menus/ml/ml_font.h",
+    "offline/s17/net/ml_font_tex.h": "menus/ml/ml_font_tex.h",
+    "offline/s17/net/ml_reinj.h": "menus/ml/ml_reinj.h",
+    "offline/s17/net/ml_reinj_tab.h": "menus/ml/ml_reinj_tab.h",
+    "offline/s17/net/ml_reinj_gc_tab.h": "menus/ml/ml_reinj_gc_tab.h",
+    "offline/s17/net/ml_ovl.h": "menus/ml/ml_ovl.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h",
+    "offline/delay_auto/auto_delay_tab.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=2",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200"
+   ],
+   "options": {},
+   "pre": [],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS",
+      "-Dsdshim_set_backend=om_set_backend"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_NO_U2"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "om_backend",
+     "src": "offline/s17/net/om_backend.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "codehist",
+     "src": "offline/s17/net/codehist.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "om_card",
+     "src": "offline/s17/net/om_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "om_heap",
+     "src": "offline/s17/net/om_heap.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "om_heap_stub",
+     "src": "offline/s17/net/om_heap_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "ml_core",
+     "src": "offline/s17/net/ml_core.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "ml_glue",
+     "src": "offline/s17/net/ml_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "ml_stub",
+     "src": "offline/s17/net/ml_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    }
+   ],
+   "ld": "offline/s17/net/s12.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub",
+    "om_set_backend",
+    "om_heap_stub",
+    "ml_enter_stub",
+    "ml_frame_stub",
+    "ml_label_stub",
+    "ml_build_stub",
+    "ml_label_hover_stub",
+    "ml_label_unhover_stub",
+    "ml_light_stub",
+    "ml_unlock_stub",
+    "ml_text_stub"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "om_backend",
+    "codehist",
+    "om_card",
+    "om_heap",
+    "om_heap_stub",
+    "ml_core",
+    "ml_glue",
+    "ml_stub",
+    "sdshim"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": "all",
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "om_backend",
+     "om_heap",
+     "sdshim",
+     "codehist",
+     "om_card",
+     "ml_core",
+     "ml_glue"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "om_heap_stub",
+     "ml_stub"
+    ]
+   },
+   "derived_from": "s17-compat-om",
+   "doc": "Image 'Multishine menu layout': the s17-compat-om blob plus offline/multishine/menus/ml (ml_core.c table rules, ml_glue.c Melee glue: Main Menu with the maintainer's rows, Miscellaneous screen, label overlay; ml_stub.S: four 04 hooks at mnMain_Scene_OnEnter, mnMain_Scene_OnFrame, the label call and the entry of mn_8022B3A0; ml_table.h generated by tools/menu_layout.py cheader)",
+   "own": [
+    "offline/s17/net/om_backend.c",
+    "offline/s17/net/om_heap.c",
+    "offline/s17/net/om_heap_stub.S",
+    "offline/s17/net/codehist.c",
+    "offline/s17/net/codehist.h",
+    "offline/s17/net/om_card.c",
+    "offline/s17/net/om_card.h",
+    "offline/s17/ms_fmt.h",
+    "offline/s17/net/ml_core.c",
+    "offline/s17/net/ml_core.h",
+    "offline/s17/net/ml_table.h",
+    "offline/s17/net/ml_glue.c",
+    "offline/s17/net/ml_stub.S",
+    "offline/s17/net/ml_tex.h",
+    "offline/s17/net/ml_ui.h",
+    "offline/s17/net/ml_nt_geom.h",
+    "offline/s17/net/ml_mark_tex.h",
+    "offline/s17/net/ml_mark_level.h",
+    "offline/s17/net/ml_music.h",
+    "offline/s17/net/ml_font.h",
+    "offline/s17/net/ml_font_tex.h",
+    "offline/s17/net/ml_reinj.h",
+    "offline/s17/net/ml_reinj_tab.h",
+    "offline/s17/net/ml_reinj_gc_tab.h",
+    "offline/s17/net/ml_ovl.h"
+   ]
+  },
+  "s17-compat-onb": {
+   "image": "s17onb",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "net/s17od/s7_core.c",
+    "offline/s17/dep/s7_core.h": "net/s17od/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/s12_gc.c": "glue/s17od/s12_gc.c",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h": "menus/od/ms_match_rules.h",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/net/om_heap.c": "menus/om/om_heap.c",
+    "offline/s17/net/om_heap_stub.S": "menus/om/om_heap_stub.S",
+    "offline/s17/net/codehist.c": "menus/om/codehist.c",
+    "offline/s17/net/codehist.h": "menus/om/codehist.h",
+    "offline/s17/net/on_hist.c": "menus/on/on_hist.c",
+    "offline/s17/net/om_card.h": "menus/om/om_card.h",
+    "offline/s17/net/od_glue.c": "menus/od/od_glue.c",
+    "offline/s17/net/od_glue.h": "menus/od/od_glue.h",
+    "offline/s17/net/on_backend.c": "menus/on/on_backend.c",
+    "offline/s17/net/on_card.c": "menus/on/on_card.c",
+    "offline/s17/net/on_card.h": "menus/on/on_card.h",
+    "offline/s17/net/on_cfgrec.c": "menus/on/on_cfgrec.c",
+    "offline/s17/net/on_cfgrec.h": "menus/on/on_cfgrec.h",
+    "offline/s17/ms_fmt.h": "menus/ms_fmt.h",
+    "offline/s17/net/on_bhold.c": "menus/on/on_bhold.c",
+    "offline/s17/net/tmv.c": "menus/on/tmv.c",
+    "offline/s17/net/tmv.h": "menus/on/tmv.h",
+    "offline/s17/net/gnt_tmb.c": "menus/sign/gnt_tmb.c",
+    "offline/s17/net/gnt_tmb.h": "menus/sign/gnt_tmb.h",
+    "offline/s17/net/on_bhold.h": "menus/on/on_bhold.h",
+    "offline/s17/net/fc_log.h": "menus/on/fc_log.h",
+    "offline/s17/net/ld_plan.h": "menus/on/ld_plan.h",
+    "offline/s17/net/on_bhold_sis.S": "menus/on/on_bhold_sis.S",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h",
+    "offline/s17/net/ml_core.c": "menus/ml/ml_core.c",
+    "offline/s17/net/ml_core.h": "menus/ml/ml_core.h",
+    "offline/s17/net/ml_table.h": "menus/ml/ml_table.h",
+    "offline/s17/net/ml_glue.c": "menus/ml/ml_glue.c",
+    "offline/s17/net/ml_stub.S": "menus/ml/ml_stub.S",
+    "offline/s17/net/ml_tex.h": "menus/ml/ml_tex.h",
+    "offline/s17/net/ml_ui.h": "menus/ml/ml_ui.h",
+    "offline/s17/net/ml_nt_geom.h": "menus/ml/ml_nt_geom.h",
+    "offline/s17/net/keyhint.h": "menus/sign/keyhint.h",
+    "offline/s17/net/toast_pill.h": "menus/sign/toast_pill.h",
+    "offline/s17/net/ml_mark_tex.h": "menus/ml/ml_mark_tex.h",
+    "offline/s17/net/ml_mark_level.h": "menus/ml/ml_mark_level.h",
+    "offline/s17/net/ml_music.h": "menus/ml/ml_music.h",
+    "offline/s17/net/ml_font.h": "menus/ml/ml_font.h",
+    "offline/s17/net/ml_font_tex.h": "menus/ml/ml_font_tex.h",
+    "offline/s17/net/ml_reinj.h": "menus/ml/ml_reinj.h",
+    "offline/s17/net/ml_reinj_tab.h": "menus/ml/ml_reinj_tab.h",
+    "offline/s17/net/ml_reinj_gc_tab.h": "menus/ml/ml_reinj_gc_tab.h",
+    "offline/s17/net/ml_set.c": "menus/ml/ml_set.c",
+    "offline/s17/net/ml_set.h": "menus/ml/ml_set.h",
+    "offline/s17/net/ml_rec_tab.h": "menus/ml/ml_rec_tab.h",
+    "offline/s17/net/on_set.c": "menus/on/on_set.c",
+    "offline/s17/net/on_dlog.c": "menus/on/on_dlog.c",
+    "offline/s17/net/ml_sign_stub.S": "menus/ml/ml_sign_stub.S",
+    "offline/s17/net/ml_ovl.h": "menus/ml/ml_ovl.h",
+    "offline/s17/net/ml_res.c": "menus/ml/ml_res.c",
+    "offline/multishine/menus/sign/sg_ovl.c": "menus/sign/sg_ovl.c",
+    "offline/multishine/menus/sign/sg_ovl.h": "menus/sign/sg_ovl.h",
+    "offline/multishine/menus/sign/sg_hook.c": "menus/sign/sg_hook.c",
+    "offline/multishine/menus/sign/sg_hook.h": "menus/sign/sg_hook.h",
+    "offline/multishine/menus/sign/sg_ui.h": "menus/sign/sg_ui.h",
+    "offline/multishine/menus/sign/sg_mockup.h": "menus/sign/sg_mockup.h",
+    "offline/multishine/menus/sign/gnb.h": "menus/sign/gnb.h",
+    "offline/multishine/menus/sign/gnb_prep.h": "menus/sign/gnb_prep.h",
+    "offline/multishine/menus/sign/qc_pick.h": "menus/sign/qc_pick.h",
+    "offline/multishine/menus/sign/frd.h": "menus/sign/frd.h",
+    "offline/multishine/menus/sign/frd_hold.h": "menus/sign/frd_hold.h",
+    "offline/multishine/menus/sign/stb.h": "menus/sign/stb.h",
+    "offline/multishine/menus/sign/gnt.h": "menus/sign/gnt.h",
+    "offline/multishine/menus/sign/sgr.h": "menus/sign/sgr.h",
+    "offline/multishine/menus/sign/sgx.h": "menus/sign/sgx.h",
+    "offline/multishine/menus/sign/sg_updv.h": "menus/sign/sg_updv.h",
+    "offline/multishine/menus/on/on_bhold.h": "menus/on/on_bhold.h",
+    "offline/multishine/menus/on/fc_log.h": "menus/on/fc_log.h",
+    "offline/multishine/menus/ml/ml_ui.h": "menus/ml/ml_ui.h",
+    "offline/multishine/menus/ml/ml_nt_geom.h": "menus/ml/ml_nt_geom.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/client_net/mnc.c",
+    "offline/client_net/mnc.h",
+    "offline/client_net/mw2.c",
+    "offline/client_net/mw2.h",
+    "offline/client_net/mw2_crypto.c",
+    "offline/client_net/mw2_crypto.h",
+    "offline/chat/client_recog.h",
+    "offline/payload_pack/ms_sha256.c",
+    "offline/payload_pack/ms_sha256.h",
+    "offline/payload_pack/ms_lz.h",
+    "offline/bridge/br_enet_rename.h",
+    "offline/bridge/br_glue.c",
+    "offline/bridge/rep_scene.h",
+    "offline/bridge/tmm_core.h",
+    "offline/bridge/sbr.c",
+    "offline/bridge/sbr.h",
+    "offline/bridge/sbr_codec.c",
+    "offline/bridge/sbr_mbx.h",
+    "offline/bridge/sbr_ws_const.h",
+    "offline/bridge/sbr_app.c",
+    "offline/bridge/sbr_app.h",
+    "offline/bridge/sbr_card.c",
+    "offline/bridge/sbr_card.h",
+    "offline/bridge/sbr_ident.c",
+    "offline/bridge/sbr_ident.h",
+    "offline/bridge/sbr_netcfg.c",
+    "offline/bridge/sbr_netcfg.h",
+    "offline/net/sddns.c",
+    "offline/net/sddns.h",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h", "offline/delay_auto/auto_delay_tab.h",
+    "offline/options/optstore.c",
+    "offline/options/optstore.h",
+    "offline/options/optengine.h",
+    "offline/net/tls/sdent.h",
+    "offline/net/tls/sdcrypto.h",
+    "offline/net/tls/sdc25519.h",
+    "offline/qr/qr.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=4",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200",
+    "-I@STAGE@/offline/client_net",
+    "-I@STAGE@/offline/net"
+   ],
+   "options": {
+    "cardwa": {
+     "default": "ext",
+     "when": {
+      "shared": [
+       "-DMS_CARD_SHARED_WA"
+      ],
+      "ext": [
+       "-DMS_CARD_SHARED_WA",
+       "-DMS_CARD_EXT_WA"
+      ]
+     },
+     "doc": "CARD work area + block buffer (40,960+8,192 B). 'ext' (default, ENGINE_MEMORY_BREAKDOWN step 2b): ONE area shared by on_card and sbr_card and NOT in the image: with -DMS_CARD_WA_ADDR=<addr> (card route, offline/cardloader/card_payload.py) it is the loader's own work area above the claimed hole, else (patched/ISO route) 48 KB from the HSD heap per card operation (OSAllocFromHeap, refusal = card busy). 'shared' = step 2a (one static area in the image, ms_card_wa). 'separate' (any other value) = the old layout, two static areas."
+    },
+    "sites": {
+     "default": "off",
+     "when": {
+      "off": [
+       "-DSD_NO_SITES"
+      ]
+     },
+     "doc": "S11 allocation-site tables (sd_sites/st_addr/st_site, 88 KB) and the cold-site/site-profile code. Product default off (RC1 contract cold=0 site_prof=0): compiled out; 'sites=on' is the lab build ( step 1)."
+    },
+    "hgtrace": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DSD_LAB_HG=1"
+      ],
+      "nofix": [
+       "-DSD_LAB_HG=1",
+       "-DSD_LAB_HG_NOFIX=1"
+      ]
+     },
+     "doc": "LAB ONLY ( B): count the engine writes after the match scene ended (sd_melee.c scene_gone, sd_core.c sd_hg_w) and report them at the first pass of the next scene (S6!K HGON / HGRG). 'nofix' is the negative control: the engine keeps writing after the scene change as before the fix (reproduces the post-match CSS corruption). Release builds keep it off: no sd_hg_ symbol exists."
+    },
+    "itemsall": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DMS_LAB_ITEMS_ALL=1"
+      ]
+     },
+     "doc": "LAB ONLY (docs/design/ITEM_SOAK_2026-10-28.md): od_rules sets S7R_ITEMS_ALL for every match of the build (all items on, frequency 4), so the pair rig / stage smoke can soak items without a Game Night room. Release builds keep it off (tools/release/check_release_shape.py)."
+    },
+    "rbread": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DMS_RB_READOUT=1"
+      ],
+      "rt": [
+       "-DMS_RB_READOUT=1",
+       "-DMS_RB_RUNTIME=1"
+      ]
+     },
+     "doc": "DEV/LAB ONLY (R1, B0): the post-game CSS readout of the last match (store size and heap, capacity peaks, cell_overflow, lost_ranges, HSD and AllM free / minimum; s12_gc.c rbr_*, on_bhold.c rbr_tick). Release builds keep it off: no rbr_ symbol exists. 'rt': the same code compiled in but OFF until the card's Options file (Settings > System > Rollback readout) switches it on (s12_gc.c rbr_enable); 'on' = always on (lab)."
+    },
+    "labnat": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DMNC_LAB_SAMENAT=1"
+      ]
+     },
+     "doc": "DEV/LAB ONLY: the hub client accepts an opponent whose address equals the server's when od_cfg flag bit 5 is set (server and seat behind one NAT). Release builds keep it off: peer_addr_ok then always refuses the server's address and the flag bit does not exist."
+    },
+    "netcfg": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DSBR_NETCFG=1"
+      ]
+     },
+     "doc": "DEV/LAB ONLY: the bridge reads the net-config section of MultishineBridge from the card. Release builds keep it off: sbr_netcfg.o is then empty and no sbr_nc_ symbol exists."
+    },
+    "menuovl": {
+     "default": "flat",
+     "when": {
+      "ovl": [
+       "-DML_OVL_RES"
+      ]
+     },
+     "doc": "Menu code as an on-demand overlay (ENGINE_MEMORY_BREAKDOWN step 3 7). 'flat' (default): ml_core / ml_glue / sg_ovl / sg_hook resident, byte for byte the build before the overlay existed. 'ovl': only the resident remainder of ml_glue.c, ml_res.c (dispatchers, loader, scene hook) and sg_ovl.c stay; the rest is linked flat by menus/ml/ml_ovl_pack.py into the file ms/menu.ovl (the disc, or the ISO builder's MS_DISC_EXTRA); if the file cannot be read or entered the retail menu runs unchanged."
+    },
+    "brprobe": {
+     "default": "out",
+     "when": {
+      "out": [],
+      "in": []
+     },
+     "units_when": {
+      "out": {
+       "sbr_app": [
+        "-DSBRA_NO_PEER_PROBE"
+       ],
+       "br_glue": [
+        "-DSBRA_NO_PEER_PROBE"
+       ]
+      }
+     },
+     "doc": "Bridge peer probe ( D1). 'out' (default): the second ENet host struct sbra.P (19,928 B at REL_DATA 512, 10,676 B at MAX_PEERS 1) and the probe code are compiled out (-DSBRA_NO_PEER_PROBE for sbr_app and br_glue): the product hand-off (cfg flags 0x20, SBRA_F_ENGINE_PEER) never runs it, a lab mode without the hand-off and without the stub fails the peer step at once. 'in': the lab variant with the probe (flags without 0x20/0x10)."
+    },
+    "brpeers": {
+     "default": "1",
+     "when": {
+      "1": [],
+      "2": []
+     },
+     "units_when": {
+      "1": {
+       "sbr": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "sbr_app": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "sbr_card": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "sbr_ident": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "sbr_netcfg": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "br_glue": [
+        "-DSDENET_MAX_PEERS=1"
+       ]
+      }
+     },
+     "doc": "Peer table of the bridge's own ENet copy (BRIDGE_HUB_REUSE.md D2). '1' (default): -DSDENET_MAX_PEERS=1 for every bridge unit that sees struct sdenet_host (sbr, sbr_app, sbr_card, sbr_ident, sbr_netcfg, sdenet_br, br_glue): the matchmaker host only ever has the one outgoing peer (a second peer slot existed for the probe's simultaneous connect). '2': the old size. The engine's own ENet copy (sdenet.o) is never touched."
+    },
+    "brslots": {
+     "default": "8",
+     "when": {
+      "4": [],
+      "8": []
+     },
+     "units_when": {
+      "4": {
+       "sbr": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "sbr_app": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "sbr_card": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "sbr_ident": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "sbr_netcfg": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "br_glue": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ]
+      }
+     },
+     "doc": "Reliable and hold slots of the bridge's own ENet copy (BRIDGE_HUB_REUSE.md D3). '8' (default): the library default. '4': -DSDENET_REL_SLOTS=4 -DSDENET_HOLD_SLOTS=4 for the bridge units (4,424 B per host at REL_DATA 512): the matchmaker traffic has at most the 2-fragment ticket, a ping and a disconnect in flight. Opt-in until the console has run it (build_rc.sh / build_cvr_image.sh --opts brslots=4)."
+    }
+   },
+   "pre": [],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS",
+      "-Dsdshim_set_backend=od_set_backend",
+      "-DON_BUILD",
+      "-DBR_BUILD",
+      "-DSD_NO_TESTPROF"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS",
+      "-DOD_SELECT_LOCK"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_NO_U2"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "on_backend",
+     "src": "offline/s17/net/on_backend.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-Dsdshim_set_backend=br_set_backend"
+     ]
+    },
+    {
+     "obj": "od_glue",
+     "src": "offline/s17/net/od_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "mnc",
+     "src": "offline/client_net/mnc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2",
+     "src": "offline/client_net/mw2.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2_crypto",
+     "src": "offline/client_net/mw2_crypto.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "ms_sha256",
+     "src": "offline/payload_pack/ms_sha256.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "codehist",
+     "src": "offline/s17/net/codehist.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DCH_AT"
+     ]
+    },
+    {
+     "obj": "on_cfgrec",
+     "src": "offline/s17/net/on_cfgrec.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "on_card",
+     "src": "offline/s17/net/on_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DONS_SETTINGS",
+      "-Ioffline/options"
+     ]
+    },
+    {
+     "obj": "om_heap",
+     "src": "offline/s17/net/om_heap.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DOM_ALLM_SHIFT=0x211000u",
+      "-DOM_ALLM_OTHER=0x40000u"
+     ]
+    },
+    {
+     "obj": "om_heap_stub",
+     "src": "offline/s17/net/om_heap_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "on_bhold",
+     "src": "offline/s17/net/on_bhold.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "on_bhold_sis",
+     "src": "offline/s17/net/on_bhold_sis.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "ml_core",
+     "src": "offline/s17/net/ml_core.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "ml_glue",
+     "src": "offline/s17/net/ml_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-Dml_online_hook=br_online_ready",
+      "-DML_SETTINGS",
+      "-DML_SIGN",
+      "-DONS_SETTINGS",
+      "-Ioffline/options",
+      "-Ioffline/multishine/menus/sign"
+     ]
+    },
+    {
+     "obj": "ml_stub",
+     "src": "offline/s17/net/ml_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float",
+      "-Dml_unlock_override=br_unlock_override"
+     ]
+    },
+    {
+     "obj": "sbr",
+     "src": "offline/bridge/sbr.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sbr_codec",
+     "src": "offline/bridge/sbr_codec.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sbr_app",
+     "src": "offline/bridge/sbr_app.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_REL_DATA=512",
+      "-DSBRA_MATCH_FROM_S7",
+      "-include",
+      "offline/bridge/br_enet_rename.h"
+     ]
+    },
+    {
+     "obj": "sbr_card",
+     "src": "offline/bridge/sbr_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sbr_ident",
+     "src": "offline/bridge/sbr_ident.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sbr_netcfg",
+     "src": "offline/bridge/sbr_netcfg.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sddns",
+     "src": "offline/net/sddns.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "br_glue",
+     "src": "offline/bridge/br_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_REL_DATA=512"
+     ]
+    },
+    {
+     "obj": "ml_set",
+     "src": "offline/s17/net/ml_set.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-Ioffline/options"
+     ]
+    },
+    {
+     "obj": "optstore",
+     "src": "offline/options/optstore.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sg_ovl",
+     "src": "offline/multishine/menus/sign/sg_ovl.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSG_LAB=0"
+     ]
+    },
+    {
+     "obj": "sg_hook",
+     "src": "offline/multishine/menus/sign/sg_hook.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSG_LAB=0"
+     ]
+    },
+    {
+     "obj": "ml_res",
+     "src": "offline/s17/net/ml_res.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-Dml_online_hook=br_online_ready",
+      "-DML_SETTINGS",
+      "-DML_SIGN",
+      "-DONS_SETTINGS",
+      "-Ioffline/options",
+      "-Ioffline/multishine/menus/sign"
+     ]
+    },
+    {
+     "obj": "ml_sign_stub",
+     "src": "offline/s17/net/ml_sign_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    }
+   ],
+   "ld": "offline/s17/net/s12.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub",
+    "od_set_backend",
+    "om_heap_stub",
+    "bh_st",
+    "ml_enter_stub",
+    "ml_frame_stub",
+    "ml_label_stub",
+    "ml_build_stub",
+    "ml_label_hover_stub",
+    "ml_label_unhover_stub",
+    "ml_light_stub",
+    "ml_unlock_stub",
+    "ml_text_stub"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "on_backend",
+    "od_glue",
+    "mnc",
+    "mw2",
+    "mw2_crypto",
+    "ms_sha256",
+    "codehist",
+    "on_cfgrec",
+    "on_card",
+    "om_heap",
+    "om_heap_stub",
+    "on_bhold",
+    "on_bhold_sis",
+    "ml_core",
+    "ml_glue",
+    "ml_res",
+    "sbr",
+    "sbr_codec",
+    "sbr_app",
+    "sbr_card",
+    "sbr_ident",
+    "sbr_netcfg",
+    "sddns",
+    "br_glue",
+    "ml_set",
+    "optstore",
+    "sg_ovl",
+    "sg_hook",
+    "ml_stub",
+    "ml_sign_stub",
+    "sdshim"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": [
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "pacing",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "on_backend",
+     "od_glue",
+     "mnc",
+     "mw2",
+     "mw2_crypto",
+     "ms_sha256",
+     "codehist",
+     "on_cfgrec",
+     "on_card",
+     "om_heap",
+     "om_heap_stub",
+     "on_bhold",
+     "sdshim",
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "ml_core",
+     "ml_glue",
+     "ml_res",
+     "sbr",
+     "sbr_codec",
+     "sbr_app",
+     "sbr_card",
+     "sbr_ident",
+     "sddns",
+     "br_glue",
+     "ml_stub",
+     "ml_set",
+     "optstore",
+     "sg_ovl",
+     "sg_hook"
+    ],
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "om_heap",
+     "sdshim",
+     "codehist",
+     "on_cfgrec",
+     "on_card",
+     "on_backend",
+     "od_glue",
+     "mnc",
+     "mw2",
+     "mw2_crypto",
+     "ms_sha256",
+     "on_bhold",
+     "ml_core",
+     "ml_glue",
+     "ml_res",
+     "sbr",
+     "sbr_codec",
+     "sbr_app",
+     "sbr_card",
+     "sbr_ident",
+     "sbr_netcfg",
+     "sddns",
+     "br_glue",
+     "ml_set",
+     "optstore",
+     "sg_ovl",
+     "sg_hook"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "om_heap_stub",
+     "on_bhold_sis",
+     "ml_stub",
+     "ml_sign_stub"
+    ]
+   },
+   "derived_from": "s17-compat-on",
+   "doc": "Image 'Multishine online + layout + Slippi bridge': s17-compat-on (our lab server, the rollback engine, code history) plus the maintainer's menu layout (menus/ml, unchanged sources, ml_stub.S with ml_unlock_override renamed to br_unlock_override) plus the Slippi bridge (offline/bridge/sbr*.c used in place, a second ENet object sdenet_br with fragments and a 512-byte reliable payload, sddns) living on the online glue's network stack (offline/bridge/br_glue.c; s12_gc.c compiled with -DBR_BUILD, on_backend.c with -Dsdshim_set_backend=br_set_backend so that the finished Multishine backend is wrapped by the dispatcher). The hub rows of the layout use the Multishine backend, the Slippi row (kind 8) the bridge.",
+   "own": [
+    "offline/s17/net/om_heap.c",
+    "offline/s17/net/om_heap_stub.S",
+    "offline/s17/net/codehist.c",
+    "offline/s17/net/codehist.h",
+    "offline/s17/net/on_hist.c",
+    "offline/s17/net/om_card.h",
+    "offline/s17/net/od_glue.c",
+    "offline/s17/net/od_glue.h",
+    "offline/s17/net/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h",
+    "offline/s17/net/s12_gc.c",
+    "offline/s17/dep/s7_core.c",
+    "offline/s17/net/on_backend.c",
+    "offline/s17/net/on_card.c",
+    "offline/s17/net/on_card.h",
+    "offline/s17/net/on_cfgrec.c",
+    "offline/s17/net/on_cfgrec.h",
+    "offline/s17/ms_fmt.h",
+    "offline/s17/net/tmv.c",
+    "offline/s17/net/tmv.h",
+    "offline/s17/net/gnt_tmb.c",
+    "offline/s17/net/gnt_tmb.h",
+    "offline/s17/net/on_bhold.c",
+    "offline/s17/net/on_bhold.h",
+    "offline/s17/net/fc_log.h",
+    "offline/s17/net/ld_plan.h",
+    "offline/s17/net/on_bhold_sis.S",
+    "offline/s17/net/s19_fit.h",
+    "offline/s17/net/s12_macpub.h",
+    "offline/s17/net/ml_core.c",
+    "offline/s17/net/ml_core.h",
+    "offline/s17/net/ml_table.h",
+    "offline/s17/net/ml_glue.c",
+    "offline/s17/net/ml_stub.S",
+    "offline/s17/net/ml_tex.h",
+    "offline/s17/net/ml_ui.h",
+    "offline/s17/net/ml_nt_geom.h",
+    "offline/s17/net/ml_mark_tex.h",
+    "offline/s17/net/ml_mark_level.h",
+    "offline/s17/net/ml_music.h",
+    "offline/s17/net/ml_font.h",
+    "offline/s17/net/ml_font_tex.h",
+    "offline/s17/net/ml_reinj.h",
+    "offline/s17/net/ml_reinj_tab.h",
+    "offline/s17/net/ml_reinj_gc_tab.h",
+    "offline/s17/net/ml_set.c",
+    "offline/s17/net/ml_set.h",
+    "offline/s17/net/ml_rec_tab.h",
+    "offline/s17/net/on_set.c",
+    "offline/s17/net/on_dlog.c",
+    "offline/s17/net/ml_sign_stub.S",
+    "offline/s17/net/ml_ovl.h",
+    "offline/s17/net/ml_res.c"
+   ]
+  },
+  "s17-compat-hp": {
+   "image": "s17hp",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "../s17/dep/s7_core.c",
+    "offline/s17/dep/s7_core.h": "../s17/dep/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/s12_gc.c": "glue/s17/s12_gc.c",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/heapprobe/hp_glue.inc",
+    "offline/heapprobe/hp_ram.h",
+    "offline/heapprobe/hp_sis.S",
+    "offline/heapprobe/s12hp.ld",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h",
+    "offline/delay_auto/auto_delay_tab.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=2",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200",
+    "-DMS_HEAPPROBE",
+    "-DHP_FLAGS_DEFAULT=7",
+    "-I@STAGE@/offline/heapprobe"
+   ],
+   "options": {
+    "sites": {
+     "default": "off",
+     "when": {
+      "off": [
+       "-DSD_NO_SITES"
+      ]
+     },
+     "doc": "S11 allocation-site tables (sd_sites/st_addr/st_site, 88 KB) and the cold-site/site-profile code. Product default off (RC1 contract cold=0 site_prof=0): compiled out; 'sites=on' is the lab build ( step 1). Image 1 / textonly card and the heap probe since the mainline (offsets the package R glue growth in the card holes; their contracts set neither cold nor site_prof)."
+    }
+   },
+   "pre": [],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS",
+      "-DSD_NO_TESTPROF"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_NO_U2"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hp_sis",
+     "src": "offline/heapprobe/hp_sis.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    }
+   ],
+   "ld": "offline/heapprobe/s12hp.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "sdshim",
+    "hp_sis"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": [
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "pacing",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "sdshim",
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc"
+    ],
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "sdshim"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "hp_sis"
+    ]
+   },
+   "derived_from": [
+    "s17-compat"
+   ],
+   "doc": "LAB ONLY: s17-compat + the heap probe: an on-screen readout and a RAM block (image +0xE00) of the HSD heap, AllM and arena numbers of a running match. Never a release or online profile; the readout default is the macro HP_FLAGS_DEFAULT and the word hp_cfg+4.",
+   "own": [
+    "offline/heapprobe/hp_glue.inc",
+    "offline/heapprobe/hp_ram.h",
+    "offline/heapprobe/hp_sis.S",
+    "offline/heapprobe/s12hp.ld"
+   ]
+  },
+  "s17-compat-onbc": {
+   "image": "s17onbc",
+   "base": "0x804F7780",
+   "stage": {
+    "offline/s17/sd_core.c": "engine/s17/sd_core.c",
+    "offline/s17/sd_fcopy.S": "engine/s17/sd_fcopy.S",
+    "offline/s17/sd_fp.h": "engine/s17/sd_fp.h",
+    "offline/s17/sd_hooks.S": "engine/s17/sd_hooks.S",
+    "offline/s17/sd_melee.c": "engine/s17/sd_melee.c",
+    "offline/s17/sd_melee.h": "engine/s17/sd_melee.h",
+    "offline/s17/sd_snap.h": "engine/s17/sd_snap.h",
+    "offline/s17/sd_cappol.h": "engine/s17/sd_cappol.h",
+    "offline/s17/s11_cold.h": "engine/s17/s11_cold.h",
+    "offline/s17/sd_lc.S": "engine/s17/kernels/sd_lc.S",
+    "offline/s17/sd_lc.h": "engine/s17/kernels/sd_lc.h",
+    "offline/s17/sd_lc_host.h": "engine/s17/kernels/sd_lc_host.h",
+    "offline/s17/sd_s17.h": "engine/s17/kernels/sd_s17.h",
+    "offline/s17/dep/s7_core.c": "net/s17od/s7_core.c",
+    "offline/s17/dep/s7_core.h": "net/s17od/s7_core.h",
+    "offline/s17/net/s10.h": "net/s17/s10.h",
+    "offline/s17/net/s12.h": "net/s17/s12.h",
+    "offline/s17/net/s12_early.c": "net/s17/s12_early.c",
+    "offline/s17/net/s12_early.h": "net/s17/s12_early.h",
+    "offline/s17/net/s17.h": "net/s17od/s17.h",
+    "offline/s17/net/s12_gpmask.h": "glue/s17od/s12_gpmask.h",
+    "offline/s17/net/s12_gc.c": "glue/s17od/s12_gc.c",
+    "offline/s17/net/pause_policy.h": "glue/s17od/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h": "menus/od/ms_match_rules.h",
+    "offline/s17/net/s12_hooks.S": "glue/s17od/s12_hooks.S",
+    "offline/s17/net/s12_tramp.S": "glue/s17od/s12_tramp.S",
+    "offline/s17/net/s12.ld": "glue/s17od/s12.ld",
+    "offline/s8/s8_json.c": "menus/s8_json.c",
+    "offline/s8/s8_json.h": "menus/s8_json.h",
+    "offline/s6/s6_statgrp.h": "engine/s6_statgrp.h",
+    "offline/s6d/net/s6d_cap.h": "net/s6d_cap.h",
+    "offline/enet/s4_script.c": "net/s4_script.c",
+    "offline/enet/s4_script.h": "net/s4_script.h",
+    "offline/s17/net/s17_relax.c": "glue/s17od/s17_relax.c",
+    "offline/s17/net/s17_relax.h": "glue/s17od/s17_relax.h",
+    "offline/s17/relax/relax_rule.h": "engine/s17/relax_rule.h",
+    "offline/pacing/pacing.c": "engine/pacing/pacing.c",
+    "offline/pacing/pacing.h": "engine/pacing/pacing.h",
+    "offline/s17/net/om_heap.c": "menus/om/om_heap.c",
+    "offline/s17/net/om_heap_stub.S": "menus/om/om_heap_stub.S",
+    "offline/s17/net/codehist.c": "menus/om/codehist.c",
+    "offline/s17/net/codehist.h": "menus/om/codehist.h",
+    "offline/s17/net/on_hist.c": "menus/on/on_hist.c",
+    "offline/s17/net/om_card.h": "menus/om/om_card.h",
+    "offline/s17/net/od_glue.c": "menus/od/od_glue.c",
+    "offline/s17/net/od_glue.h": "menus/od/od_glue.h",
+    "offline/s17/net/on_backend.c": "menus/on/on_backend.c",
+    "offline/s17/net/on_card.c": "menus/on/on_card.c",
+    "offline/s17/net/on_card.h": "menus/on/on_card.h",
+    "offline/s17/net/on_cfgrec.c": "menus/on/on_cfgrec.c",
+    "offline/s17/net/on_cfgrec.h": "menus/on/on_cfgrec.h",
+    "offline/s17/ms_fmt.h": "menus/ms_fmt.h",
+    "offline/s17/net/on_bhold.c": "menus/on/on_bhold.c",
+    "offline/s17/net/tmv.c": "menus/on/tmv.c",
+    "offline/s17/net/tmv.h": "menus/on/tmv.h",
+    "offline/s17/net/gnt_tmb.c": "menus/sign/gnt_tmb.c",
+    "offline/s17/net/gnt_tmb.h": "menus/sign/gnt_tmb.h",
+    "offline/s17/net/on_bhold.h": "menus/on/on_bhold.h",
+    "offline/s17/net/fc_log.h": "menus/on/fc_log.h",
+    "offline/s17/net/ld_plan.h": "menus/on/ld_plan.h",
+    "offline/s17/net/on_bhold_sis.S": "menus/on/on_bhold_sis.S",
+    "offline/s17/net/s19_fit.h": "glue/s17od/s19_fit.h",
+    "offline/s17/net/s12_macpub.h": "glue/s17od/s12_macpub.h",
+    "offline/s17/net/ml_core.c": "menus/ml/ml_core.c",
+    "offline/s17/net/ml_core.h": "menus/ml/ml_core.h",
+    "offline/s17/net/ml_table.h": "menus/ml/ml_table.h",
+    "offline/s17/net/ml_glue.c": "menus/ml/ml_glue.c",
+    "offline/s17/net/ml_stub.S": "menus/ml/ml_stub.S",
+    "offline/s17/net/ml_tex.h": "menus/ml/ml_tex.h",
+    "offline/s17/net/ml_ui.h": "menus/ml/ml_ui.h",
+    "offline/s17/net/ml_nt_geom.h": "menus/ml/ml_nt_geom.h",
+    "offline/s17/net/keyhint.h": "menus/sign/keyhint.h",
+    "offline/s17/net/toast_pill.h": "menus/sign/toast_pill.h",
+    "offline/s17/net/ml_mark_tex.h": "menus/ml/ml_mark_tex.h",
+    "offline/s17/net/ml_mark_level.h": "menus/ml/ml_mark_level.h",
+    "offline/s17/net/ml_music.h": "menus/ml/ml_music.h",
+    "offline/s17/net/ml_font.h": "menus/ml/ml_font.h",
+    "offline/s17/net/ml_font_tex.h": "menus/ml/ml_font_tex.h",
+    "offline/s17/net/ml_reinj.h": "menus/ml/ml_reinj.h",
+    "offline/s17/net/ml_reinj_tab.h": "menus/ml/ml_reinj_tab.h",
+    "offline/s17/net/ml_reinj_gc_tab.h": "menus/ml/ml_reinj_gc_tab.h",
+    "offline/s17/net/ml_set.c": "menus/ml/ml_set.c",
+    "offline/s17/net/ml_set.h": "menus/ml/ml_set.h",
+    "offline/s17/net/ml_rec_tab.h": "menus/ml/ml_rec_tab.h",
+    "offline/s17/net/on_set.c": "menus/on/on_set.c",
+    "offline/s17/net/on_dlog.c": "menus/on/on_dlog.c",
+    "offline/s17/net/ml_sign_stub.S": "menus/ml/ml_sign_stub.S",
+    "offline/s17/net/ml_ovl.h": "menus/ml/ml_ovl.h",
+    "offline/s17/net/ml_res.c": "menus/ml/ml_res.c",
+    "offline/multishine/menus/sign/sg_ovl.c": "menus/sign/sg_ovl.c",
+    "offline/multishine/menus/sign/sg_ovl.h": "menus/sign/sg_ovl.h",
+    "offline/multishine/menus/sign/sg_hook.c": "menus/sign/sg_hook.c",
+    "offline/multishine/menus/sign/sg_hook.h": "menus/sign/sg_hook.h",
+    "offline/multishine/menus/sign/sg_ui.h": "menus/sign/sg_ui.h",
+    "offline/multishine/menus/sign/sg_mockup.h": "menus/sign/sg_mockup.h",
+    "offline/multishine/menus/sign/gnb.h": "menus/sign/gnb.h",
+    "offline/multishine/menus/sign/gnb_prep.h": "menus/sign/gnb_prep.h",
+    "offline/multishine/menus/sign/qc_pick.h": "menus/sign/qc_pick.h",
+    "offline/multishine/menus/sign/frd.h": "menus/sign/frd.h",
+    "offline/multishine/menus/sign/frd_hold.h": "menus/sign/frd_hold.h",
+    "offline/multishine/menus/sign/stb.h": "menus/sign/stb.h",
+    "offline/multishine/menus/sign/gnt.h": "menus/sign/gnt.h",
+    "offline/multishine/menus/sign/sgr.h": "menus/sign/sgr.h",
+    "offline/multishine/menus/sign/sgx.h": "menus/sign/sgx.h",
+    "offline/multishine/menus/sign/sg_updv.h": "menus/sign/sg_updv.h",
+    "offline/multishine/menus/on/on_bhold.h": "menus/on/on_bhold.h",
+    "offline/multishine/menus/on/fc_log.h": "menus/on/fc_log.h",
+    "offline/multishine/menus/ml/ml_ui.h": "menus/ml/ml_ui.h",
+    "offline/multishine/menus/ml/ml_nt_geom.h": "menus/ml/ml_nt_geom.h",
+    "offline/s17/net/hub_ovl.h": "menus/hub/hub_ovl.h",
+    "offline/s17/net/hub_gate.h": "menus/hub/hub_gate.h",
+    "offline/s17/net/hub_res.c": "menus/hub/hub_res.c",
+    "offline/s17/net/gns_res.c": "menus/gns/gns_res.c",
+    "offline/s17/net/frd_tab_art.h": "menus/sign/frd_tab_art.h",
+    "offline/s17/net/gns_ovl.h": "menus/gns/gns_ovl.h",
+    "offline/s17/net/rep_res.c": "menus/rep/rep_res.c",
+    "offline/s17/net/rep_q.c": "menus/rep/rep_q.c",
+    "offline/s17/net/rep_keep.h": "menus/rep/rep_keep.h",
+    "offline/s17/net/rep_scene.h": "../bridge/rep_scene.h",
+    "offline/s17/net/tmm_core.h": "../bridge/tmm_core.h",
+    "offline/s17/net/sbr.h": "../bridge/sbr.h",
+    "offline/s17/net/sbr_mbx.h": "../bridge/sbr_mbx.h",
+    "offline/s17/net/sbr_ws_const.h": "../bridge/sbr_ws_const.h",
+    "offline/s17/net/rep_line.h": "menus/rep/rep_line.h",
+    "offline/s17/net/rep_ovl.h": "menus/rep/rep_ovl.h",
+    "offline/s17/net/hub_ovl.c": "menus/hub/hub_ovl.c",
+    "offline/multishine/menus/upd/upd_host.c": "menus/upd/upd_host.c",
+    "offline/multishine/menus/upd/upd_host.h": "menus/upd/upd_host.h",
+    "offline/multishine/menus/upd/upd_card.c": "menus/upd/upd_card.c",
+    "offline/multishine/menus/upd/upd_card.h": "menus/upd/upd_card.h",
+    "offline/multishine/menus/sign/sgu_core.h": "menus/sign/sgu_core.h"
+   },
+   "external": [
+    "offline/bba/bba_mx98728.c",
+    "offline/bba/bba_mx98728.h",
+    "offline/net/sdnet.c",
+    "offline/net/sdnet.h",
+    "offline/exi_shim/sdshim.c",
+    "offline/exi_shim/sdshim.h",
+    "offline/common/sdenet/sdenet.c",
+    "offline/common/sdenet/sdenet.h",
+    "offline/common/sdenet/sdenet_clock.c",
+    "offline/common/sdenet/sdenet_clock.h",
+    "offline/common/sdenet/sdenet_glue_clock.h",
+    "offline/client_net/mnc.c",
+    "offline/client_net/mnc.h",
+    "offline/client_net/mw2.c",
+    "offline/client_net/mw2.h",
+    "offline/client_net/mw2_crypto.c",
+    "offline/client_net/mw2_crypto.h",
+    "offline/chat/client_recog.h",
+    "offline/payload_pack/ms_sha256.c",
+    "offline/payload_pack/ms_sha256.h",
+    "offline/payload_pack/ms_lz.h",
+    "offline/bridge/br_enet_rename.h",
+    "offline/bridge/br_glue.c",
+    "offline/bridge/rep_scene.h",
+    "offline/bridge/tmm_core.h",
+    "offline/bridge/ld_diag.c",
+    "offline/bridge/livediag.h",
+    "offline/bridge/sbr.c",
+    "offline/bridge/sbr.h",
+    "offline/bridge/sbr_codec.c",
+    "offline/bridge/sbr_mbx.h",
+    "offline/bridge/sbr_ws_const.h",
+    "offline/bridge/sbr_app.c",
+    "offline/bridge/sbr_app.h",
+    "offline/bridge/sbr_card.c",
+    "offline/bridge/sbr_card.h",
+    "offline/bridge/sbr_ident.c",
+    "offline/bridge/sbr_ident.h",
+    "offline/bridge/sbr_netcfg.c",
+    "offline/bridge/sbr_netcfg.h",
+    "offline/net/sddns.c",
+    "offline/net/sddns.h",
+    "offline/net/nettest.c",
+    "offline/net/nettest.h",
+    "offline/net/nettext.c",
+    "offline/net/nettext.h",
+    "offline/delay_auto/delay_auto.c",
+    "offline/delay_auto/delay_auto.h", "offline/delay_auto/auto_delay_tab.h",
+    "offline/options/optstore.c",
+    "offline/options/optstore.h",
+    "offline/options/optengine.h",
+    "offline/net/tls/sdent.h",
+    "offline/net/tls/sdcrypto.h",
+    "offline/net/tls/sdc25519.h",
+    "offline/qr/qr.h",
+    "offline/multishine/menus/df/df.h",
+    "offline/multishine/menus/df/df_core.c",
+    "offline/multishine/menus/df/df_glue.c",
+    "offline/multishine/menus/df/df_stub.S",
+    "offline/payload_pack/ms_lz.c",
+    "offline/cardloader/cl/mscf_verify.h",
+    "offline/cardloader/ota/ota_core.c",
+    "offline/cardloader/ota/ota_core.h",
+    "offline/seed/seed_plan.h",
+    "offline/seed/seed_slp.h",
+    "offline/client_net/mnu.h",
+    "offline/multishine/menus/tt/tt_core.h",
+    "offline/multishine/menus/tt/tt_core.c",
+    "offline/multishine/menus/tt/tt_text.h",
+    "offline/multishine/menus/ml/ml_mark_level.h",
+    "offline/multishine/menus/ml/ml_music.h",
+    "offline/multishine/menus/tt/tt_glue.c",
+    "offline/multishine/menus/qc/qc_gc.c",
+    "offline/multishine/menus/qc/qc_gc.h",
+    "offline/multishine/menus/qc/qc_win.h",
+    "offline/chat/chat_core.c",
+    "offline/chat/chat_core.h",
+    "offline/chat/chat_link.c",
+    "offline/chat/chat_link.h",
+    "offline/chat/chat_ticket.c",
+    "offline/chat/chat_ticket.h",
+    "offline/chat/gc/chat_layout.h",
+    "offline/multishine/menus/sign/toast_pill.h"
+   ],
+   "flags": [
+    "-Os",
+    "-mcpu=750",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-msdata=none",
+    "-G0",
+    "-fno-pic",
+    "-msoft-float",
+    "-fno-tree-loop-distribute-patterns",
+    "-fno-asynchronous-unwind-tables",
+    "-ffunction-sections",
+    "-fdata-sections",
+    "-DSDNET_CONSOLE",
+    "-DSDNET_MAX_SOCKETS=4",
+    "-DSDNET_SOCK_SLOTS=8",
+    "-DSDNET_SOCK_PAYLOAD=1200",
+    "-I@STAGE@/offline/client_net",
+    "-I@STAGE@/offline/net",
+    "-I@OUT@/gen"
+   ],
+   "options": {
+    "cardwa": {
+     "default": "ext",
+     "when": {
+      "shared": [
+       "-DMS_CARD_SHARED_WA"
+      ],
+      "ext": [
+       "-DMS_CARD_SHARED_WA",
+       "-DMS_CARD_EXT_WA"
+      ]
+     },
+     "doc": "CARD work area + block buffer (40,960+8,192 B). 'ext' (default, ENGINE_MEMORY_BREAKDOWN step 2b): ONE area shared by on_card and sbr_card and NOT in the image: with -DMS_CARD_WA_ADDR=<addr> (card route, offline/cardloader/card_payload.py) it is the loader's own work area above the claimed hole, else (patched/ISO route) 48 KB from the HSD heap per card operation (OSAllocFromHeap, refusal = card busy). 'shared' = step 2a (one static area in the image, ms_card_wa). 'separate' (any other value) = the old layout, two static areas."
+    },
+    "sites": {
+     "default": "off",
+     "when": {
+      "off": [
+       "-DSD_NO_SITES"
+      ]
+     },
+     "doc": "S11 allocation-site tables (sd_sites/st_addr/st_site, 88 KB) and the cold-site/site-profile code. Product default off (RC1 contract cold=0 site_prof=0): compiled out; 'sites=on' is the lab build ( step 1)."
+    },
+    "s17x": {
+     "default": "off",
+     "when": {
+      "off": [
+       "-DSD_REL_S17"
+      ]
+     },
+     "doc": "Lab / opt-in config flag bits of the rollback engine and its glue: s17_flags beyond G|H|U + SKIPCAP (LOGZ, DD, HPF, U_OLD, U2, NEG_*, FORCE_BUSY, NODCBST in the engine; CENSUS, CHAIN*, PE, PACE*, RELAX*, NOGUARD in the glue), s12_flags beyond 0x20304E, s10_flags beyond 0x101, every s16_flags bit, s3 flags / s6d_flags, s6c_flags beyond 2: never set by the release contract (s17_flags 0x40000007, s12_flags 0x304E, s10_flags 0x101). payload.py refuses a contract that sets any other bit unless s17x=on. Product default off: the engine and glue read the words masked to the contract bits and the dead code is compiled out. s17x=on keeps every bit for lab builds and rig runs that set them."
+    },
+    "fp": {
+     "default": "off",
+     "when": {
+      "off": [
+       "-DSD_NO_FP"
+      ]
+     },
+     "doc": "S12 fingerprint capture (S11/S16 fp_*, sd_fp_check, cmp_range_fp fingerprint paths). Product default off: with s17_flags G (RC1 0x40000007) sd_init forces sd_fp to 0, so the code is dead in a release; compiled out. fp=on keeps it for lab builds that run fp captures (s17_flags without G)."
+    },
+    "hgtrace": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DSD_LAB_HG=1"
+      ],
+      "nofix": [
+       "-DSD_LAB_HG=1",
+       "-DSD_LAB_HG_NOFIX=1"
+      ]
+     },
+     "doc": "LAB ONLY ( B): count the engine writes after the match scene ended (sd_melee.c scene_gone, sd_core.c sd_hg_w) and report them at the first pass of the next scene (S6!K HGON / HGRG). 'nofix' is the negative control: the engine keeps writing after the scene change as before the fix (reproduces the post-match CSS corruption). Release builds keep it off: no sd_hg_ symbol exists."
+    },
+    "itemsall": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DMS_LAB_ITEMS_ALL=1"
+      ]
+     },
+     "doc": "LAB ONLY (docs/design/ITEM_SOAK_2026-10-28.md): od_rules sets S7R_ITEMS_ALL for every match of the build (all items on, frequency 4), so the pair rig / stage smoke can soak items without a Game Night room. Release builds keep it off (tools/release/check_release_shape.py)."
+    },
+    "rbread": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DMS_RB_READOUT=1"
+      ],
+      "rt": [
+       "-DMS_RB_READOUT=1",
+       "-DMS_RB_RUNTIME=1"
+      ]
+     },
+     "doc": "DEV/LAB ONLY (R1, B0): the post-game CSS readout of the last match (store size and heap, capacity peaks, cell_overflow, lost_ranges, HSD and AllM free / minimum; s12_gc.c rbr_*, on_bhold.c rbr_tick). Release builds keep it off: no rbr_ symbol exists. 'rt': the same code compiled in but OFF until the card's Options file (Settings > System > Rollback readout) switches it on (s12_gc.c rbr_enable); 'on' = always on (lab)."
+    },
+    "labnat": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DMNC_LAB_SAMENAT=1"
+      ]
+     },
+     "doc": "DEV/LAB ONLY: the hub client accepts an opponent whose address equals the server's when od_cfg flag bit 5 is set (server and seat behind one NAT). Release builds keep it off: peer_addr_ok then always refuses the server's address and the flag bit does not exist."
+    },
+    "netcfg": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DSBR_NETCFG=1"
+      ]
+     },
+     "doc": "DEV/LAB ONLY: the bridge reads the net-config section of MultishineBridge from the card. Release builds keep it off: sbr_netcfg.o is then empty and no sbr_nc_ symbol exists."
+    },
+    "menuovl": {
+     "default": "flat",
+     "when": {
+      "ovl": [
+       "-DML_OVL_RES"
+      ]
+     },
+     "doc": "Menu code as an on-demand overlay (ENGINE_MEMORY_BREAKDOWN step 3 7). 'flat' (default): ml_core / ml_glue / sg_ovl / sg_hook resident, byte for byte the build before the overlay existed. 'ovl': only the resident remainder of ml_glue.c, ml_res.c (dispatchers, loader, scene hook) and sg_ovl.c stay; the rest is linked flat by menus/ml/ml_ovl_pack.py into the file ms/menu.ovl (the disc, or the ISO builder's MS_DISC_EXTRA); if the file cannot be read or entered the retail menu runs unchanged."
+    },
+    "edfast": {
+     "default": "off",
+     "when": {
+      "on": [
+       "-DMW2_FAST_VERIFY"
+      ]
+     },
+     "doc": "Ed25519 verification by a joint binary-NAF double scalar multiplication (offline/client_net/mw2_crypto.c 5): 4,843 field multiplications instead of 10,252, +248 B of code and +672 B of stack in the engine. Used by the engine's signature check of MultishineOvl (df_glue.c, once per boot); the sign-in overlay takes the same switch (SG_EXTRA_CFLAGS=-DMW2_FAST_VERIFY) for the Update download check. 'off' (default): the ladder, byte for byte the build before. Differential test: offline/client_net/tests/test_ed_fast.py."
+    },
+    "nosched": {
+     "default": "off",
+     "when": {
+      "menu": [],
+      "all": [
+       "-fno-schedule-insns2"
+      ]
+     },
+     "units_when": {
+      "menu": {
+       "ml_core": ["-fno-schedule-insns2"],
+       "ml_glue": ["-fno-schedule-insns2"],
+       "ml_stub": ["-fno-schedule-insns2"],
+       "ml_set": ["-fno-schedule-insns2"],
+       "ml_res": ["-fno-schedule-insns2"],
+       "ml_sign_stub": ["-fno-schedule-insns2"],
+       "optstore": ["-fno-schedule-insns2"],
+       "sg_ovl": ["-fno-schedule-insns2"],
+       "sg_hook": ["-fno-schedule-insns2"],
+       "on_backend": ["-fno-schedule-insns2"],
+       "od_glue": ["-fno-schedule-insns2"],
+       "mnc": ["-fno-schedule-insns2"],
+       "mw2": ["-fno-schedule-insns2"],
+       "codehist": ["-fno-schedule-insns2"],
+       "on_cfgrec": ["-fno-schedule-insns2"],
+       "on_card": ["-fno-schedule-insns2"],
+       "om_heap": ["-fno-schedule-insns2"],
+       "om_heap_stub": ["-fno-schedule-insns2"],
+       "on_bhold": ["-fno-schedule-insns2"],
+       "on_bhold_sis": ["-fno-schedule-insns2"],
+       "sbr": ["-fno-schedule-insns2"],
+       "sbr_codec": ["-fno-schedule-insns2"],
+       "sbr_app": ["-fno-schedule-insns2"],
+       "sbr_card": ["-fno-schedule-insns2"],
+       "sbr_ident": ["-fno-schedule-insns2"],
+       "sbr_netcfg": ["-fno-schedule-insns2"],
+       "br_glue": ["-fno-schedule-insns2"],
+       "sddns": ["-fno-schedule-insns2"],
+       "df_glue": ["-fno-schedule-insns2"]
+      }
+     },
+     "doc": "Post-register-allocation instruction scheduling off (-fno-schedule-insns2): scheduled code is less compressible, so the MSLZ stream shrinks while the blob size stays the same. 'menu': only the menu / online / bridge / pack-glue units (never the rollback engine, the network slice, the EXI shim or the hot loops of the CRC, MSLZ, SHA and Ed25519 code); about -2.4 KB of stream. 'all': every unit including the rollback engine (about -7.1 KB; the rollback owner must judge the codegen change, hardware only). 'off' (default): byte for byte the build before."
+    },
+    "hubovl": {
+     "default": "flat",
+     "when": {
+      "ovl": [
+       "-DHUB_OVL_RES",
+       "-DUPD_TITLE",
+       "-Ioffline/multishine/menus/sign"
+      ]
+     },
+     "doc": "Hub/online client as an on-demand overlay (ENGINE_MEMORY_BREAKDOWN step 4 6.5). 'ovl' also builds the update check on the title (-DUPD_TITLE 'Check on title': hub_res.c loads the overlay on the title while the check is wanted, hub.ovl's tchk asks the server, START opens the Update offer; Settings > Online > Update check at start turns it off at run time). 'flat' (default): od_glue / mnc / mw2 / ms_sha256 and all of on_backend.c resident, byte for byte the build before the split. 'ovl': the resident keeps the hand-off (od_take_peer, od_core_report, od_rx, od_b3, the error texts), the B3 / BA answers, the state blocks and menus/hub/hub_res.c (loader, scene policy, thunks); od_glue's search / report / DNS logic, mnc, mw2, ms_sha256 and the B9 / B4 / BE / BD answers are linked flat by menus/hub/hub_ovl_pack.py into ms/hub.ovl, an entry of the signed MultishineOvl card file (menus/hub/hub_pack.py), loaded in the main menu and on the online character select and freed at every scene change; without the file the Multishine rows say so and the retail and Slippi menus are unchanged."
+    },
+    "brprobe": {
+     "default": "out",
+     "when": {
+      "out": [],
+      "in": []
+     },
+     "units_when": {
+      "out": {
+       "sbr_app": [
+        "-DSBRA_NO_PEER_PROBE"
+       ],
+       "br_glue": [
+        "-DSBRA_NO_PEER_PROBE"
+       ]
+      }
+     },
+     "doc": "Bridge peer probe ( D1). 'out' (default): the second ENet host struct sbra.P (19,928 B at REL_DATA 512, 10,676 B at MAX_PEERS 1) and the probe code are compiled out (-DSBRA_NO_PEER_PROBE for sbr_app and br_glue): the product hand-off (cfg flags 0x20, SBRA_F_ENGINE_PEER) never runs it, a lab mode without the hand-off and without the stub fails the peer step at once. 'in': the lab variant with the probe (flags without 0x20/0x10)."
+    },
+    "brpeers": {
+     "default": "1",
+     "when": {
+      "1": [],
+      "2": []
+     },
+     "units_when": {
+      "1": {
+       "sbr": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "sbr_app": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "sbr_card": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "sbr_ident": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "sbr_netcfg": [
+        "-DSDENET_MAX_PEERS=1"
+       ],
+       "br_glue": [
+        "-DSDENET_MAX_PEERS=1"
+       ]
+      }
+     },
+     "doc": "Peer table of the bridge's own ENet copy (BRIDGE_HUB_REUSE.md D2). '1' (default): -DSDENET_MAX_PEERS=1 for every bridge unit that sees struct sdenet_host (sbr, sbr_app, sbr_card, sbr_ident, sbr_netcfg, sdenet_br, br_glue): the matchmaker host only ever has the one outgoing peer (a second peer slot existed for the probe's simultaneous connect). '2': the old size. The engine's own ENet copy (sdenet.o) is never touched."
+    },
+    "brslots": {
+     "default": "8",
+     "when": {
+      "4": [],
+      "8": []
+     },
+     "units_when": {
+      "4": {
+       "sbr": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "sbr_app": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "sbr_card": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "sbr_ident": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "sbr_netcfg": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ],
+       "br_glue": [
+        "-DSDENET_REL_SLOTS=4",
+        "-DSDENET_HOLD_SLOTS=4"
+       ]
+      }
+     },
+     "doc": "Reliable and hold slots of the bridge's own ENet copy (BRIDGE_HUB_REUSE.md D3). '8' (default): the library default. '4': -DSDENET_REL_SLOTS=4 -DSDENET_HOLD_SLOTS=4 for the bridge units (4,424 B per host at REL_DATA 512): the matchmaker traffic has at most the 2-fragment ticket, a ping and a disconnect in flight. Opt-in until the console has run it (build_rc.sh / build_cvr_image.sh --opts brslots=4)."
+    },
+    "bootrec": {
+     "default": "on",
+     "when": {
+      "on": [
+       "-DUPD_BOOT",
+       "-DUPD_BOOT_ENGINE"
+      ],
+      "off": []
+     },
+     "units_when": {
+      "on": {
+       "ml_stub": [
+        "-DUPD_BOOT"
+       ],
+       "upd_card": [
+        "-DUPC_BOOT_ONLY"
+       ]
+      }
+     },
+     "doc": "OTA automatic rollback, engine side: the build counts its own start in the boot record of MultishineState from the first title / menu frame whose card layer is idle (br_glue.c br_tick -> upd_host.c upd_boot_frame) and marks itself good at the first Main Menu frame (ml_stub.S ml_frame_stub -> upd_boot_menu). Without it a build that hangs after the loader is never counted and only L+R recovers. 'on' (default): upd_host / upd_card (boot-only ops: no delete, no rename, no room check) / ota_core (bootrec_*) are linked, about 2.5 KB. 'off': the earlier image (the units are linked but nothing references them, the linker drops them)."
+    },
+    "tlsprobe": {
+     "default": "off",
+     "when": {
+      "off": [],
+      "on": [
+       "-DMS_TLS_PROBE=1",
+       "-DSDNET_ENABLE_TCP=1"
+      ]
+     },
+     "doc": "DIAGNOSTIC, LAB ONLY, never in a release: the engine hands the sign-in overlay its sdnet (struct built with SDNET_ENABLE_TCP=1: +56 bytes of hooks) and the resident network helpers, so a lab sign.ovl (SG_LAB=1, SG_TLSPROBE=1) can run the TCP + TLS 1.3 probe of offline/net/tls/hil/sdprobe.c on the console in the menus. 'off' (default): the code is not compiled and the image is byte-identical to a build without the option."
+    },
+    "repovl": {
+     "default": "off",
+     "when": {
+      "off": [],
+      "on": [
+       "-DMS_REP_OVL=1",
+       "-DSDNET_ENABLE_TCP=1"
+      ]
+     },
+     "doc": "Slippi game reports from the console (; needs hubovl=ovl, the card route). 'on': the resident keeps the report queue and counters (menus/rep/rep_q.c, rep_res.c, about 4 KB: `struct rep_keep`, the weak hooks of br_glue.c) and loads ms/rep.ovl (menus/rep/rep_ovl_pack.py, an entry of the signed MultishineOvl container, hub_pack.py --rep-ovl) into the HSD heap only while a report is due in a main-menu scene and OUR server announced HELLO capability bit 15 to this console (per console on the server, default off: no console setting). struct sdnet is built with SDNET_ENABLE_TCP=1 (+56 bytes of hooks) and the TLS helper accessors of s12_gc.c are compiled (shared with the lab TLS probe). 'off' (default): none of it is compiled and the image is byte-identical to a build without the option."
+    },
+    "qchat": {
+     "default": "off",
+     "when": {
+      "off": [],
+      "on": [
+       "-DMS_QCHAT=1"
+      ],
+      "demo": [
+       "-DMS_QCHAT=1",
+       "-DMS_QCHAT_DEMO=1"
+      ]
+     },
+     "doc": "QUICK CHAT: the D-pad chat of Slippi's online character screen. menus/qc/qc_gc.c (drawing, pad, sounds; a port of the lab image offline/chat/gc/chat_gc.c) + offline/chat/chat_core.c / chat_link.c (rules, wire, window, subtitle queue, used in place) + the transport in s7_core.c (0x84 in, s7_core_chat_tx out, the engine's own ENet session) + the session/tick glue in s12_gc.c (qc_pump) + one line in on_bhold.c (no hold-B exit while the window is open). 'off' (default): none of it is compiled, the image is byte for byte the one without the option (the extra units are empty). 'on': the feature. 'demo': LAB ONLY, also the single-console test mode of the lab image (every preset, the notice, the window pages, a worst-case line, one step per 150 frames, no pad input). The overlays must be built with the same option (struct s3_core grows by 12 bytes)."
+    },
+    "flashblank": {
+     "default": "off",
+     "when": {
+      "off": [],
+      "on": [
+       "-DMS_FLASH_BLANK=1"
+      ]
+     },
+     "doc": "EVENT MATCH FLASH FIX, in the release recipe since release candidate 477: when the pending major scene becomes 8 (Slippi's online character screen) while the running major is not 8, on_bhold.c bh_tick (the engine's per-frame tick) calls VISetBlack(1) + VIFlush so the hub's last Event Match frame is not shown during the scene load, and lifts it when the new major scene runs (not loading) or after 1.5 s at the latest (time base, wrap safe). 'off' (default): nothing is compiled, the image is byte-identical."
+    },
+    "hubdiag": {
+     "default": "off",
+     "when": {
+      "off": [],
+      "on": [
+       "-DMS_HUB_DIAG=1"
+      ]
+     },
+     "doc": "DIAGNOSTIC, LAB ONLY, never in a release (Game Night post-match return hunt): the hang-locator ring (gns_bc, events of the hub loader and the uploader block), the hub loader's early-return reasons and two compact state lines on the character screen (UP ring, B result-report state), drawn every 4th pass without any other readout.  rbread=on/rt includes it.  'off' (default): nothing is compiled, the image is byte-identical to a build without the option."
+    },
+    "livediag": {
+     "default": "off",
+     "when": {
+      "off": [],
+      "on": [
+       "-DMS_LIVE_DIAG=1"
+      ]
+     },
+     "doc": "DIAGNOSTIC, never in a release: after a live match ends (or while a scene loads for more than 10 s) the engine paints seven rows of status words into the frame buffers: why the match ended (ENet timeout, peer disconnect, stall rule, ...), the stall / ENet / packet counters, the bridge state and, when a scene is stuck loading, where the game thread is (srr0, lr, return addresses). Never painted during a match; reads RAM words only (offline/bridge/ld_diag.c, livediag.h). 'off' (default): the unit is empty and sbr_app.c has no call, the image is byte-identical to a build without the option."
+    },
+    "rbtest": {
+     "default": "off",
+     "when": {
+      "off": [],
+      "hang": [
+       "-DUPD_BOOT_TEST_HANG"
+      ]
+     },
+     "doc": "TEST ONLY, NEVER SHIPPED: 'hang' makes the engine hang in its first frames right after its start was counted in the boot record, i.e. a validly signed build that never reaches the Main Menu, to prove the automatic rollback with the real engine in Dolphin and on the console. tools/card/build_card.sh refuses it without --dev. Build such a file only under a throw-away --name and publish it only into a private update directory."
+    }
+   },
+   "pre": [
+    [
+     "python3",
+     "@REPO@/offline/chat/gen_chat_tables.py",
+     "check"
+    ],
+    [
+     "python3",
+     "@REPO@/offline/chat/gen_chat_tables.py",
+     "header",
+     "--out",
+     "@OUT@/gen/chat_presets_gen.h"
+    ]
+   ],
+   "units": [
+    {
+     "obj": "s12_gc",
+     "src": "offline/s17/net/s12_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-DSDENET_NO_FRAGMENTS",
+      "-Dsdshim_set_backend=od_set_backend",
+      "-DON_BUILD",
+      "-DBR_BUILD",
+      "-DSD_NO_TESTPROF"
+     ]
+    },
+    {
+     "obj": "s12_early",
+     "src": "offline/s17/net/s12_early.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "s17_relax",
+     "src": "offline/s17/net/s17_relax.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "pacing",
+     "src": "offline/pacing/pacing.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "s7_core",
+     "src": "offline/s17/dep/s7_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS",
+      "-DOD_SELECT_LOCK"
+     ]
+    },
+    {
+     "obj": "sdenet",
+     "src": "offline/common/sdenet/sdenet.c",
+     "kind": "c",
+     "args": [
+      "-DSDENET_CONNECT_PUNCH",
+      "-DSDENET_ALLOW_POOL",
+      "-std=gnu99",
+      "-DSDENET_NO_FRAGMENTS"
+     ]
+    },
+    {
+     "obj": "sdenet_clock",
+     "src": "offline/common/sdenet/sdenet_clock.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "s4_script",
+     "src": "offline/enet/s4_script.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sd_core",
+     "src": "offline/s17/sd_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11",
+      "-O2",
+      "-DSD_U2_DEFAULT"
+     ]
+    },
+    {
+     "obj": "sd_melee",
+     "src": "offline/s17/sd_melee.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu11"
+     ]
+    },
+    {
+     "obj": "bba",
+     "src": "offline/bba/bba_mx98728.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sdnet_udp",
+     "src": "offline/net/sdnet.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "on_backend",
+     "src": "offline/s17/net/on_backend.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-Dsdshim_set_backend=br_set_backend"
+     ]
+    },
+    {
+     "obj": "od_glue",
+     "src": "offline/s17/net/od_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "mnc",
+     "src": "offline/client_net/mnc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2",
+     "src": "offline/client_net/mw2.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "mw2_crypto",
+     "src": "offline/client_net/mw2_crypto.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "ms_sha256",
+     "src": "offline/payload_pack/ms_sha256.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "codehist",
+     "src": "offline/s17/net/codehist.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DCH_AT"
+     ]
+    },
+    {
+     "obj": "on_cfgrec",
+     "src": "offline/s17/net/on_cfgrec.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "on_card",
+     "src": "offline/s17/net/on_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DONS_SETTINGS",
+      "-Ioffline/options"
+     ]
+    },
+    {
+     "obj": "om_heap",
+     "src": "offline/s17/net/om_heap.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DOM_ALLM_SHIFT=0x211000u",
+      "-DOM_ALLM_OTHER=0x40000u"
+     ]
+    },
+    {
+     "obj": "om_heap_stub",
+     "src": "offline/s17/net/om_heap_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "qc_gc",
+     "src": "offline/multishine/menus/qc/qc_gc.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "chat_core",
+     "src": "offline/chat/chat_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "chat_link",
+     "src": "offline/chat/chat_link.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "chat_ticket",
+     "src": "offline/chat/chat_ticket.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "on_bhold",
+     "src": "offline/s17/net/on_bhold.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "on_bhold_sis",
+     "src": "offline/s17/net/on_bhold_sis.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "sdshim",
+     "src": "offline/exi_shim/sdshim.c",
+     "kind": "c",
+     "args": [
+      "-std=c89",
+      "-DSDSHIM_NO_NAMES",
+      "-DSDSHIM_G_ATTR=__attribute__((section(\".data\")))",
+      "-DSDSHIM_CONFIG_HOOK=s3_config"
+     ]
+    },
+    {
+     "obj": "tramp",
+     "src": "offline/s17/net/s12_tramp.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "hooks",
+     "src": "offline/s17/sd_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "fcopy",
+     "src": "offline/s17/sd_fcopy.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "hooks2",
+     "src": "offline/s17/net/s12_hooks.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "lc",
+     "src": "offline/s17/sd_lc.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750"
+     ]
+    },
+    {
+     "obj": "ml_core",
+     "src": "offline/s17/net/ml_core.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "ml_glue",
+     "src": "offline/s17/net/ml_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-Dml_online_hook=br_online_ready",
+      "-DML_SETTINGS",
+      "-DML_SIGN",
+      "-DONS_SETTINGS",
+      "-Ioffline/options",
+      "-Ioffline/multishine/menus/sign"
+     ]
+    },
+    {
+     "obj": "ml_stub",
+     "src": "offline/s17/net/ml_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float",
+      "-Dml_unlock_override=br_unlock_override"
+     ]
+    },
+    {
+     "obj": "sbr",
+     "src": "offline/bridge/sbr.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sbr_codec",
+     "src": "offline/bridge/sbr_codec.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sbr_app",
+     "src": "offline/bridge/sbr_app.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_REL_DATA=512",
+      "-DSBRA_MATCH_FROM_S7",
+      "-include",
+      "offline/bridge/br_enet_rename.h"
+     ]
+    },
+    {
+     "obj": "sbr_card",
+     "src": "offline/bridge/sbr_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sbr_ident",
+     "src": "offline/bridge/sbr_ident.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sbr_netcfg",
+     "src": "offline/bridge/sbr_netcfg.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sddns",
+     "src": "offline/net/sddns.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "nettest",
+     "src": "offline/net/nettest.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "br_glue",
+     "src": "offline/bridge/br_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSDENET_REL_DATA=512"
+     ]
+    },
+    {
+     "obj": "ld_diag",
+     "src": "offline/bridge/ld_diag.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "ml_set",
+     "src": "offline/s17/net/ml_set.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-Ioffline/options"
+     ]
+    },
+    {
+     "obj": "optstore",
+     "src": "offline/options/optstore.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "sg_ovl",
+     "src": "offline/multishine/menus/sign/sg_ovl.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSG_LAB=0"
+     ]
+    },
+    {
+     "obj": "sg_hook",
+     "src": "offline/multishine/menus/sign/sg_hook.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-DSG_LAB=0"
+     ]
+    },
+    {
+     "obj": "ml_res",
+     "src": "offline/s17/net/ml_res.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-Dml_online_hook=br_online_ready",
+      "-DML_SETTINGS",
+      "-DML_SIGN",
+      "-DONS_SETTINGS",
+      "-Ioffline/options",
+      "-Ioffline/multishine/menus/sign"
+     ]
+    },
+    {
+     "obj": "ml_sign_stub",
+     "src": "offline/s17/net/ml_sign_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "df_core",
+     "src": "offline/multishine/menus/df/df_core.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "df_glue",
+     "src": "offline/multishine/menus/df/df_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "ms_lz",
+     "src": "offline/payload_pack/ms_lz.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "df_stub",
+     "src": "offline/multishine/menus/df/df_stub.S",
+     "kind": "asm",
+     "args": [
+      "-mcpu=750",
+      "-msoft-float"
+     ]
+    },
+    {
+     "obj": "upd_host",
+     "src": "offline/multishine/menus/upd/upd_host.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99",
+      "-Ioffline/multishine/menus/upd"
+     ]
+    },
+    {
+     "obj": "upd_card",
+     "src": "offline/multishine/menus/upd/upd_card.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    },
+    {
+     "obj": "ota_core",
+     "src": "offline/cardloader/ota/ota_core.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "tt_core",
+     "src": "offline/multishine/menus/tt/tt_core.c",
+     "kind": "c",
+     "args": [
+      "-std=c89"
+     ]
+    },
+    {
+     "obj": "tt_glue",
+     "src": "offline/multishine/menus/tt/tt_glue.c",
+     "kind": "c",
+     "args": [
+      "-std=gnu99"
+     ]
+    }
+   ],
+   "ld": "offline/s17/net/s12.ld",
+   "undefined": [
+    "s3_exi_entry",
+    "s6n_iter_stub",
+    "s6n_end_stub",
+    "sd_osalloc_stub",
+    "sd_osfree_stub",
+    "sd_objinit_stub",
+    "sd_hobjalloc_stub",
+    "sd_hobjfree_stub",
+    "sd_hpiecealloc_stub",
+    "sd_hpiecefree_stub",
+    "sd_padalarm_stub",
+    "s6n_lsfail_stub",
+    "sfx_req_stub",
+    "sfx_stop_stub",
+    "sfx_start_stub",
+    "s10_invoke",
+    "s17_relax_stub",
+    "s12_idle_stub",
+    "s12_render_stub",
+    "s12_fnhook_stubs",
+    "s12_dyn_stub",
+    "od_set_backend",
+    "om_heap_stub",
+    "bh_st",
+    "ml_enter_stub",
+    "ml_frame_stub",
+    "ml_label_stub",
+    "ml_build_stub",
+    "ml_label_hover_stub",
+    "ml_label_unhover_stub",
+    "ml_light_stub",
+    "ml_unlock_stub",
+    "ml_text_stub",
+    "df_path_stub",
+    "df_open_stub",
+    "df_req_stub"
+   ],
+   "link_order": [
+    "tramp",
+    "hooks",
+    "hooks2",
+    "fcopy",
+    "lc",
+    "s12_gc",
+    "s12_early",
+    "s17_relax",
+    "pacing",
+    "s7_core",
+    "sdenet",
+    "sdenet_clock",
+    "s4_script",
+    "sd_core",
+    "sd_melee",
+    "bba",
+    "sdnet_udp",
+    "on_backend",
+    "od_glue",
+    "mnc",
+    "mw2",
+    "mw2_crypto",
+    "ms_sha256",
+    "codehist",
+    "on_cfgrec",
+    "on_card",
+    "om_heap",
+    "om_heap_stub",
+    "on_bhold",
+    "on_bhold_sis",
+    "qc_gc",
+    "chat_core",
+    "chat_link",
+    "chat_ticket",
+    "ml_core",
+    "ml_glue",
+    "ml_res",
+    "sbr",
+    "sbr_codec",
+    "sbr_app",
+    "sbr_card",
+    "sbr_ident",
+    "sbr_netcfg",
+    "sddns",
+    "nettest",
+    "br_glue",
+    "ld_diag",
+    "ml_set",
+    "optstore",
+    "sg_ovl",
+    "sg_hook",
+    "ml_stub",
+    "ml_sign_stub",
+    "sdshim",
+    "df_core",
+    "df_glue",
+    "ms_lz",
+    "df_stub",
+    "upd_host",
+    "upd_card",
+    "ota_core",
+    "tt_core",
+    "tt_glue"
+   ],
+   "nms": false,
+   "checks": {
+    "fpu_arith": [
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "pacing",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "on_backend",
+     "od_glue",
+     "mnc",
+     "mw2",
+     "mw2_crypto",
+     "ms_sha256",
+     "codehist",
+     "on_cfgrec",
+     "on_card",
+     "om_heap",
+     "om_heap_stub",
+     "on_bhold",
+     "qc_gc",
+     "chat_core",
+     "chat_link",
+     "chat_ticket",
+     "sdshim",
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "ml_core",
+     "ml_glue",
+     "ml_res",
+     "sbr",
+     "sbr_codec",
+     "sbr_app",
+     "sbr_card",
+     "sbr_ident",
+     "sddns",
+     "nettest",
+     "br_glue",
+     "ld_diag",
+     "ml_stub",
+     "ml_set",
+     "optstore",
+     "sg_ovl",
+     "sg_hook",
+     "df_core",
+     "df_glue",
+     "ms_lz",
+     "upd_host",
+     "upd_card",
+     "ota_core",
+     "tt_core",
+     "tt_glue"
+    ],
+    "fpu_ldst": [],
+    "softfloat_map": false,
+    "lr_c": [
+     "pacing",
+     "s12_gc",
+     "s12_early",
+     "s17_relax",
+     "s7_core",
+     "sdenet",
+     "sdenet_clock",
+     "s4_script",
+     "sd_core",
+     "sd_melee",
+     "bba",
+     "sdnet_udp",
+     "om_heap",
+     "sdshim",
+     "codehist",
+     "on_cfgrec",
+     "on_card",
+     "on_backend",
+     "od_glue",
+     "mnc",
+     "mw2",
+     "mw2_crypto",
+     "ms_sha256",
+     "on_bhold",
+     "qc_gc",
+     "chat_core",
+     "chat_link",
+     "chat_ticket",
+     "ml_core",
+     "ml_glue",
+     "ml_res",
+     "sbr",
+     "sbr_codec",
+     "sbr_app",
+     "sbr_card",
+     "sbr_ident",
+     "sbr_netcfg",
+     "sddns",
+     "nettest",
+     "br_glue",
+     "ld_diag",
+     "ml_set",
+     "optstore",
+     "sg_ovl",
+     "sg_hook",
+     "df_core",
+     "df_glue",
+     "ms_lz",
+     "upd_host",
+     "upd_card",
+     "ota_core",
+     "tt_core",
+     "tt_glue"
+    ],
+    "lr_asm": [
+     "tramp",
+     "hooks",
+     "fcopy",
+     "hooks2",
+     "lc",
+     "om_heap_stub",
+     "on_bhold_sis",
+     "ml_stub",
+     "ml_sign_stub",
+     "df_stub"
+    ]
+   },
+   "derived_from": "s17-compat-onb",
+   "doc": "Image 'Multishine card route RC1': s17-compat-onb plus the disc-file pack (offline/multishine/menus/df: three hooks on Melee's file funnel DVDConvertPathToEntrynum / lbFile_8001634C / HSD_DevComRequest serve changed or added disc files from the memory-card file MultishinePack, so that the game disc can stay stock). Only the card contract multishine-card-rc1.json uses it; every other image is unchanged.",
+   "own": [
+    "offline/s17/net/hub_ovl.h",
+    "offline/s17/net/hub_gate.h",
+    "offline/s17/net/hub_res.c",
+    "offline/s17/net/gns_res.c",
+    "offline/s17/net/frd_tab_art.h",
+    "offline/s17/net/gns_ovl.h",
+    "offline/s17/net/rep_res.c",
+    "offline/s17/net/rep_q.c",
+    "offline/s17/net/rep_keep.h",
+    "offline/s17/net/rep_scene.h",
+    "offline/s17/net/tmm_core.h",
+    "offline/s17/net/rep_line.h",
+    "offline/s17/net/rep_ovl.h",
+    "offline/s17/net/hub_ovl.c",
+    "offline/s17/net/om_heap.c",
+    "offline/s17/net/om_heap_stub.S",
+    "offline/s17/net/codehist.c",
+    "offline/s17/net/codehist.h",
+    "offline/s17/net/on_hist.c",
+    "offline/s17/net/om_card.h",
+    "offline/s17/net/od_glue.c",
+    "offline/s17/net/od_glue.h",
+    "offline/s17/net/s12_gpmask.h",
+    "offline/s17/net/pause_policy.h",
+    "offline/s17/net/ms_match_rules.h",
+    "offline/s17/net/s12_gc.c",
+    "offline/s17/dep/s7_core.c",
+    "offline/s17/net/on_backend.c",
+    "offline/s17/net/on_card.c",
+    "offline/s17/net/on_card.h",
+    "offline/s17/net/on_cfgrec.c",
+    "offline/s17/net/on_cfgrec.h",
+    "offline/s17/ms_fmt.h",
+    "offline/s17/net/tmv.c",
+    "offline/s17/net/tmv.h",
+    "offline/s17/net/gnt_tmb.c",
+    "offline/s17/net/gnt_tmb.h",
+    "offline/s17/net/on_bhold.c",
+    "offline/s17/net/on_bhold.h",
+    "offline/s17/net/fc_log.h",
+    "offline/s17/net/ld_plan.h",
+    "offline/s17/net/on_bhold_sis.S",
+    "offline/s17/net/s19_fit.h",
+    "offline/s17/net/s12_macpub.h",
+    "offline/s17/net/ml_core.c",
+    "offline/s17/net/ml_core.h",
+    "offline/s17/net/ml_table.h",
+    "offline/s17/net/ml_glue.c",
+    "offline/s17/net/ml_stub.S",
+    "offline/s17/net/ml_tex.h",
+    "offline/s17/net/ml_ui.h",
+    "offline/s17/net/ml_nt_geom.h",
+    "offline/s17/net/ml_mark_tex.h",
+    "offline/s17/net/ml_mark_level.h",
+    "offline/s17/net/ml_music.h",
+    "offline/s17/net/ml_font.h",
+    "offline/s17/net/ml_font_tex.h",
+    "offline/s17/net/ml_reinj.h",
+    "offline/s17/net/ml_reinj_tab.h",
+    "offline/s17/net/ml_reinj_gc_tab.h",
+    "offline/s17/net/ml_set.c",
+    "offline/s17/net/ml_set.h",
+    "offline/s17/net/ml_rec_tab.h",
+    "offline/s17/net/on_set.c",
+    "offline/s17/net/on_dlog.c",
+    "offline/s17/net/ml_sign_stub.S",
+    "offline/s17/net/ml_ovl.h",
+    "offline/s17/net/ml_res.c"
+   ]
+  }
+ }
+}

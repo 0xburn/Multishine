@@ -1,0 +1,89 @@
+{
+ "version": 4,
+ "comment": "Tier badges: six tiers below the Grandmaster (the single top player); ranks rotate monthly. The icon of a tier is one of Project Slippi's rank badges (offline/assets/slippi_ranks, GPL-3.0). With at least distribution.min_population ranked players a tier is the percentile band of the season rank; below that the min_rating limits apply. Steps are best to worst.",
+ "the_grandmaster": {
+  "shape": "gm",
+  "rgb": "#FFC83C",
+  "name": "Grandmaster",
+  "short": "GM",
+  "icon_svg": "rank_Grand_Master.svg"
+ },
+ "placement": {
+  "shape": "placement",
+  "rgb": "#8A94A0",
+  "name": "Placement",
+  "short": "-",
+  "icon_svg": "rank_Unranked3.svg"
+ },
+ "steps": [
+  {
+   "shape": "t6",
+   "rgb": "#FF5CC8",
+   "min_rating": 2150,
+   "name": "Virtuoso",
+   "short": "VIRT",
+   "icon_svg": "rank_Master_III.svg"
+  },
+  {
+   "shape": "t5",
+   "rgb": "#B05CFF",
+   "min_rating": 1950,
+   "name": "Sensei",
+   "short": "SENS",
+   "icon_svg": "rank_Diamond_III.svg"
+  },
+  {
+   "shape": "t4",
+   "rgb": "#4F7BFF",
+   "min_rating": 1700,
+   "name": "Master",
+   "short": "MAST",
+   "icon_svg": "rank_Platinum_III.svg"
+  },
+  {
+   "shape": "t3",
+   "rgb": "#2FB8C8",
+   "min_rating": 1400,
+   "name": "Adept",
+   "short": "ADPT",
+   "icon_svg": "rank_Gold_III.svg"
+  },
+  {
+   "shape": "t2",
+   "rgb": "#4FC46A",
+   "min_rating": 1100,
+   "name": "Student",
+   "short": "STUD",
+   "icon_svg": "rank_Silver_III.svg"
+  },
+  {
+   "shape": "t1",
+   "rgb": "#8A94A0",
+   "min_rating": 0,
+   "name": "Novice",
+   "short": "NOV",
+   "icon_svg": "rank_Bronze_III.svg"
+  }
+ ],
+ "distribution": {
+  "scope": "season (monthly)",
+  "grandmaster": "rank 1 alone",
+  "min_population": 40,
+  "from_top_percent": {
+   "Virtuoso": 1,
+   "Sensei": 3,
+   "Master": 10,
+   "Adept": 30,
+   "Student": 60,
+   "Novice": 100
+  },
+  "share_percent": {
+   "Virtuoso": 1,
+   "Sensei": 2,
+   "Master": 7,
+   "Adept": 20,
+   "Student": 30,
+   "Novice": 40
+  }
+ }
+}

@@ -1,0 +1,22 @@
+Multishine
+Copyright (C) 2026 Nigzel / Bjerreman
+
+Multishine is a free, community-made mod for Super Smash Bros. Melee on the GameCube. It contains no Nintendo game
+data; you need your own legally obtained copy of the game.
+
+Multishine's own code is licensed under the GNU General Public License, version 3 or later (LICENSE). Files that are
+also built into the GPL-2.0 Nintendont build carry "GPL-3.0-or-later OR GPL-2.0-only". The signed engine file as a
+whole is GPL-3.0 because it contains code from Project Slippi.
+
+Third-party material (licence texts in LICENSES/):
+- Project Slippi code modules (slippi-ssbm-asm), GPL-3.0; UCF 0.84 as packaged by Project Slippi
+- Slippi rank icons from slippi-launcher, GPL-3.0 (offline/assets/slippi_ranks/LICENSE.md)
+- melee-gci-compiler files in the loader save, MPL-2.0 (SOURCE_OFFER.md)
+- ENet wire protocol compatibility (Lee Salzman), MIT (LICENSES/MIT-ENet.txt)
+- parts of the Broadband Adapter start-up sequence follow libogc, zlib licence (LICENSES/Zlib.txt); this version is altered
+- the Aileron typeface (Sora Sagano), CC0
+
+Credits: CREDITS.md.
+
+Multishine is an unofficial community project, not affiliated with, endorsed by or sponsored by Nintendo or Project
+Slippi. All trademarks belong to their holders. This notice is not legal advice.

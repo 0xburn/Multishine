@@ -1,0 +1,2 @@
+Google Chrome 156.0.8078.49
+(SVG -> canvas at 4x, box filter 4x4 premultiplied, contained in a square with a transparent margin of size/32 texels all round (the GPU clamps at the texture edge: without it the edge texels smear along the plate's quad); tools/brand/make_rank_icons.py --render)

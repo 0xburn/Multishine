@@ -1,0 +1,1450 @@
+{
+  "modules": {
+    "Binary/FasterMeleeSettings/UnlockAll.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Unlocks all characters/stages (Slippi default)."
+    },
+    "Binary/FasterMeleeSettings/StockMode.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Default rules: stock mode (.data default)."
+    },
+    "Binary/FasterMeleeSettings/4Stocks.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Default rules: 4 stocks."
+    },
+    "Binary/FasterMeleeSettings/8Minutes.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Default rules: 8 minutes."
+    },
+    "Binary/FasterMeleeSettings/NoItems.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Default rules: items off."
+    },
+    "Binary/FasterMeleeSettings/SinglesStages.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Default random-stage list: singles legal stages."
+    },
+    "External/Skip Memcard Prompt/Skip Memcard Prompt.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Skips the no-memory-card prompt at boot."
+    },
+    "Binary/FasterMeleeSettings/DisableSpecialMessages.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Disables special messages."
+    },
+    "Binary/FasterMeleeSettings/DisableTrophyMessages.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Disables trophy messages."
+    },
+    "External/Salty Runback/Salty Runback.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Hold A+B to restart the match (salty runback)."
+    },
+    "Binary/FasterMeleeSettings/CStickSinglePlayer.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). C-stick works in single player."
+    },
+    "Binary/FasterMeleeSettings/DebugMenu.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Enables the Debug Menu entry."
+    },
+    "Binary/FasterMeleeSettings/CssFromDebugMenu.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Enables the Debug Menu entry."
+    },
+    "External/NeutralSpawn/NeutralSpawn.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Neutral spawn points."
+    },
+    "Binary/FasterMeleeSettings/FasterCssLoad.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Faster CSS load."
+    },
+    "Binary/FasterMeleeSettings/ResetToCssFromStageLoad.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). L+R+A during stage load returns to CSS."
+    },
+    "Binary/FasterMeleeSettings/UnrestrictedCamera.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Unrestricted pause camera. NOTE: all 5 writes target .bss (game_camera) and must be stored at runtime after BSS init (audit W3)."
+    },
+    "Binary/FasterMeleeSettings/CStickPanWhilePaused.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). C-stick panning while paused (.bin only, no asm source)."
+    },
+    "External/UCF 0.84/UCF/UCF DBOOC SquatRv Fix.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). UCF 0.84 controller fix."
+    },
+    "External/UCF 0.84/UCF/UCF Dashback.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). UCF 0.84 controller fix."
+    },
+    "External/UCF 0.84/UCF/UCF Pad Buffer + 1.0 Cardinals.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). UCF 0.84 controller fix."
+    },
+    "External/UCF 0.84/UCF/UCF SDI.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). UCF 0.84 controller fix."
+    },
+    "External/UCF 0.84/UCF/UCF Shield Drop Extended.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). UCF 0.84 controller fix."
+    },
+    "External/UCF 0.84/UCF/UCF Shield Drop.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). UCF 0.84 controller fix."
+    },
+    "External/UCF 0.84/UCF/UCF Shield SDI.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). UCF 0.84 controller fix."
+    },
+    "External/UCF 0.84/UCF/UCF Tumble.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). UCF 0.84 controller fix."
+    },
+    "External/UCF 0.84/Indicator/UCF Text.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). UCF 0.84 CSS indicator text."
+    },
+    "External/DPad Down at CSS for Random Stage/DPad Down at CSS for Random Stage.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). D-pad down on CSS picks a random stage."
+    },
+    "Binary/FasterMeleeSettings/RandomStageMusic.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Random stage music."
+    },
+    "Binary/FasterMeleeSettings/RandomCssMusic.bin": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Random CSS music v3 (.bin only; clobbers r14 without saving, inherited verbatim)."
+    },
+    "External/CSS Player Hands Default to HMN Button/Change Default Hand Position.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). CSS hands default to the HMN button."
+    },
+    "External/CSS Player Hands Default to HMN Button/Fix A Button Buffer When Exiting Name Entry.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). CSS hands: A-button buffer fix after name entry."
+    },
+    "External/Hide Nametag When Invisible/Hide Nametag When Invisible.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Hide nametag when the character is invisible."
+    },
+    "External/Disable FoD During Doubles/Disable FoD During Doubles.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Removes FoD from doubles random stages."
+    },
+    "Common/Winners Names are Gold on CSS/Change Name Color.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Winner names gold on CSS."
+    },
+    "Common/Winners Names are Gold on CSS/Remember Who LRA Started.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Remembers who LRA-started (winner names). Identical copy also in Online; this General copy is the one kept."
+    },
+    "External/Closing CSS Door Preserves Nametag/On Window Close/Skip Nametag ID Reset.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Closing CSS door preserves nametag."
+    },
+    "External/Closing CSS Door Preserves Nametag/On Window Close/Skip isUsingNametag Bool Reset.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Closing CSS door preserves nametag."
+    },
+    "External/Unplugging Closes CSS Door/Unplugging Closes CSS Door.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Unplugging a controller closes its CSS door."
+    },
+    "External/FreezeGlitchFix/FreezeGlitchFix.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Freeze-glitch fix (tauKhan)."
+    },
+    "Common/CostumeBoundCheck/PuffCostume.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Costume conflict bound check."
+    },
+    "Common/CostumeBoundCheck/main.asm": {
+      "decision": "INCLUDE",
+      "group": "general",
+      "reason": "Required: General Codes (all included). Costume conflict bound check."
+    },
+    "Recording/ExtendPlayerBlock.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "INFRA. Fighter block alloc 0x23EC->0x2600 (room for LCancelStatus @+0x25FF). No visible effect. EXI: none"
+    },
+    "Recording/FlushFrameBuffer.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "EXI. Sends frame bookend + buffered frame to device. EXI: write-only; absent device = no-op. Needs FN_EXITransferBuffer (bootloader)."
+    },
+    "Recording/SendGameEnd.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "EXI. Sends game-end msg; side effect: copies MatchEndData early (0x8046B8EC->0x80479DA4, 8824 B) -- game does same later. EXI: write-only"
+    },
+    "Recording/SendGameInfo.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "EXI. Allocs replay buffers, sends game info + whole Gecko list; spawns SendFrameStart/SendItemInfo procs. EXI: write-only, BUT calls FN_ProcessGecko on *GeckoHeapPtr (0x80005600) -> both installed only by Dolphin bootloader.gct; without it: crash"
+    },
+    "Recording/SendGamePostFrame.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "EXI. Buffers post-frame data (sent by FlushFrameBuffer). EXI: indirect (buffer only)"
+    },
+    "Recording/SendGamePreFrame.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "EXI. Buffers pre-frame data. EXI: indirect"
+    },
+    "Recording/ShouldRecord.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "INFRA. Static fn @0x80005604: true for VS/SD/Online/Targets/HRC/Playback in-game. EXI: none"
+    },
+    "Recording/GetLCancelStatus/GetLCancelStatus.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "INFRA. Stores L-cancel result to fighter+0x25FF (replay field). Writes past 0x23EC block if ExtendPlayerBlock absent. EXI: none"
+    },
+    "Recording/GetLCancelStatus/ResetLCancelStatus.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "INFRA. Clears fighter+0x25FF. EXI: none"
+    },
+    "Recording/Stages/SendDreamlandInfo.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "EXI. Buffers whispy state for replay. EXI: indirect"
+    },
+    "Recording/Stages/SendFountainInfo.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "EXI. Buffers FoD platform heights. EXI: indirect"
+    },
+    "Recording/Stages/SendStadiumInfo.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "EXI. Buffers PS transformation state. EXI: indirect"
+    },
+    "Common/AllocSceneBuffer.asm": {
+      "decision": "OPTIONAL",
+      "group": "recording",
+      "reason": "S8 net-menu (lab). INFRA. Allocs 128 B scene buffer into r13-0x503C (a retail Tournament-mode slot); first run frees bootloader buffer. Only EXI users need it. EXI: none",
+      "when": "flag:net-menu"
+    },
+    "Common/GetIsFollower.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "INFRA. Static fn @0x800055F8 (is Nana). EXI: none"
+    },
+    "Common/IncrementFrameIndex.asm": {
+      "decision": "OMIT",
+      "group": "recording",
+      "reason": "INFRA. u32 frame counter at r13-0x49AC (retail CSS bytes 0x804D6CF4-F7, re-set on CSS entry). Only Recording reads it. EXI: none"
+    },
+    "Common/Initialize Stage Data/Init Stage Data.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Zeroes 516 B of stage data on creation (removes uninitialised-memory nondeterminism). [affects-gameplay]. EXI: none"
+    },
+    "Common/Initialize Stage Data/Reset Castle Wind.asm": {"decision": "INCLUDE", "group": "gameplay", "reason": "GAME (Slippi 3.7.0). Resets the two static wind values of Peach's Castle at stage init (they outlive a game and decide an extra random draw every 300 frames). [affects-gameplay]. EXI: none"},
+    "Common/Initialize Stage Data/Reset Kongo Log Bridge.asm": {"decision": "INCLUDE", "group": "gameplay", "reason": "GAME (Slippi 3.7.0). Zeroes the 15 log velocities of Kongo Jungle at stage init (static data that outlives a game; spawn platforms rotate with the logs). [affects-gameplay]. EXI: none"},
+    "Common/Initialize Player Data/Init Player Data.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Zeroes whole fighter struct on creation. [affects-gameplay]. EXI: none"
+    },
+    "Common/CSS KO Stars/Asign KO Stars Upon Exiting Dairantou.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "MENU. Assigns CSS KO stars on leaving VS mode (also after LRAS/runback). EXI: none"
+    },
+    "Online/Core/BrawlOffscreenDamage.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Offscreen-damage test uses stage camera limits instead of HUD magnifier state (vanilla ifMagnify_802FC998). [affects-gameplay]. EXI: none"
+    },
+    "Online/Core/CustomizeMessageLRAS.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. LRAS end-of-game message/sfx. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/ForceEngineOnRollback.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. rollback engine loop. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/ForceInputRefetchOnAdvance.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. frame-advance pad renew. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/HandleRumble.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. redirect rumble to local port. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/InitOnlinePlay.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. Allocates ODB, syncs RNG/match state, frozen-PS from match. EXI: EXI ReportMatch/ReportMatchStatus/GetMatchState",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/InitPause.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. direct/unranked pause handling. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/LGLExceededGameEnd.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. Ledge-grab-limit (45) loss message -- NOT applied offline. EXI: n/a",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/LoopEngineForRollback.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. rollback loop + sound kill. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/PauseCounter.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. Increments u32 at [r13-0x49E4]+0xAD6. Offline that slot holds a stale retail CSS GObj ptr (mnCharSel stores it @0x80264518) -> stray write each paused frame (latent Slippi bug, effect inferred). EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/PreventPauseStranding.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. disconnect pause. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/Remember Who LRA Started.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "MENU. Byte-identical copy of General Codes Common/Winners Names are Gold on CSS/Remember Who LRA Started.asm at the same hook 0x8016EA30; the General copy is kept (same bytes)."
+    },
+    "Online/Core/ReportNoContestLRAS.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. report LRAS. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/SkipNewInputFetchOnRollback.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. rollback input. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/StartEngineLoop.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. Rollback, desync detection, DISCONNECTED text. EXI: EXI (logf/savestate)",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/TriggerSendInput.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. Sends local inputs, receives remote. EXI: EXI SendOnlineFrame",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/EXIFileLoad/GetFileSize.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "EXI. Asks device for replacement file size; Dolphin serves Sys/GameFiles/GALE01 (*.diff patches applied to ISO file, new files) + grpsx cache. EXI: READ. Absent device: reply buffer unchanged = 0xD1+name -> negative -> \"no replacement\" (safe by accident, inferred). Memory card in slot B on HW: undefined."
+    },
+    "Online/Core/EXIFileLoad/TransferFile.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "EXI. Loads replacement file contents over EXI. EXI: READ (same as above)"
+    },
+    "Online/Core/FreezeDeadUpFallPhysics/InitHitVelocity.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Camera-independent DeadUpFall physics (Nana uses Popo phys pos). [affects-gameplay]. EXI: none"
+    },
+    "Online/Core/FreezeDeadUpFallPhysics/UpdateFallVelocity.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Camera-independent DeadUpFall physics (Nana uses Popo phys pos). [affects-gameplay]. EXI: none"
+    },
+    "Online/Core/FreezeDeadUpFallPhysics/UpdateModelPos.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Camera-independent DeadUpFall physics (Nana uses Popo phys pos). [affects-gameplay]. EXI: none"
+    },
+    "Online/Core/Hacks/ForceNoDiskCrash.asm": {
+      "decision": "OMIT",
+      "group": "robustness",
+      "reason": "INFRA. lb_80019230 always -1 -> disc-error/cover-open screen never shown. EXI: none Excluded by policy: hides the disc-error/cover-open screen on real hardware."
+    },
+    "Online/Core/Hacks/ForceNoVideoAssert.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "INFRA. Replaces __assert crash with OSReport + early return. EXI: none (OSReport only)"
+    },
+    "Online/Core/Hacks/LoadPremadeTextDataFromDolphin.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "NET. Fetches premade text from Dolphin; clears flag after every premade-text copy. EXI: EXI via FN_LoadPremadeText"
+    },
+    "Online/Core/Hacks/PreventCharacterCrowdChants.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "AUDIO. un_80321EBC forced false -> crowd never chants character names. EXI: none"
+    },
+    "Online/Core/Hacks/PreventPadAlarmDuringRollback.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. rollback pad alarm. EXI: n/a",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/Hacks/FD/DesyncProofBGTransformations.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Saves/restores global RNG seed around FD BG transform think -> BG no longer consumes RNG. [affects-gameplay]. EXI: none"
+    },
+    "Online/Core/Hacks/Stadium/ChangeJumbotronText.asm": {
+      "decision": "INCLUDE",
+      "group": "frozen-stadium",
+      "reason": "PRES. Jumbotron \"Normal\" string -> \"Frozen\" when toggle set. EXI: none"
+    },
+    "Online/Core/Hacks/Stadium/CustomZeroBuffer.asm": {
+      "decision": "OMIT",
+      "group": "stadium-sync-load",
+      "reason": "CORRECTED (research listed INCLUDE[S]): GAME. Frees/zeroes the StadiumFileLoad archive struct. [affects-gameplay]. EXI: none Without EXIFileLoad serving File_Read from Dolphin memory, this trio turns the async Pokemon Stadium transformation load into a blocking disc read during the match. Omit all three (vanilla async load)."
+    },
+    "Online/Core/Hacks/Stadium/GrPsxIsValid.asm": {
+      "decision": "OMIT",
+      "group": "stadium-sync-load",
+      "reason": "CORRECTED (research listed INCLUDE[S]): GAME. Validity check for archive layout created by StadiumFileLoad. [affects-gameplay]. EXI: none Without EXIFileLoad serving File_Read from Dolphin memory, this trio turns the async Pokemon Stadium transformation load into a blocking disc read during the match. Omit all three (vanilla async load)."
+    },
+    "Online/Core/Hacks/Stadium/IngameCheckIfFrozen.asm": {
+      "decision": "INCLUDE",
+      "group": "frozen-stadium",
+      "reason": "GAME. Frozen-PS decision: training=frozen, else toggle byte stored inside this C2 body (+8). Default unfrozen. EXI: none"
+    },
+    "Online/Core/Hacks/Stadium/StadiumFileLoad.asm": {
+      "decision": "OMIT",
+      "group": "stadium-sync-load",
+      "reason": "CORRECTED (research listed INCLUDE[S]): GAME. Replaces async transformation load with sync lbFileGetSize+lbFile_8001668C (instant from Dolphin cache via EXIFileLoad). [affects-gameplay]. EXI: indirect (via EXIFileLoad). Without EXI: sync DVD read of 213-328 KB GrPs[1-4].dat -> hitch on HW (inferred) Without EXIFileLoad serving File_Read from Dolphin memory, this trio turns the async Pokemon Stadium transformation load into a blocking disc read during the match. Omit all three (vanilla async load)."
+    },
+    "Online/Core/Music/StartSong.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "EXI. Tells Dolphin Jukebox to play/stop/re-volume the HPS (offset,size from DVDFastOpen). EXI: write-only PlayMusic; absent device = no-op"
+    },
+    "Online/Core/Music/Stop.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "EXI. Tells Dolphin Jukebox to play/stop/re-volume the HPS (offset,size from DVDFastOpen). EXI: write-only StopMusic; absent device = no-op"
+    },
+    "Online/Core/Music/VolumeChange.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "EXI. Tells Dolphin Jukebox to play/stop/re-volume the HPS (offset,size from DVDFastOpen). EXI: write-only ChangeMusicVolume; absent device = no-op"
+    },
+    "Online/Core/PreventFileAlarms/MuteMusic.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "AUDIO. Game starts music at volume 0 (li r4,127 -> 0). EXI: none, but relies on Jukebox for music"
+    },
+    "Online/Core/PreventFileAlarms/PreventMusicAlarm.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "AUDIO. HSD_Synth_8038ADD0 -> blr: game never streams HPS from disc. EXI: none, but relies on Jukebox"
+    },
+    "Online/Core/Sound/AssignSoundInstanceId.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. rollback SFX dedupe (SFXDB log; with LoopEngineForRollback's kill pass). S6d: enabled for the net spike (docs/design/ROLLBACK_AUDIO.md step 1). EXI: n/a",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/Sound/NoDestroyVoice.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. rollback SFX dedupe (SFXDB log; with LoopEngineForRollback's kill pass). S6d: enabled for the net spike (docs/design/ROLLBACK_AUDIO.md step 1). EXI: n/a",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/Sound/NoDestroyVoice2.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. rollback SFX dedupe (SFXDB log; with LoopEngineForRollback's kill pass). S6d: enabled for the net spike (docs/design/ROLLBACK_AUDIO.md step 1). EXI: n/a",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/Sound/PreventDuplicateSounds.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. rollback SFX dedupe (SFXDB log; with LoopEngineForRollback's kill pass). S6d: enabled for the net spike (docs/design/ROLLBACK_AUDIO.md step 1). EXI: n/a",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/Teams/PreventDeadStranding.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. teams disconnect. EXI: n/a offline",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Core/WhispyBlowDirFix/WhispyBlowDirFix.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Fighters in Dead* states ignored when Whispy picks blow direction. [affects-gameplay]. EXI: none"
+    },
+    "Online/Menus/CSS/DisableLRSTART.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online CSS behaviour; offline EXIT path = original instr. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/DisableNametagBox.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online CSS behaviour; offline EXIT path = original instr. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/FetchMatchInfo.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online CSS match state. EXI: EXI GetMatchState",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/HandleInputsOnCSS.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. matchmaking, chat, lock-in. EXI: EXI FindOpponent/SetMatchSelections/...",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/IncreaseTextHeap.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online CSS behaviour; offline EXIT path = original instr. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/LoadCSSText.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online CSS text/user display. EXI: EXI via statics",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/PreventAPressCharUnselect.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online CSS behaviour; offline EXIT path = original instr. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/PreventBPressCharUnselect.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online CSS behaviour; offline EXIT path = original instr. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/PreventColorChange.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online CSS behaviour; offline EXIT path = original instr. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/SceneLoadCSS.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. loads slpCSS.dat for online CSS. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/SkipReturnToCssSound.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "EXI. Calls FN_LoadMatchState; skips \"choose your character\" clip if online-locked-in. EXI: READ GetMatchState. Absent device: byte read from uninitialised HSD_MemAlloc buffer -> announcer randomly skipped (inferred)",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/Teams/AnimateCursorPort.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. teams CSS. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/Teams/AnimateToken.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. teams CSS. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/Teams/InitTeamToggleButton.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. teams CSS. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/Teams/PreventColorResetCharHover.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. teams CSS. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/Teams/PreventColorResetLastChar.asm": {
+      "decision": "PARITY",
+      "group": "parity",
+      "when": "flag:parity-css-bcancel-sfx",
+      "reason": "AUDIO. Offline the B-cancel CSP path (0x80260E14) is rerouted into the random-costume tail, which additionally plays SFX 0xB8 (verified by disasm; audible effect inferred). EXI: none"
+    },
+    "Online/Menus/CSS/Teams/PreventColorResetRandomChar.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. teams costume keep. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/Teams/PreventWrongCSPOnCharSelect.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. teams CSS. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/CSS/TextEntryScreen/Allow8Characters.asm": {
+      "decision": "PARITY",
+      "group": "parity",
+      "when": "flag:parity-8char",
+      "reason": "MENU. Name entry accepts/shows 8 chars (vanilla 4). Saved nametag still copies only 4 chars; typed buffer 0x804A0740 is 0x10 B (3 B/char) -> chars 6-8 spill into mnDiagram_FighterDisplayOrder (decomp-based, inferred). EXI: none"
+    },
+    "Online/Menus/CSS/TextEntryScreen/Allow8CharactersJapanese.asm": {
+      "decision": "PARITY",
+      "group": "parity",
+      "when": "flag:parity-8char",
+      "reason": "MENU. Name entry accepts/shows 8 chars (vanilla 4). Saved nametag still copies only 4 chars; typed buffer 0x804A0740 is 0x10 B (3 B/char) -> chars 6-8 spill into mnDiagram_FighterDisplayOrder (decomp-based, inferred). EXI: none"
+    },
+    "Online/Menus/CSS/TextEntryScreen/AlwaysUseEnglishWhenDirect.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/AlwaysUseEnglishWhenDirect2.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/AlwaysUseEnglishWhenDirect3.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/CheckTriggersAndZ.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code autocomplete; holds INJ_CheckAutofill data table. EXI: EXI SendNameEntryIndex/autocomplete",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/Display8Characters.asm": {
+      "decision": "PARITY",
+      "group": "parity",
+      "when": "flag:parity-8char",
+      "reason": "MENU. Name entry accepts/shows 8 chars (vanilla 4). Saved nametag still copies only 4 chars; typed buffer 0x804A0740 is 0x10 B (3 B/char) -> chars 6-8 spill into mnDiagram_FighterDisplayOrder (decomp-based, inferred). EXI: none"
+    },
+    "Online/Menus/CSS/TextEntryScreen/HandleAutocompleteText.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/HandleDescriptionText.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/HandleJpSpace.asm": {
+      "decision": "PARITY",
+      "group": "parity",
+      "when": "flag:parity-8char",
+      "reason": "MENU. Name entry accepts/shows 8 chars (vanilla 4). Saved nametag still copies only 4 chars; typed buffer 0x804A0740 is 0x10 B (3 B/char) -> chars 6-8 spill into mnDiagram_FighterDisplayOrder (decomp-based, inferred). EXI: none"
+    },
+    "Online/Menus/CSS/TextEntryScreen/InitNameEntry.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/NameEntryThinkOneShot.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/OnBPressAutoComplete.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/OnConfirmButtonAPress.asm": {
+      "decision": "PARITY",
+      "group": "parity",
+      "when": "flag:parity-confirm-a",
+      "reason": "MENU. A-confirm jumps to Start-confirm handler (identical logic). EXI: none"
+    },
+    "Online/Menus/CSS/TextEntryScreen/OnConfirmButtonHandler.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/OnEnterJpText.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/OnEnterText.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/OnErasePress.asm": {
+      "decision": "PARITY",
+      "group": "parity",
+      "when": "flag:parity-erase-as-back",
+      "reason": "MENU. A on Erase key behaves like B (empty name -> back to CSS instead of error sfx). EXI: none"
+    },
+    "Online/Menus/CSS/TextEntryScreen/OnLPress.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/OnRPress.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/CSS/TextEntryScreen/OnRandomPress.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. connect-code entry / autocomplete. EXI: n/a (autocomplete fetch is EXI)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/Hacks/VsSplashRumbleHack.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. break rumble loop. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/InGame/InitInGame.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online HUD (delay text). EXI: EXI GetMatchState",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Menus/ResultsScreen/ControlAllPanels.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online results. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/ResultsScreen/GrayPanelsForRemotePlayers.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online results. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/ResultsScreen/MoveScaleTable.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. Moves results scale table (26 floats, byte-identical to retail 0x803D7058) out of m-ex-patched data. EXI: none",
+      "when": "flag:net-online-css",
+      "unless": "flag:ms-scale-own"
+    },
+    "Online/Menus/SSS/DisableLRSTART.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online SSS. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/SSS/ExitSSSUponStageSelect.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online SSS lock-in. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/SSS/FrozenStadiumToggle/CheckForFrozenOnStageName.asm": {
+      "decision": "INCLUDE",
+      "unless": "flag:stock-sss",
+      "group": "frozen-stadium",
+      "reason": "MENU. stage name id 31 (Frozen PS) when toggle set. EXI: none"
+    },
+    "Online/Menus/SSS/FrozenStadiumToggle/CheckForToggledOnStageName.asm": {
+      "decision": "INCLUDE",
+      "unless": "flag:stock-sss",
+      "group": "frozen-stadium",
+      "reason": "MENU. re-animates name when toggle flips. EXI: none"
+    },
+    "Online/Menus/SSS/FrozenStadiumToggle/CursorOnHoverStadium.asm": {
+      "decision": "INCLUDE",
+      "unless": "flag:ms-fd-toggle",
+      "group": "frozen-stadium",
+      "reason": "MENU. Z (any port) while hovering an icon flips toggle; PS icon tinted purple. EXI: none"
+    },
+    "Online/Menus/SSS/FrozenStadiumToggle/IncMaxNames.asm": {
+      "decision": "INCLUDE",
+      "unless": "flag:stock-sss",
+      "group": "frozen-stadium",
+      "reason": "MENU. name anim range 30->32 (needs patched MnSlMap). EXI: none"
+    },
+    "Online/Menus/SSS/FrozenStadiumToggle/StageSelectTextProc.asm": {
+      "decision": "INCLUDE",
+      "unless": "flag:stock-sss",
+      "group": "frozen-stadium",
+      "reason": "MENU. animates \"stage select\"/alt-stage textures; calls FN_IntToFloat. EXI: none. Walks jobj->child->next->next of the stage-select title: Slippi's patched MnSlMap has that node, the STOCK file does not, so on the stock disc it loads a null and takes a DSI (docs/design/CARD_PACKAGE.md section 17); off with flag stock-sss"
+    },
+    "Online/Menus/SSS/FrozenStadiumToggle/StoreNameId.asm": {
+      "decision": "INCLUDE",
+      "unless": "flag:stock-sss",
+      "group": "frozen-stadium",
+      "reason": "MENU. maps id 31 back to 18. EXI: none"
+    },
+    "Online/Menus/TitleMenu/AllowSwapToSameSubmenu.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. online submenu refresh. EXI: none",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/TitleMenu/HandleOnlineLockedOptions.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. lock online options by app state. EXI: reads r13 app state",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/TitleMenu/OnMenuLoad.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). EXI. Plays \"MELEE\" announcer on first menu load; sends CleanupConnections. EXI: write-only CleanupConnections",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/TitleMenu/OnMenuPrep.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). EXI. Adds Online Play submenu (1P menu option 2 + descriptions), login/logout/update dialogs, fetches app state. EXI: READ GetOnlineStatus. Absent device: app state = garbage -> treated as not logged in (all online options locked)",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/TitleMenu/OnlineModeOptionSelected.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). NET. switch to online submenu. EXI: n/a",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/TitleMenu/ShowHidden1pOption.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "S8 net-menu (lab). MENU. Unlocks hidden 1P-mode option 2 (= \"Online Play\"). EXI: none",
+      "when": "flag:net-menu"
+    },
+    "Online/Menus/VSScreen/AllowP2ColorDuplicate.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online VS splash colours. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/VSScreen/InitVsSplash.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online VS splash names. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/VSScreen/PlayOpponentCharAnnouncer.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. announce opponent. EXI: EXI GetMatchState",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/VSScreen/PreventP2Color.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. online VS splash colours. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/VSScreen/HideStageDisplay/HideAllJObjs.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. hide stage preview online. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/VSScreen/HideStageDisplay/PreventEarlyR3Overwrite.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. nops \"lis r3,0x8047\" @0x80185050; ONLY valid together with HideAllJObjs (else r31 = gobj+0x35A8 -> broken Classic splash). EXI: none",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/VSScreen/HideStageText/HideLetterJObjs.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "NET. hide splash letters online. EXI: n/a",
+      "when": "flag:net-online-css"
+    },
+    "Online/Menus/VSScreen/HideStageText/SkipStageNumberShow.asm": {
+      "decision": "PARITY",
+      "group": "parity",
+      "when": "flag:parity-skip-stage-number",
+      "reason": "PRES. Skips stage-number setup (bge @0x80184B1C -> b +0x1D8): Classic-mode splash stage number not set (visual effect inferred). EXI: none"
+    },
+    "Online/Slippi Online Scene/boot.asm": {
+      "decision": "REPLACE",
+      "group": "boot",
+      "replace_with": {
+        "option": "boot",
+        "map": {
+          "main-menu": "Offline/Boot/BootToMainMenu.asm",
+          "css": "Offline/Boot/BootToCSS.asm",
+          "online-css": "OfflineS2/BootToOnlineCSS.asm"
+        }
+      },
+      "reason": "MENU, EXI. Boot skips the title to the main menu (li r3,1), preselects the Online Play submenu, fetches app state over EXI and preloads GrPs1-4 to warm the Dolphin file cache. Replaced by a plain 04 at 0x801BFA20 (li r3,1 main menu; option boot=css: li r3,2 VS CSS)."
+    },
+    "Online/Slippi Online Scene/main.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "MENU. Puts \"#\" (0x8194) on blank key 0x803EDC24 of name-entry keyboard; zeroes r13 online vars; registers online major scene 8. EXI: scene funcs use EXI (only when online)",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/AdjustNullCharID.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x80005694: blr. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/CSSUpdateCSP.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x800056BC: CSS CSP. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/CheckAltStageName.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x80005690: alt stage name. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/GetCSSIconData.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x800056B8: CSS icon. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/GetCSSIconNum.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x80005698: CSS icon. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/GetTeamCostumeIndex.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x800056B0: teams. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/IntToFloat.asm": {
+      "decision": "INCLUDE",
+      "group": "frozen-stadium",
+      "reason": "INFRA. static fn slot 0x800055F4 int->float; REQUIRED by SSS StageSelectTextProc. EXI: none"
+    },
+    "Online/Static/LoadMatchState.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x80005610: EXI GetMatchState. EXI: EXI",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/LoadPremadeText.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x800056A4: EXI premade text. EXI: EXI",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/LoadState.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x8000560C: EXI savestate. EXI: EXI",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/MultiplyRWithF.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x800055EC: math. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/SaveState.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x80005608: EXI savestate. EXI: EXI",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/StaticData.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x8000568C: online static data. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/SubtextFunctions.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x800056B4: FG_CreateSubtext. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Static/UserDisplayFunctions.asm": {
+      "decision": "OPTIONAL",
+      "group": "online",
+      "reason": "INFRA. static fn slot 0x80005618: FG_UserDisplay incl. EXI GetOnlineStatus. EXI: EXI",
+      "when": "flag:net-online-spike"
+    },
+    "Online/Debugging/LogInputOnCopy.asm": {
+      "decision": "OMIT",
+      "group": "online",
+      "reason": "INFRA. DEBUG_INPUTS=0 -> rewrites identical instr 0x7C600775 (no-op). EXI: none"
+    },
+    "Binary/LagReduction/PD+VB.bin": {
+      "decision": "INCLUDE",
+      "unless": "flag:no-pdvb",
+      "group": "gameplay",
+      "reason": "GAME. tauKhan polling-drift + visual-buffer lag fix (6 codes). Reuses rtoc slot r2-0x3EB0; only retail user (grPushOn @0x80218D68) redirected to identical const r2-0x8000 (verified). EXI: none"
+    },
+    "Common/FastForward/DynamicsFix.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Sets up fighter JObj matrices right after dynamics instead of at shadow render. EXI: none"
+    },
+    "Common/CompatibilityHooks/GetFighterNum.asm": {
+      "decision": "OPTIONAL",
+      "group": "online-section",
+      "reason": "INFRA. static fn slot 0x8000569C for m-ex. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Common/CompatibilityHooks/GetSSMIndex.asm": {
+      "decision": "OPTIONAL",
+      "group": "online-section",
+      "reason": "INFRA. static fn slot 0x800056A0 for m-ex. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Common/CompatibilityHooks/RequestSSMLoad.asm": {
+      "decision": "OPTIONAL",
+      "group": "online-section",
+      "reason": "INFRA. static fn slot 0x800056A8 for m-ex. EXI: none",
+      "when": "flag:net-online-spike"
+    },
+    "Binary/m-ex.bin": {
+      "decision": "OMIT",
+      "group": "online-section",
+      "reason": "INFRA. m-ex: loads MxScn.dat custom scenes (GameSetup), relocates lbHeap table (limit 6->7), TObj anim patches, results char-data hooks, crash screen w/ MxDb.dat symbols. Needs files served by EXIFileLoad + bootloader AddHeap (inferred). EXI: indirect (files)"
+    },
+    "Common/NanaDeterminism/NanaDeterminism.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Zeroes r5/r30 before Nana throw-DI stick use (undefined values). [affects-gameplay]. EXI: none"
+    },
+    "Common/PSCameraIndependentMonitor/PSCameraIndependentMonitor.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. PS monitor zoom-out decided by fixed bounds not camera (RNG consumed differently). [affects-gameplay]. EXI: none"
+    },
+    "External/PreventWobbling/Init Wobble Count Air.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Wobbling limited: after 3 Nana pummel/hits on a grabbed foe, grab breaks (fighter+0x2384/0x2386). [affects-gameplay]. EXI: none"
+    },
+    "External/PreventWobbling/Init Wobble Count Ground.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Wobbling limited: after 3 Nana pummel/hits on a grabbed foe, grab breaks (fighter+0x2384/0x2386). [affects-gameplay]. EXI: none"
+    },
+    "External/PreventWobbling/Wobble Check.asm": {
+      "decision": "INCLUDE",
+      "group": "gameplay",
+      "reason": "GAME. Wobbling limited: after 3 Nana pummel/hits on a grabbed foe, grab breaks (fighter+0x2384/0x2386). [affects-gameplay]. EXI: none"
+    },
+    "Binary/NormalLagReduction.bin": {
+      "decision": "OPTIONAL",
+      "group": "recommended-netplay-only",
+      "reason": "Slippi Recommended code, but NOT safe in plain Dolphin: with both patches (HSD_VICopyXFBAsync 0x803761EC blt->b and 0x80376238 beq->b) the game jumps to 0 (ISI) in mainline Dolphin 2606a. Delta-debugging found these two 04 ops to be the minimal crashing pair. Slippi console builds never ship it (they use PD/PD+VB, which default includes). Off by default; opt-in only for experiments.",
+      "when": "flag:normal-lag-reduction"
+    },
+    "Common/UseInGameDelay/ApplyInGameDelay.asm": {
+      "decision": "OPTIONAL",
+      "group": "delay",
+      "when": "option:delay>0",
+      "reason": "EXI-free; buffers inputs N frames. Decodes the branch at 0x802F666C (InitializeInGameDelay) to find its buffer, so it is only built together with the delay variant. Uses FN_GetCommonMinorID."
+    },
+    "Common/UseInGameDelay/InitializeInGameDelay.asm": {
+      "decision": "REPLACE",
+      "group": "delay",
+      "replace_with": {
+        "option": "delay",
+        "map": {
+          "0": null,
+          "*": "Offline/Generated/InitializeInGameDelayConst.asm"
+        }
+      },
+      "reason": "Recommended, enabled by default in Slippi, but fetches the delay over EXI (cmd 0xD5 via FN_EXITransferBuffer 0x800055F0). delay=0 (default): omitted. delay=N: replaced by a build-time variant of this file with the EXI request replaced by a constant N; header/branch layout at 0x802F666C kept so ApplyInGameDelay can decode it."
+    },
+    "Common/GetCommonMinorID/GetCommonMinorID.asm": {
+      "decision": "OPTIONAL",
+      "group": "delay",
+      "when": "option:delay>0",
+      "reason": "Static function slot FN_GetCommonMinorID (0x8000561C, extab), needed by ApplyInGameDelay."
+    },
+    "Binary/FasterMeleeSettings/LaglessFod.bin": {
+      "decision": "INCLUDE",
+      "group": "recommended",
+      "reason": "Recommended, enabled by default in Slippi. Disables FoD particles/reflection."
+    },
+    "External/FreezeFDSlippi/FreezeFDSlippi.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:fd-freeze",
+      "reason": "Optional code (off in Slippi by default). Hooks 0x8021AAE0, adjacent to the included DesyncProofBGTransformations hook 0x8021AAE4."
+    },
+    "External/Widescreen/Fix Screen Flash.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Overwrite CObj Values.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Adjust Offscreen Scissor/Adjust Bubble Zoom.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Adjust Offscreen Scissor/Draw High Poly Models.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Adjust Offscreen Scissor/Left Camera Bound.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Adjust Offscreen Scissor/Right Camera Bound.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Adjust Offscreen Scissor/Fix Bubble Positions/Adjust Corner Value 1.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Adjust Offscreen Scissor/Fix Bubble Positions/Adjust Corner Value 2.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Adjust Offscreen Scissor/Fix Bubble Positions/Extend Negative Vertical Bound.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Adjust Offscreen Scissor/Fix Bubble Positions/Extend Positive Vertical Bound.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Adjust Offscreen Scissor/Fix Bubble Positions/Widen Bubble Region.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Nametag Fixes/Adjust Nametag Background X Scale.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "External/Widescreen/Nametag Fixes/Adjust Nametag Text X Scale.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:widescreen",
+      "reason": "Optional code (off by default in Slippi). Widescreen 16:9 (needs a 16:9 display/aspect setting)."
+    },
+    "Binary/DisableScreenShake.bin": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:no-screen-shake",
+      "reason": "Optional code (off in Slippi by default)."
+    },
+    "External/Force2PCenterHud/Force2PCenterHud.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:center-hud",
+      "reason": "Optional code (off in Slippi by default)."
+    },
+    "External/FlashRedFailedLCancel/ChangeColor.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:flash-red-lcancel",
+      "reason": "Optional code (off by default in Slippi). Flash red on failed L-cancel; the ODB/online branch is gated on the online in-game scene, unreachable offline."
+    },
+    "External/FlashRedFailedLCancel/TriggerColor.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:flash-red-lcancel",
+      "reason": "Optional code (off by default in Slippi). Flash red on failed L-cancel; the ODB/online branch is gated on the online in-game scene, unreachable offline."
+    },
+    "Online/Optional/IndicateLocalPlayer/ForceLocalPlayerTag.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:friendly-indicators",
+      "reason": "Optional code (off by default in Slippi). Its online-only branches are gated on the online in-game scene (major 8), unreachable offline; offline only the non-online path runs (not runtime-verified)."
+    },
+    "Online/Optional/IndicateLocalPlayer/SetLocalPlayerTag.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:friendly-indicators",
+      "reason": "Optional code (off by default in Slippi). Its online-only branches are gated on the online in-game scene (major 8), unreachable offline; offline only the non-online path runs (not runtime-verified)."
+    },
+    "Online/Optional/ShowAllyIndicator/ShowAllyIndicator.asm": {
+      "decision": "OPTIONAL",
+      "group": "optional",
+      "when": "flag:friendly-indicators",
+      "reason": "Optional code (off by default in Slippi). Its online-only branches are gated on the online in-game scene (major 8), unreachable offline; offline only the non-online path runs (not runtime-verified)."
+    }
+  },
+  "extra_modules": [
+    {
+      "path": "Offline/Sss/StageSelectTextProcGuard.asm",
+      "when": "flag:ms-sss-guard",
+      "group": "frozen-stadium",
+      "origin": "Offline: stage select name modules guarded for a stock or patched MnSlMap",
+      "reason": "OWN, opt-in (card route, used together with flag stock-sss). Replaces Online/Menus/SSS/FrozenStadiumToggle/StageSelectTextProc.asm (same hook 0x8025AC6C): the same animation behind a null guard on the title tree (jobj->child->next->next), so the stage select cannot take the DSI on the player's STOCK MnSlMap; publishes the answer (body+8 = 1 only when the tree exists) for the two name guards. Docs: docs/design/MNSLMAP_FROM_CARD.md."
+    },
+    {
+      "path": "Offline/Sss/CheckForFrozenOnStageNameGuard.asm",
+      "when": "flag:ms-sss-guard",
+      "group": "frozen-stadium",
+      "origin": "Offline: stage select name modules guarded for a stock or patched MnSlMap",
+      "reason": "OWN, opt-in (card route, used together with flag stock-sss). Replaces CheckForFrozenOnStageName.asm (same hook 0x80259E90): name id 31 (Frozen Pokemon Stadium) only when the patched MnSlMap is proven (word of StageSelectTextProcGuard). Docs: docs/design/MNSLMAP_FROM_CARD.md."
+    },
+    {
+      "path": "Offline/Sss/CheckForToggledOnStageNameGuard.asm",
+      "when": "flag:ms-sss-guard",
+      "group": "frozen-stadium",
+      "origin": "Offline: stage select name modules guarded for a stock or patched MnSlMap",
+      "reason": "OWN, opt-in (card route, used together with flag stock-sss). Replaces CheckForToggledOnStageName.asm (same hook 0x80259E34): the frozen/unfrozen name swap on the same icon only when the patched MnSlMap is proven. Docs: docs/design/MNSLMAP_FROM_CARD.md."
+    },
+    {
+      "path": "Offline/Sss/IncMaxNamesOwn.asm",
+      "when": "flag:ms-sss-guard",
+      "group": "frozen-stadium",
+      "origin": "Offline: stage select name modules guarded for a stock or patched MnSlMap",
+      "reason": "OWN, opt-in (card route, used together with flag stock-sss). Own copy of IncMaxNames.asm (same hook 0x80259FB4), needed because stock-sss leaves Slippi's out. Docs: docs/design/MNSLMAP_FROM_CARD.md."
+    },
+    {
+      "path": "Offline/Sss/StoreNameIdOwn.asm",
+      "when": "flag:ms-sss-guard",
+      "group": "frozen-stadium",
+      "origin": "Offline: stage select name modules guarded for a stock or patched MnSlMap",
+      "reason": "OWN, opt-in (card route, used together with flag stock-sss). Own copy of StoreNameId.asm (same hook 0x80259FAC), needed because stock-sss leaves Slippi's out. Docs: docs/design/MNSLMAP_FROM_CARD.md."
+    },
+    {
+      "path": "Offline/Results/MoveScaleTableOwn.asm",
+      "when": "flag:ms-scale-own",
+      "group": "online",
+      "origin": "Offline: results scale table without disc floats",
+      "reason": "OWN, opt-in (card route). Replaces Online/Menus/ResultsScreen/MoveScaleTable.asm (same hook 0x8017A890, same r0 = table contract) with a table stored as whole percents that is turned into the identical IEEE floats once at the first call, so the distributed engine file holds no run of the retail disc's 26-float table. See asm/Results/MoveScaleTableOwn.asm and tests/test_scale_table.py."
+    },
+    {
+      "path": "Offline/Sss/CursorOnHoverFd.asm",
+      "when": "flag:ms-fd-toggle",
+      "group": "frozen-stadium",
+      "origin": "Offline: Z toggles the frozen Final Destination background",
+      "reason": "OWN, opt-in (card route). Replaces Online/Menus/SSS/FrozenStadiumToggle/CursorOnHoverStadium.asm (same hook 0x8025A530): Z while the Final Destination icon (25) is hovered flips a second toggle byte (body+9 of the IngameCheckIfFrozen C2 at 0x801D457C), Z on any other icon flips Stadium's byte as before, the ring is purple only while the hovered icon is a frozen stage (Stadium with Slippi's byte set, Final Destination with ours set). The engine applies the frozen background at match start (s12_gc.c fd_step, the fd-freeze switch word 0x8021AAE0). Local screen option: DesyncProofBGTransformations restores the RNG seed around the background think. See docs/research/FROZEN_FD.md."
+    },
+    {
+      "path": "Offline/Hud/RaiseHud.asm",
+      "when": "flag:ms-hud-raise",
+      "group": "online",
+      "origin": "Offline: raise the bottom HUD (CRT overscan)",
+      "reason": "OWN, opt-in (card route). Right after ifAll_802F343C fills the HUD position table (C2 0x802F368C, the retail blr) the module adds 8 / 16 / 24 px (0.8 / 1.6 / 2.4 world units) to the y of the six entries when the engine's level byte in the module header is 1 / 2 / 3 (Settings > Game > Raise HUD); percent, emblem, stock icons and Slippi's name text read that table. Off (0) changes nothing. While the level is not Off it also hides the icons of lost stock slots (a branch installed at match start over ifStock's slot-loop increment, 0x802F853C), because the raise lifted their fall pose into view at the bottom edge; at Off the retail word is written back. Cosmetic: nothing synced."
+    },
+    {
+      "path": "Offline/Rumble/RumblePhysicalPort.asm",
+      "when": "flag:ms-rumble-port",
+      "group": "online",
+      "origin": "Offline: online rumble follows the physical port's setting",
+      "reason": "OWN, opt-in (card route; needs net-online). In the online in-game scene a rumble request (HSD_PadRumbleAdd, C2 0x80378430) for the local player's slot is dropped when Melee's Options > Rumble setting of the PHYSICAL controller port (ODB_INPUT_SOURCE_INDEX) is Off; Slippi's HandleRumble only redirects the slot's port, so the slot's own (default On) setting decided before. No effect on any other scene or slot, nothing synced. See asm/Rumble/RumblePhysicalPort.asm and docs/design/ALPHA_OPEN_FINDINGS_2026-11-01.md 69."
+    },
+    {
+      "path": "Offline/Rules/RulesAfterLoad.asm",
+      "when": "flag:rules-after-load",
+      "group": "rules",
+      "origin": "Offline: rules re-applied after memory card load",
+      "reason": "OWN, opt-in. Re-copies the (patched) default item/stage prefs (GamePrefs; the GameRules block is not on the card) over the card-loaded save at the end of gmMainLib_8015FA34, so a real or virtual memory card with an old save cannot override the patched defaults. See docs/research/RULES_VS_SAVED_CARD.md."
+    },
+    {
+      "path": "Offline/Card/SilentCreate1_LinesUS.asm",
+      "when": "flag:card-silent-create",
+      "group": "card",
+      "origin": "Offline: silent save creation (memory card)",
+      "reason": "OWN, opt-in (profile cardloader). Memory-card scene: a missing save on a healthy card with free space is created silently (Melee's own Yes path, no question, no acknowledgement); damaged/full/no-card/encoding prompts unchanged. See asm/Card/SilentCreate1_LinesUS.asm and docs/research/VMC_STATUS.md."
+    },
+    {
+      "path": "Offline/Card/SilentCreate2_LinesJP.asm",
+      "when": "flag:card-silent-create",
+      "group": "card",
+      "origin": "Offline: silent save creation (memory card)",
+      "reason": "OWN, opt-in (profile cardloader). Memory-card scene: a missing save on a healthy card with free space is created silently (Melee's own Yes path, no question, no acknowledgement); damaged/full/no-card/encoding prompts unchanged. See asm/Card/SilentCreate1_LinesUS.asm and docs/research/VMC_STATUS.md."
+    },
+    {
+      "path": "Offline/Card/SilentCreate3_NoChoice.asm",
+      "when": "flag:card-silent-create",
+      "group": "card",
+      "origin": "Offline: silent save creation (memory card)",
+      "reason": "OWN, opt-in (profile cardloader). Memory-card scene: a missing save on a healthy card with free space is created silently (Melee's own Yes path, no question, no acknowledgement); damaged/full/no-card/encoding prompts unchanged. See asm/Card/SilentCreate1_LinesUS.asm and docs/research/VMC_STATUS.md."
+    },
+    {
+      "path": "Offline/Card/SilentCreate4_Message.asm",
+      "when": "flag:card-silent-create",
+      "group": "card",
+      "origin": "Offline: silent save creation (memory card)",
+      "reason": "OWN, opt-in (profile cardloader). Memory-card scene: a missing save on a healthy card with free space is created silently (Melee's own Yes path, no question, no acknowledgement); damaged/full/no-card/encoding prompts unchanged. See asm/Card/SilentCreate1_LinesUS.asm and docs/research/VMC_STATUS.md."
+    },
+    {
+      "path": "Offline/Card/SilentCreate5_State.asm",
+      "when": "flag:card-silent-create",
+      "group": "card",
+      "origin": "Offline: silent save creation (memory card)",
+      "reason": "OWN, opt-in (profile cardloader). Memory-card scene: a missing save on a healthy card with free space is created silently (Melee's own Yes path, no question, no acknowledgement); damaged/full/no-card/encoding prompts unchanged. See asm/Card/SilentCreate1_LinesUS.asm and docs/research/VMC_STATUS.md."
+    },
+    {
+      "path": "Offline/Card/SilentCreate6_AutoAck.asm",
+      "when": "flag:card-silent-create",
+      "group": "card",
+      "origin": "Offline: silent save creation (memory card)",
+      "reason": "OWN, opt-in (profile cardloader). Memory-card scene: a missing save on a healthy card with free space is created silently (Melee's own Yes path, no question, no acknowledgement); damaged/full/no-card/encoding prompts unchanged. See asm/Card/SilentCreate1_LinesUS.asm and docs/research/VMC_STATUS.md."
+    },
+    {
+      "path": "Offline/Training/LCancelFlashWhite.asm",
+      "when": "flag:flash-white-lcancel",
+      "group": "training",
+      "origin": "Offline: training feedback",
+      "reason": "OWN, opt-in (profile training1). White flash on a successful L-cancel (companion of Slippi's optional red flash on a miss): C2 0x8008D6EC in ftCo_LandingAir_EnterWithLag, success = fp->x67F < p_ftCommonData->xE4; writes only Melee's colour overlay fp->x488 after the motion change; off in the online in-game scene (major 8). See docs/design/OWN_TRAINING.md (Built)."
+    },
+    {
+      "path": "Offline/Training/HitboxView.asm",
+      "when": "flag:hitbox-view-training",
+      "group": "training",
+      "origin": "Offline: training feedback",
+      "reason": "OWN, opt-in (profile training1). Hitbox/hurtbox view in Training Mode only (scene major 0x1C): C2 0x800805F0 ORs x21FC_flag.b6 into the register the fighter draw callback tests (ftdrawcommon.c:101), so Melee's own collision draw runs; no memory write. See docs/design/OWN_TRAINING.md (Built)."
+    },
+    {
+      "path": "Offline/Training/TechCardCount.asm",
+      "when": "flag:tech-card",
+      "group": "training",
+      "origin": "Offline: training feedback",
+      "reason": "OWN, opt-in (profile training2). Tech card, counting half: C2 0x800693AC (entry of Fighter_ChangeMotionState) classifies each motion change in a Vs match read-only (L-cancel attempts/successes by fp->x67F < p_ftCommonData->xE4, ground techs, missed techs, wavedashes, shield drops) into a 72-byte block inside its own payload; no game state written. See docs/design/OWN_TRAINING.md 1d."
+    },
+    {
+      "path": "Offline/Training/TechCardDraw.asm",
+      "when": "flag:tech-card",
+      "group": "training",
+      "origin": "Offline: training feedback",
+      "reason": "OWN, opt-in (profile training2). Tech card, drawing half: C2 0x80175D14 (fn_80175C5C, after the results screen made its KO numbers) adds one small SisLib text per human player under that player's results panel with the counts of the match. See docs/design/OWN_TRAINING.md 1d."
+    },
+    {
+      "path": "Offline/Training/TechCardResults.asm",
+      "when": "flag:tech-card",
+      "group": "training",
+      "origin": "Offline: training feedback",
+      "reason": "OWN, opt-in (profile training2). Tech card: Melee's results screen after a finished Vs match (C2 0x801A5C14 in gmVsMelee_ExitVs: next state 4 instead of Salty Runback's 0 when the outcome is timeout/elimination); rematch (A+B) and L+R+A+Start keep Slippi's flow. See docs/design/OWN_TRAINING.md 1d."
+    },
+    {
+      "path": "Offline/CardStart/StartCombo.asm",
+      "when": "flag:card-start-combo",
+      "group": "card",
+      "origin": "Offline: card route start trigger",
+      "reason": "OWN, opt-in (profile net-online-spike-boot-card). Text-only start of the engine on a stock disc: C2 0x8022DD38 (mnMain_Scene_OnFrame entry); holding L+R+Z+START on any pad in the main menu sets the online mode DIRECT and leaves the menu towards Slippi's online major scene 8 (retail CSS UI). Register-only apart from the r13 online-mode byte and the scene exit data. See docs/design/CARD_PACKAGE.md section 14."
+    }
+  ],
+  "notes_md": [
+    "Corrections to the research inputs (online_recording_modules.md / offline_subset.json / digest):",
+    "",
+    "- The Stadium sync-load trio (`StadiumFileLoad`, `GrPsxIsValid`, `CustomZeroBuffer`) was INCLUDE[S] in the research; it is **OMIT** here. `StadiumFileLoad` replaces the async transformation read with `lbFile_8001668C`, which is instant only because `EXIFileLoad/TransferFile` serves it from Dolphin memory. Without EXI it is a blocking disc read mid-match.",
+    "- `Init Stage Data`, `Init Player Data` and `CSS KO Stars` are taken from the **Recording** section (they are built there in netplay.json), not from Online.",
+    "- `PauseCounter` stays OMIT: on every paused VS frame it writes through r13-0x49E4, which offline holds a stale CSS GObj pointer (memory-safety bug, not just a quirk).",
+    "- `ForceNoDiskCrash` (research: OPTIONAL) is OMIT by policy: it hides the disc-error / cover-open screen on real hardware.",
+    "- `Online/Core/Remember Who LRA Started.asm` is OMIT; the byte-identical General copy at 0x8016EA30 is kept.",
+    "- `Apply Delay to all In-Game Scenes` (Recommended, on by default in Slippi) is not EXI-free: `InitializeInGameDelay` asks the device for the delay (0xD5). Default here is delay 0 (group omitted). Option `delay=N` builds an EXI-free variant derived at build time from the pinned source (the request is replaced by a constant N, nothing else changes). Slippi 3.6.4's default offline delay is 2 (shown as 'Delay: 2f').",
+    "- `Optional:` codes are off by default in Slippi Dolphin (the netplay ini only enables General, Recording, Online, Normal Lag Reduction, Apply Delay, Lagless FoD).",
+    "- Five General 04 writes (`UnrestrictedCamera.bin`, 0x80452F54-0x80452F64) target `.bss` (`game_camera`); the baker must store them at runtime after BSS init (manifest `runtime_store_required`, audit W3).",
+    "- `Online/Static/IntToFloat.asm` (C2 into the extab slot 0x800055F4) is the only static-slot function the default set needs (called by the frozen-Stadium SSS code).",
+    "- **New layout constraint found by the audit:** five UCF 0.84 modules (`UCF Dashback`, `UCF SDI`, `UCF Shield Drop Extended`, `UCF Shield SDI`, `UCF Tumble`) load the instruction at 0x8006B460 (the hook of `UCF Pad Buffer + 1.0 Cardinals`, e.g. `lis r8,0x8007; addi r8,r8,-0x52F0; lwzu r9,0x750(r8)`), decode it as a relative branch and read the pad buffer that sits inside that C2 payload. So 0x8006B460 must also be a relative `b payload` with the payload layout preserved in writable memory, exactly like 0x801D457C (frozen Stadium) and 0x802F666C (delay). The digest only listed the latter two. The manifest lists all of them under `layout_constraints`.",
+    "",
+    "Why the delay variant is generated, not hand-written: slippi-ssbm-asm is GPL-3.0 and its source is not copied into this repo. `lib/codeset.py:generate_delay_variant` derives `Offline/Generated/InitializeInGameDelayConst.asm` inside the out-of-tree work copy: it requires the two anchor lines (`li r3, CONST_SlippiCmdGetDelay` ... `lbz REG_DELAY_RESULT, 0x1(REG_IGDB_ADDR)`) exactly once, requires both `FN_EXITransferBuffer` calls inside that span and none outside, and replaces the span with `li REG_DELAY_RESULT, N`. The 0..15 clamp, the IGDB allocation, the pointer stored at payload+8 and the 'Delay: Nf' HUD text are unchanged. The build then checks that the C2 is still at 0x802F666C and that the first three payload words (`b CODE_START`, `blrl`, `.long 0x80000000`) equal the original's. Own source in `asm/` is only the two one-instruction boot files.",
+    "",
+    "Profiles (`configs/profiles.json`, `build_codeset.sh --list`): `default`, `boot-css` (boot=css), `delay2` (delay=2), `slippi-parity` (delay=2 + all PARITY flags), `all-optional` (delay=2 + all OPTIONAL and PARITY flags; audit coverage). Ad-hoc: `--set boot=css --set delay=N --flag <flag>`. Flags: `widescreen`, `no-screen-shake`, `fd-freeze`, `center-hud`, `flash-red-lcancel`, `friendly-indicators` (group `optional-all`); `parity-8char`, `parity-erase-as-back`, `parity-confirm-a`, `parity-css-bcancel-sfx`, `parity-parse-numbers`, `parity-skip-stage-number` (group `parity`).",
+    "",
+    "Audit waivers (`configs/audit_allow.json`): two PARITY modules branch into hooks of omitted modules (`PreventColorResetLastChar` -> 0x80260B90, `OnConfirmButtonAPress` -> 0x8023CC14). Both omitted hooks run their original instruction `li r0,0` offline, which is the retail word at those addresses, so they are waived with the evidence recorded there.",
+    "",
+    "Own additive modules (`extra_modules`, flag-gated, not netplay modules so not in the tables below): `rules-after-load` (`asm/Rules/RulesAfterLoad.asm`, C2 0x8015FAE4, in `default`) and `card-silent-create` (`asm/Card/SilentCreate*.asm`, six 04 words at 0x801AF3A0, 0x801AF3A8, 0x801AF3AC, 0x801AF3B0, 0x801AF3B8, 0x801AFAD4; profile `cardloader` = default + it, for the stage-1 card loader `offline/cardloader/ms_stage1_silent.mgc`): the memory-card scene creates a missing save on a healthy card with free space without the 'Create Game Data?' question; the build checks each target still holds its retail word. Training (docs/design/OWN_TRAINING.md, profile `training1` = default + `flash-red-lcancel` + both): `flash-white-lcancel` (`asm/Training/LCancelFlashWhite.asm`, C2 0x8008D6EC: white flash on a successful L-cancel, writes only Melee's colour overlay fp->x488, off in the online in-game scene) and `hitbox-view-training` (`asm/Training/HitboxView.asm`, C2 0x800805F0: Melee's own collision debug draw in Training Mode only, register-only, no memory write); the build checks both hooks still hold their retail words. Tech card (OWN_TRAINING.md 1d, profile `training2` = training1 + `tech-card`): `asm/Training/TechCardCount.asm` (C2 0x800693AC, entry of Fighter_ChangeMotionState: read-only counts per port in a 72-byte block inside its own payload), `TechCardDraw.asm` (C2 0x80175D14: three lines per human player in the results screen's portrait boxes) and `TechCardResults.asm` (C2 0x801A5C14: Melee's results screen after a finished Vs match instead of Salty Runback's straight return to the CSS); the build checks all three retail words."
+  ]
+}

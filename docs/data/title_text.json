@@ -1,0 +1,43 @@
+{
+ "format": "multishine-title-text",
+ "version": 1,
+ "lines": [
+  {
+   "id": "credit",
+   "text": "Multishine by Nigzel",
+   "cap": 14,
+   "y": 5
+  },
+  {
+   "id": "link",
+   "text": "www.multishine.link",
+   "cap": 12,
+   "y": 28
+  }
+ ],
+ "layout": {
+  "text_x": 8,
+  "text_w": 416,
+  "centre": 248,
+  "fade_frames": 0,
+  "right": {
+   "cap": 10,
+   "y": 28,
+   "edge": 488
+  },
+  "position": {
+   "x": 0.6,
+   "y": 19.8,
+   "z": 0.5
+  },
+  "logo": {
+   "w": 64,
+   "h": 26,
+   "x": 2,
+   "y": 0,
+   "gap": 0,
+   "stroke_scale": 1.45
+  }
+ },
+ "_doc": "Wording and placement of the line on the title screen. Edit `text` / `layout`, then run `python3 tools/title_art.py` (regenerates offline/multishine/menus/tt/tt_text.h). Characters: the glyphs of Melee's own menu font."
+}

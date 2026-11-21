@@ -1,0 +1,41 @@
+{
+  "_spdx": "Copyright (C) 2026 Nigzel / Bjerreman. SPDX-License-Identifier: GPL-3.0-or-later",
+  "_what": "Card route, RC1 profile (docs/design/CARD_RC1_ROUTE.md): the engine + menus + hub + Slippi bridge of multishine-online-layout-bridge.json as ONE card code file on a STOCK disc (hole at the card layout, loader entry stub). Codeset net-menu-ms-ws-card = net-menu-ms-ws + card-silent-create + stock-sss. The disc files of the RC1 image (menu archives, slpCSS.dat, sign.ovl) are NOT part of this: see the design doc (overlay delivery). Not a patched image. Host/Dolphin only.",
+  "status": "proposed",
+  "image": "multishine-card-rc1",
+  "engine_profile": "s17-compat-onbc",
+  "codeset": "net-menu-ms-ws-card",
+  "ws_toggle": true,
+  "title": "Multishine card rc1 {id}",
+  "relax_stub": false,
+  "title_stay": true,
+  "relay_default": "10.213.101.20",
+  "cfg": {
+    "delay": 2,
+    "ts_mode": 3,
+    "rb_depth": 7,
+    "fp": 0,
+    "fpv": 0,
+    "s17_flags": "0x40000007",
+    "s10_flags": "0x101",
+    "trim_lo": "0x18000",
+    "trim_fn0": "0x0",
+    "trim_fn1": "0x0",
+    "rmode": 1,
+    "sd_flags": 1,
+    "s12_flags": "0x104E",
+    "s7_flags": "0x2000"
+  },
+  "notes": {
+    "ad_peer": " Auto delay from the opponent's round trip is ON (S7F_AD_PEER 0x2000, docs/design/AUTO_DELAY_2026-11-04.md section 8): peer RTT when 5 clean samples exist at B3, else the DNS estimate, else the default; only applies while the delay setting is Auto.",
+    "title_stay": " the title screen stays when idle (no opening movie / demo match / how-to-play attract loop): one guarded word 0x801A1C60 ble -> b (tools/title_stay_patch.py, docs/design/TITLE_SCREEN.md section 2); START unchanged.",
+    "ws_toggle": "RC2: the Slippi widescreen group is patched (codeset net-menu-ms-ws) with every hook word back at its retail value = widescreen OFF; the image holds the switch table ml_ws_tab and the Settings > Game row switches the words from option id 0 of the MultishineOptions card file (docs/design/SETTINGS_WIRING_STATUS.md).",
+    "backends": "MenuFlow.cur_menu 8 (Slippi's own online screen) at the search start = the bridge (Slippi's matchmaker, mocks only in the lab); any other screen (the layout's Multishine hub / More) = the Multishine backend (our server, the engine). B9 and BE before a search follow the same rule.",
+    "restore_retail_04": "as multishine-menu-layout.json: Tournament Melee keeps the retail word",
+    "store_source": "on the card route the rollback store stays in the HSD heap: S19d (s12_flags bit 0x200000, S12F_STORE_ALLM) is OFF, s12_flags 0x304E (this contract carried 0x20304E from b24991b until then). AllM holds the card hole and the Stadium transformation cache and is the scarce heap here. The B0 console readout (MANIFEST option rbread, lab builds only) reports HSD and AllM free / minimum per match so a later per-stage heap rule can be decided from data."
+  },
+  "restore_retail_04": [
+    "0x8022D638",
+    "0x803A69C0"
+  ]
+}

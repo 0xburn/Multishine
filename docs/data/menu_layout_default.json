@@ -1,0 +1,1117 @@
+{
+ "format": "multishine-menu-layout",
+ "root": "main",
+ "version": 1,
+ "views": [
+  {
+   "default": "c3",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "c3",
+     "label": "Dojo",
+     "opens": null,
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "c2",
+     "label": "Grandmaster",
+     "opens": null,
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "c5",
+     "label": "Game Night",
+     "opens": "mt",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "tn",
+     "label": "Tournament",
+     "opens": null,
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "c9",
+     "label": "More",
+     "opens": "more",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": true,
+     "home": "main",
+     "id": "fr.f",
+     "label": "Friends",
+     "opens": "fr",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "main",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "Main Menu"
+  },
+  {
+   "default": "1p.reg",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "1p",
+     "id": "1p.reg",
+     "label": "Regular Match",
+     "opens": "reg",
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "1p",
+     "id": "1p.event",
+     "label": "Event Match",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": true,
+     "home": "1p",
+     "id": "1p.online",
+     "label": "Online Play",
+     "opens": "online",
+     "origin": "ours",
+     "stockLabel": "Online Play",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "1p",
+     "id": "1p.stadium",
+     "label": "Stadium",
+     "opens": "stadium",
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "1p",
+     "id": "1p.training",
+     "label": "Training Mode",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    }
+   ],
+   "id": "1p",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "1-P Mode"
+  },
+  {
+   "default": "reg.classic",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "reg",
+     "id": "reg.classic",
+     "label": "Classic",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "reg",
+     "id": "reg.adventure",
+     "label": "Adventure",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "reg",
+     "id": "reg.allstar",
+     "label": "All-Star",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "c8",
+     "label": "Couch Smash",
+     "opens": null,
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "reg",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "Regular Match"
+  },
+  {
+   "default": "stadium.target",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "stadium",
+     "id": "stadium.target",
+     "label": "Target Test",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "stadium",
+     "id": "stadium.homerun",
+     "label": "Home-Run Contest",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "stadium",
+     "id": "stadium.multiman",
+     "label": "Multi-Man Melee",
+     "opens": "multiman",
+     "origin": "stock",
+     "unsure": ""
+    }
+   ],
+   "id": "stadium",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "Stadium"
+  },
+  {
+   "default": "multiman.10",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "multiman",
+     "id": "multiman.10",
+     "label": "10-Man Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "multiman",
+     "id": "multiman.100",
+     "label": "100-Man Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "multiman",
+     "id": "multiman.3min",
+     "label": "3-Minute Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "multiman",
+     "id": "multiman.15min",
+     "label": "15-Minute Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "multiman",
+     "id": "multiman.endless",
+     "label": "Endless Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "multiman",
+     "id": "multiman.cruel",
+     "label": "Cruel Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    }
+   ],
+   "id": "multiman",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "Multi-Man Melee"
+  },
+  {
+   "default": "online.ranked",
+   "entries": [
+    {
+     "hidden": true,
+     "home": "online",
+     "id": "online.ranked",
+     "label": "Ranked",
+     "opens": null,
+     "origin": "ours",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "online",
+     "id": "online.unranked",
+     "label": "Unranked",
+     "opens": null,
+     "origin": "ours",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "online",
+     "id": "online.direct",
+     "label": "Direct",
+     "opens": null,
+     "origin": "ours",
+     "unsure": ""
+    },
+    {
+     "hidden": true,
+     "home": "online",
+     "id": "online.teams",
+     "label": "Teams",
+     "opens": null,
+     "origin": "ours",
+     "unsure": ""
+    },
+    {
+     "hidden": true,
+     "home": "online",
+     "id": "online.party",
+     "label": "Party",
+     "opens": null,
+     "origin": "ours",
+     "unsure": ""
+    }
+   ],
+   "id": "online",
+   "origin": "ours",
+   "rememberLast": true,
+   "title": "Slippi"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "vs",
+     "id": "vs.melee2",
+     "label": "Melee",
+     "opens": null,
+     "origin": "stock",
+     "stockLabel": "Melee",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "vs",
+     "id": "vs.tournament",
+     "label": "Tournament Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "vs",
+     "id": "vs.special",
+     "label": "Special Melee",
+     "opens": "special",
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "vs",
+     "id": "vs.rules",
+     "label": "Custom Rules",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "vs",
+     "id": "vs.name",
+     "label": "Name Entry",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    }
+   ],
+   "id": "vs",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "VS. Mode"
+  },
+  {
+   "default": "special.camera",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.camera",
+     "label": "Camera Mode",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.stamina",
+     "label": "Stamina Mode",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.ssd",
+     "label": "Super Sudden Death",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.giant",
+     "label": "Giant Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.tiny",
+     "label": "Tiny Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.invisible",
+     "label": "Invisible Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.fixedcam",
+     "label": "Fixed-Camera Mode",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.singlebutton",
+     "label": "Single-Button Mode",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.lightning",
+     "label": "Lightning Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "special",
+     "id": "special.slomo",
+     "label": "Slo-Mo Melee",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    }
+   ],
+   "id": "special",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "Special Melee"
+  },
+  {
+   "default": "toy.gallery",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "toy",
+     "id": "toy.gallery",
+     "label": "Gallery",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "toy",
+     "id": "toy.lottery",
+     "label": "Lottery",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "toy",
+     "id": "toy.collection",
+     "label": "Collection",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    }
+   ],
+   "id": "toy",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "Trophies"
+  },
+  {
+   "default": "options.rumble",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "options",
+     "id": "options.rumble",
+     "label": "Rumble",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "options",
+     "id": "options.sound",
+     "label": "Sound",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "options",
+     "id": "options.display",
+     "label": "Screen Display",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": true,
+     "home": "options",
+     "id": "options.multishine",
+     "label": "Multishine",
+     "opens": null,
+     "origin": "ours",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "options",
+     "id": "options.language",
+     "label": "Language",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "options",
+     "id": "options.erase",
+     "label": "Erase Data",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    }
+   ],
+   "id": "options",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "Options"
+  },
+  {
+   "default": "data.snap",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "data",
+     "id": "data.snap",
+     "label": "Snapshots",
+     "opens": null,
+     "origin": "stock",
+     "unsure": "Label: the decomp calls it DATA_SNAP; English text not checked."
+    },
+    {
+     "hidden": false,
+     "home": "data",
+     "id": "data.archives",
+     "label": "Movies",
+     "opens": null,
+     "origin": "stock",
+     "unsure": "Label: the decomp calls it DATA_ARCHIVES; English text not checked."
+    },
+    {
+     "hidden": false,
+     "home": "data",
+     "id": "data.sound",
+     "label": "Sound Test",
+     "opens": null,
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "data",
+     "id": "data.records",
+     "label": "Records",
+     "opens": "records",
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "data",
+     "id": "data.special",
+     "label": "Special",
+     "opens": null,
+     "origin": "stock",
+     "unsure": "Label: the decomp calls it DATA_SPECIAL; English text not checked."
+    }
+   ],
+   "id": "data",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "Data"
+  },
+  {
+   "default": "records.vs",
+   "entries": [
+    {
+     "hidden": false,
+     "home": "records",
+     "id": "records.vs",
+     "label": "VS. Records",
+     "opens": null,
+     "origin": "stock",
+     "unsure": "Label: decomp RECORDS_VS; English text not checked."
+    },
+    {
+     "hidden": false,
+     "home": "records",
+     "id": "records.bonus",
+     "label": "Bonus Records",
+     "opens": null,
+     "origin": "stock",
+     "unsure": "Label: decomp RECORDS_BONUS; English text not checked."
+    },
+    {
+     "hidden": false,
+     "home": "records",
+     "id": "records.misc",
+     "label": "Misc. Records",
+     "opens": null,
+     "origin": "stock",
+     "unsure": "Label: decomp RECORDS_MISC; English text not checked."
+    }
+   ],
+   "id": "records",
+   "origin": "stock",
+   "rememberLast": true,
+   "title": "Records"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "more",
+     "id": "c4",
+     "label": "Mano a mano",
+     "opens": null,
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "vs",
+     "id": "vs.melee",
+     "label": "Couch",
+     "opens": null,
+     "origin": "stock",
+     "stockLabel": "Melee",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "more",
+     "id": "set.f",
+     "label": "Settings",
+     "opens": "mo",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "more",
+     "id": "c10",
+     "label": "Original menu",
+     "opens": "v3",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "more",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "More"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "main.1p",
+     "label": "1-P Mode",
+     "opens": "1p",
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "main.vs",
+     "label": "VS. Mode",
+     "opens": "vs",
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "main.toy",
+     "label": "Trophies",
+     "opens": "toy",
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "main.options",
+     "label": "Options",
+     "opens": "options",
+     "origin": "stock",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "main",
+     "id": "main.data",
+     "label": "Data",
+     "opens": "data",
+     "origin": "stock",
+     "unsure": ""
+    }
+   ],
+   "id": "v3",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "Original menu"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "mt",
+     "id": "mt.join",
+     "label": "Join Event",
+     "opens": null,
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "mt",
+     "id": "mt.matches",
+     "label": "My matches",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "mt",
+     "id": "mt.bracket",
+     "label": "Bracket",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "mt",
+     "id": "mt.results",
+     "label": "Results",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "mt",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "Game Night"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "fr",
+     "id": "fr.list",
+     "label": "Friend List",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "fr",
+     "id": "fr.inv",
+     "label": "Invites",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "fr",
+     "id": "fr.add",
+     "label": "Add Friend",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "fr",
+     "id": "fr.block",
+     "label": "Blocked",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "fr",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "Friends"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "mo",
+     "id": "mo.g",
+     "label": "Game",
+     "opens": "og",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "mo",
+     "id": "mo.o",
+     "label": "Online",
+     "opens": "oo",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "mo",
+     "id": "mo.about",
+     "label": "About",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "mo",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "Settings"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "og",
+     "id": "og.0",
+     "label": "Widescreen",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "og",
+     "id": "og.1",
+     "label": "Screen Shake",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "og",
+     "id": "og.2",
+     "label": "Freeze FD Background",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "og",
+     "id": "og.3",
+     "label": "Center 2P HUD",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "og",
+     "id": "og.4",
+     "label": "L-Cancel Flash",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "og",
+     "id": "og.5",
+     "label": "Friendly Player Markers",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "og",
+     "id": "og.6",
+     "label": "UCF 0.84",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "og",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "Game"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "oo",
+     "id": "oo.0",
+     "label": "Remember Last Mode",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "oo",
+     "id": "oo.1",
+     "label": "Quick Chat",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "oo",
+     "id": "oo.2",
+     "label": "Play Against Bots",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "oo",
+     "id": "oo.rb",
+     "label": "Rollback",
+     "opens": "orb",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "oo",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "Online"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "orb",
+     "id": "orb.d",
+     "label": "Input Delay",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "orb",
+     "id": "orb.off",
+     "label": "Use Delay Offline",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "orb",
+     "id": "orb.info",
+     "label": "Rollback",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "orb",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "Rollback"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "oa",
+     "id": "oa.0",
+     "label": "Account",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "oa",
+     "id": "oa.1",
+     "label": "Show When I Am Online",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "oa",
+     "id": "oa.2",
+     "label": "Invites From",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "oa",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "Account"
+  },
+  {
+   "default": null,
+   "entries": [
+    {
+     "hidden": false,
+     "home": "ot",
+     "id": "ot.0",
+     "label": "Hitbox View",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "ot",
+     "id": "ot.1",
+     "label": "Tech Card After Matches",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    },
+    {
+     "hidden": false,
+     "home": "ot",
+     "id": "ot.2",
+     "label": "Quick Reset",
+     "opens": "",
+     "origin": "custom",
+     "unsure": ""
+    }
+   ],
+   "id": "ot",
+   "origin": "custom",
+   "rememberLast": true,
+   "title": "Training"
+  }
+ ]
+}

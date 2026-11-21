@@ -1,0 +1,15 @@
+{
+ "doc": "Waivers for gecko_audit.py F1/F3/F4/F5 findings. Each waiver names one module and one address and must say why it is safe. F2 (GeckoHeapPtr) and F6 (conflicting writes) cannot be waived.",
+ "waivers": [
+  {
+   "module": "Online/Menus/CSS/Teams/PreventColorResetLastChar.asm",
+   "address": "0x80260B90",
+   "reason": "PARITY toggle only. Branches to 0x80260B90, the hook of the omitted PreventColorResetRandomChar. That module's non-online-CSS path is 'restore; li r0,0' (its EXIT), and the retail word at 0x80260B90 is li r0,0 (38000000). Its only other side effect offline is clobbering volatile r3; retail code after 0x80260B94 rewrites r3 (clrlwi r3,r19,24 at 0x80260B9C) before reading it. Equivalent offline (static analysis, retail disassembly 0x80260B80-0x80260BDC)."
+  },
+  {
+   "module": "Online/Menus/CSS/TextEntryScreen/OnConfirmButtonAPress.asm",
+   "address": "0x8023CC14",
+   "reason": "PARITY toggle only. Branches to 0x8023CC14, the hook of the omitted OnConfirmButtonHandler. That module's offline path (OFST_R13_NAME_ENTRY_MODE == 0) is 'li r0,0' (its EXIT), the retail word at 0x8023CC14 is li r0,0 (38000000); it also leaves r3 = 0, but the next call, NameContainsOnlySpaces (0x8023BEE0), loads r3 before reading it. Equivalent offline (static analysis)."
+  }
+ ]
+}
