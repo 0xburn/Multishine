@@ -833,10 +833,11 @@ int ms_offline_server(int need_account)
    our own modes do not ask this gate.  The panel says reason 6. */
 extern int ms_wii_wifi(void) __attribute__((weak));
 #define WII_WIFI() (ms_wii_wifi && ms_wii_wifi())
-int ms_slippi_mm_off(void) { return !od_o.m.have_hello || (od_o.m.srv_caps2 & MNC_SRV_CAPS2_SLIPPI_MM_OFF) != 0 || WII_WIFI(); }
+/* LOCAL FORK: Slippi modes do not wait for, or obey, the Multishine server (upstream: fail closed until a HELLO).  The Wii Wi-Fi rule stays. */
+int ms_slippi_mm_off(void) { return WII_WIFI(); }
 /* TIERED MATCHMAKING (br_glue.c reads these through weak references): the same server switch without the Wii Wi-Fi term (the tier rules decide Wi-Fi: Mano a mano may use Slippi on Wi-Fi,
    Dojo may not), 'no Game Night / Grandmaster-set / Friends hand-off owns this search', 'a linked account is on the card', and the player-facing note for the character screen (hub_soc.c css_frame). */
-int ms_slippi_srv_off(void) { return !od_o.m.have_hello || (od_o.m.srv_caps2 & MNC_SRV_CAPS2_SLIPPI_MM_OFF) != 0; }
+int ms_slippi_srv_off(void) { return 0; }     /* LOCAL FORK */
 int ms_tmm_plain(void) { return !(od_o.m.gn_magic == MNC_GN_MAGIC && od_o.m.gn_state != MNC_GN_NONE); }
 int ms_tmm_account(void) { return !guest_console(); }
 void ms_tmm_note(unsigned int n) { od_o.tm_note = (unsigned char)n; }
@@ -887,7 +888,6 @@ unsigned int ms_net_cost(int i)
         if (!(v & 1u) && ((od_o.srv_ok_ms && !(v & 2u) && (unsigned int)(now - od_o.srv_ok_ms) > 30000u) || srv_never_heard(now))) v |= 8u;     /* a linked console's server answered before but not for 30 s, the same window as Settings > Network status; a GUEST has no hub ticks (its only answers are the boot probe's WHOAMI and a Settings page's), so for it one answer since boot counts */     /* the server answered before but not for 16 s (three menu ticks): a cable pulled while running, or the server is down */
         if (br_panel_reason) v |= (br_panel_reason() & 15u) << 4;
         if (((v >> 4) & 15u) != 1u && ((v >> 4) & 15u) != 2u && ((v >> 4) & 15u) != 3u) {
-            if (od_o.m.have_hello && (od_o.m.srv_caps2 & MNC_SRV_CAPS2_SLIPPI_MM_OFF)) v = (v & ~0xF0u) | (5u << 4);
             if (WII_WIFI()) v = (v & ~0xF0u) | (6u << 4);              /* a Wii on Wi-Fi: 'Slippi needs a wired connection.' (the more useful reason wins over 5) */
         }   /* Slippi matchmaking switched off by the server: reason 5 unless offline / files missing already say more */
         return v;
