@@ -22,7 +22,7 @@ ALIGN = H.ALIGN
 BASE = H.PACK_BASE
 NET, TLS = os.path.join(REPO, "offline/net"), os.path.join(REPO, "offline/net/tls")
 BRIDGE = os.path.join(REPO, "offline/bridge")      # the 3.7.0 matchmaker client (sbr_ws, sbr_stun, sbr_codec) and the mailbox header live with the bridge
-SRC = [os.path.join(HERE, f) for f in ("rep_body.c", "rep_json.c", "rep_q.c", "rep_cli.c", "rep_dns.c", "rep_glue.c", "rep_mm.c", "rep_ovl.c")] + \
+SRC = [os.path.join(HERE, f) for f in ("rep_body.c", "lucky_roots.c", "rep_q.c", "rep_cli.c", "rep_dns.c", "rep_glue.c", "rep_mm.c", "rep_ovl.c")] + \
       [os.path.join(BRIDGE, f) for f in ("sbr_ws.c", "sbr_stun.c", "sbr_codec.c")] + [os.path.join(NET, "ms_ws.c")] + \
       [os.path.join(NET, "sddns.c"), os.path.join(NET, "sdtcp.c"), os.path.join(REPO, "offline/client_net/mw2_crypto.c")] + \
       [os.path.join(TLS, f) for f in ("sdent.c", "sdcrypto.c", "sdc25519.c", "sdtls.c", "sdsec.c", "sdhttp.c", "sdpk.c", "sdx509.c", "sdroots.c")]

@@ -230,6 +230,28 @@ int sbrc_read_ident(struct sbr_ident *id)
     return r;
 }
 
+/* ---- LOCAL FORK: the Lucky Stats key (menus/rep/lucky.h) ---- */
+int lucky_parse(const unsigned char *p, unsigned int n, char *key)
+{
+    unsigned int i, ok;
+    if (n < 84u || p[0] != 'L' || p[1] != 'K' || p[2] != 'Y' || p[3] != 'S' || p[4] != 1u) return 0;
+    if (sbr_crc32(p, 80u) != (((u32)p[80] << 24) | ((u32)p[81] << 16) | ((u32)p[82] << 8) | p[83])) return 0;
+    ok = p[8] == 'l' && p[9] == '7' && p[10] == 'u' && p[11] == '_';
+    for (i = 12; i < 76u; i++) if (!((p[i] >= '0' && p[i] <= '9') || (p[i] >= 'a' && p[i] <= 'f'))) ok = 0;
+    for (; i < 80u; i++) if (p[i]) ok = 0;
+    if (!ok) return 0;
+    for (i = 0; i < 72u; i++) key[i] = (char)p[8u + i];
+    return 1;
+}
+static int check_lucky(void *ctx) { return lucky_parse(buf() + 0x1000u, 84u, (char *)ctx) ? 0 : 1; }
+int sbrc_read_lucky(char *key)
+{
+    u32 res = 0;
+    int slot, r = load("MultishineLucky", check_lucky, key, &res, &slot);
+    if (r != SBRC_L_OK) sbr_wipe(key, 72u);
+    return r;
+}
+
 #ifdef SBR_NETCFG
 /* dev/lab builds only: the one-block file "MultishineBridge" holds nothing but the net-config section.  Since the bridge
    no longer reads or writes a status-document record in it (the status server is gone) and never writes the card at all. */

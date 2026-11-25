@@ -9,13 +9,13 @@ typedef unsigned int rep_u32;
 
 /* ---- constants (all -D tunable) ---- */
 #ifndef REP_HOST
-#define REP_HOST "internal.slippi.gg"
+#define REP_HOST "luckystats.gg"       /* LOCAL FORK: reports go to Lucky Stats, never to Slippi */
 #endif
 #ifndef REP_PORT
 #define REP_PORT 443
 #endif
 #ifndef REP_PATH
-#define REP_PATH "/graphql"
+#define REP_PATH "/api/integrations/v1/console/games"
 #endif
 #ifndef REP_REPORT_DIRECT
 #define REP_REPORT_DIRECT 1     /*: Direct is reported like Unranked (the bridge gets a matchId from get-ticket-resp for Direct too; the stock client has no mode filter) */
@@ -39,6 +39,7 @@ typedef unsigned int rep_u32;
 #define REP_WEB_COOLDOWN_MS 600000u /* after UNTRUSTED / HOST / CERT: the web is broken for us, no session for 10 minutes */
 #define REP_REQ_TIMEOUT_MS 5000u    /* stock client: 5 s per request */
 #define REP_SESSION_TIMEOUT_MS 20000u   /* TCP + TLS handshake deadline */
+#define REP_KEY_MAX 68          /* LOCAL FORK: the Lucky Stats key */
 #define REP_REQ_MAX 2048
 #define REP_RSP_MAX 1536        /* response body kept for parsing; a longer answer counts as an error */
 #define REP_ID_MAX 40           /* uid / play key / isoHash buffers (characters, no NUL) */

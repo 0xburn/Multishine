@@ -811,7 +811,13 @@ static void d_bd(void *c, const sdshim_u8 *rgb)
     const struct sdshim_backend *b = cur();
     (void)c;
     if (b && b->report_game) b->report_game(b->ctx, rgb);
-    if (g_active == 2 && rep_game_hook) rep_game_hook(rgb, A.B.match.match_id, A.B.match.opp_uid, A.B.match.local_idx);   /* a bridge (Slippi opponent) game ended: queue its report, sent later in a menu */
+    if (g_active == 2 && rep_game_hook) {              /* LOCAL FORK: the connect code (public), never the opponent's Slippi uid; '#' travels as '-' (plain token) */
+        char oc[SBR_CODE_MAX];
+        unsigned i;
+        for (i = 0; i + 1u < sizeof oc && A.B.match.opp_code[i]; i++) oc[i] = A.B.match.opp_code[i] == '#' ? '-' : A.B.match.opp_code[i];
+        oc[i] = 0;
+        rep_game_hook(rgb, A.B.match.match_id, oc, A.B.match.local_idx);
+    }   /* a bridge (Slippi opponent) game ended: queue its report, sent later in a menu */
 }
 #ifdef MS_REP_OVL
 /* the report overlay's view of the card identity (menus/rep/rep_res.c): the Slippi uid and play key, copied for ONE request by the overlay (R7: never shown, never logged, wiped by it) */

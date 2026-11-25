@@ -9,6 +9,8 @@
 #include "sdent.h"
 #include "rep_mm.h"
 
+extern const struct sdx_anchor lucky_roots[];
+extern const sdx_u32 lucky_nroots;
 static const struct rep_ovl_env *E;
 static struct sdent POOL;
 /* ONE session block, two users that never overlap (a report waits until a search ends, the resident frees this block when a search starts on an idle online character screen): the report
@@ -184,7 +186,7 @@ static int ov_enter(const struct rep_ovl_env *e)
     h.net = e->net; h.dns = e->dns; h.dns_server = o_dns_server; h.now_ms = o_ms;
     h.rand = sdent_rand_session; h.rand_ctx = &POOL; h.entropy_ready = o_ready;
     h.scene_ok = o_scene; h.ident = o_ident; h.iso_hash = o_iso; h.alloc = o_alloc; h.release = o_release;
-    h.anchors = sdx_roots; h.nanchors = sdx_nroots; h.build = e->build; h.platform = e->platform;
+    h.anchors = lucky_roots; h.nanchors = lucky_nroots;         /* LOCAL FORK: luckystats.gg anchors; the matchmaker keeps sdx_roots */ h.build = e->build; h.platform = e->platform;
     h.keep = e->keep;
     rep_glue_init(&h);
     {

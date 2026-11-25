@@ -18,7 +18,7 @@ static const struct ml_row ml_rows_main[6 + ML_MOCKUPS] = {
 #endif
 };
 static const struct ml_row ml_rows_more[4] = {
-    { "Slippi", "Slippi Unranked and Direct", ML_A_ONLINE, 0, 0, 0, 1, 255, 0, 0 }, /* LOCAL FORK: was c4 Mano a mano */
+    { "Slippi", "Slippi Unranked and Direct", ML_A_ONLINE, 0, 0, 0, 1, 5, 49, 1 }, /* LOCAL FORK: was c4 Mano a mano */
     { "Couch", "No Johns.", ML_A_SCENE, 2, 0, 0, 1, 6, 50, 2 }, /* vs.melee */
     { "Settings", "Multishine settings", ML_A_PAGE, 2, 0, 0, 1, 7, 51, 3 }, /* set.f */
     { "Original menu", "Original game menu", ML_A_KIND, 11, 0, 0, 1, 8, 52, 4 }, /* c10 */
