@@ -216,57 +216,68 @@
       "reason": "INFRA. Fighter block alloc 0x23EC->0x2600 (room for LCancelStatus @+0x25FF). No visible effect. EXI: none"
     },
     "Recording/FlushFrameBuffer.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "EXI. Sends frame bookend + buffered frame to device. EXI: write-only; absent device = no-op. Needs FN_EXITransferBuffer (bootloader)."
     },
     "Recording/SendGameEnd.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "EXI. Sends game-end msg; side effect: copies MatchEndData early (0x8046B8EC->0x80479DA4, 8824 B) -- game does same later. EXI: write-only"
     },
     "Recording/SendGameInfo.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "EXI. Allocs replay buffers, sends game info + whole Gecko list; spawns SendFrameStart/SendItemInfo procs. EXI: write-only, BUT calls FN_ProcessGecko on *GeckoHeapPtr (0x80005600) -> both installed only by Dolphin bootloader.gct; without it: crash"
     },
     "Recording/SendGamePostFrame.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "EXI. Buffers post-frame data (sent by FlushFrameBuffer). EXI: indirect (buffer only)"
     },
     "Recording/SendGamePreFrame.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "EXI. Buffers pre-frame data. EXI: indirect"
     },
     "Recording/ShouldRecord.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "INFRA. Static fn @0x80005604: true for VS/SD/Online/Targets/HRC/Playback in-game. EXI: none"
     },
     "Recording/GetLCancelStatus/GetLCancelStatus.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "INFRA. Stores L-cancel result to fighter+0x25FF (replay field). Writes past 0x23EC block if ExtendPlayerBlock absent. EXI: none"
     },
     "Recording/GetLCancelStatus/ResetLCancelStatus.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "INFRA. Clears fighter+0x25FF. EXI: none"
     },
     "Recording/Stages/SendDreamlandInfo.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "EXI. Buffers whispy state for replay. EXI: indirect"
     },
     "Recording/Stages/SendFountainInfo.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "EXI. Buffers FoD platform heights. EXI: indirect"
     },
     "Recording/Stages/SendStadiumInfo.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "EXI. Buffers PS transformation state. EXI: indirect"
     },
@@ -277,12 +288,14 @@
       "when": "flag:net-menu"
     },
     "Common/GetIsFollower.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "INFRA. Static fn @0x800055F8 (is Nana). EXI: none"
     },
     "Common/IncrementFrameIndex.asm": {
-      "decision": "OMIT",
+      "decision": "OPTIONAL",
+      "when": "flag:ms-record",
       "group": "recording",
       "reason": "INFRA. u32 frame counter at r13-0x49AC (retail CSS bytes 0x804D6CF4-F7, re-set on CSS entry). Only Recording reads it. EXI: none"
     },

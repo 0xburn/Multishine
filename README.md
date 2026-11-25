@@ -18,6 +18,10 @@ RETAIL_ISO=/path/to/melee.iso ./build.sh  # build/release: engine, overlays, dat
 
 The card image `./build.sh` writes (`build/release/card/card.raw`) carries our own banner and icon (`tools/release/save_art.py`); the build stops if its loader save shares any bytes with your disc.
 
+## Game recordings (local fork)
+
+A Slippi Unranked or Direct game played on a console with a Lucky Stats key on the card (`tools/lucky/lucky_provision.py`) is recorded by Slippi's own recording code (codeset flag `ms-record`) and uploaded to the account's game data library after the game, from the menus or the idle online character screen. How it works and its limits: `offline/multishine/rec/rec_core.h` (format), `rec_gc.c` (memory, rollback, the drop rules), `menus/rep/rec_up.h` (upload). Host tests: `offline/multishine/rec/tests/run_tests.sh [game.slp ...]`.
+
 ## Licence
 
 GPL-3.0-or-later (`LICENSE`); files marked `GPL-3.0-or-later OR GPL-2.0-only` may also be used under GPL-2.0-only.

@@ -49,6 +49,7 @@
     "ms-scale-own": "OWN (opt-in, card route; needs net-online-css): the results-screen scale table (Slippi MoveScaleTable.asm, C2 0x8017A890) is stored as whole percents and turned into the identical 26 IEEE floats on the first call, so the engine file carries no run of the retail disc table (asm/Results/MoveScaleTableOwn.asm)",
     "ms-hud-delay": "OWN (opt-in, card route; needs net-online-spike): Slippi's in-match 'Delay: %df' HUD text is created only while the engine flag word in the head of the InitInGame C2 body is 1 (Settings > Show technical info, the Debug Lines bit, written by ml_glue.c settings_apply); default 0 = hidden. Variant of Online/Menus/InGame/InitInGame.asm: a 16 byte body header (b START, blrl, flag word, 'MSHD') and one beq over the delay subtext creation",
     "ms-names": "OWN (opt-in, card route; needs net-online): the online character select header of a Multishine hub flow reads Dojo Mode / Mano a mano Mode / Grandmaster Mode instead of Slippi's Unranked / Direct / Ranked Mode (docs/design/MENU_NAME_PASS.md section 5). Variant of Online/Menus/CSS/LoadCSSText.asm: a 12 byte body header with a marker word the engine writes when a hub row starts a mode, a 13 instruction helper and three names; with the marker 0 (Slippi's own flow, the bridge) the original header words are used unchanged",
+    "ms-record": "LOCAL FORK (opt-in, card route; needs net-online): Slippi's own recording modules (game info, pre / post frame, items, stage events, bookend, game end) hand their stream to the EXI shim, where the engine's game recorder takes it. Variants generated from the pinned sources: ShouldRecord = the engine's arm flag AND the online in-game scene; frame index = scene frame counter - 123 (no state to roll back); no code list (no bootloader on this route); L-cancel status in the padding after the fighter block (0x23EC, inside its heap cell) instead of a larger block; wind / transformation events every frame (the recorder keeps the changes: Slippi's copy of the last value is not rolled back)",
     "card-start-combo": "OWN (opt-in, card route): hold L+R+Z+START on any pad in the main menu to leave towards Slippi's online major scene 8 (DIRECT mode); C2 0x8022DD38"
   },
   "flag_groups": {
@@ -247,7 +248,8 @@
         "ms-rumble-port",
         "ms-hud-raise",
         "rules-after-load",
-        "ms-fd-toggle"
+        "ms-fd-toggle",
+        "ms-record"
       ],
       "allow_audit_fail": true
     }

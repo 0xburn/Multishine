@@ -8,6 +8,7 @@
 #include "sddns.h"
 #include "sdent.h"
 #include "rep_mm.h"
+#include "rec_up.h"
 
 extern const struct sdx_anchor lucky_roots[];
 extern const sdx_u32 lucky_nroots;
@@ -21,7 +22,7 @@ struct mm_arena {
     rep_u8 rx[SDTLS_WEB_RX];
     rep_u8 wsrx[RM_WSRX], wstx[RM_WSTX], jtx[RM_JTX];
 };
-static union { struct rep_arena a; struct mm_arena m; } ARENA;
+static union { struct rep_arena a; struct mm_arena m; struct up_arena u; } ARENA;
 static struct rep_mm MM;
 static struct rep_dns MD;                           /* the matchmaker's own lookup state on the shared resolver (the report client has its own in rep_glue.c) */
 static int g_mm_up;
@@ -44,7 +45,7 @@ int sdnet_tx_ip(struct sdnet *s, sdnet_u8 proto, sdnet_u32 dst_ip, sdnet_u16 ple
 
 static void *o_alloc(rep_u32 n)
 {
-    if (g_arena_out || n > sizeof ARENA.a || MM.phase != RM_IDLE || MM.tp_started) return 0;      /* a report session never starts over a matchmaker session */
+    if (g_arena_out || n > sizeof ARENA || MM.phase != RM_IDLE || MM.tp_started) return 0;      /* a report session never starts over a matchmaker session */
     g_arena_out = 1;
     return &ARENA;
 }
@@ -190,6 +191,11 @@ static int ov_enter(const struct rep_ovl_env *e)
     h.keep = e->keep;
     rep_glue_init(&h);
     {
+        struct up_env ue;
+        ue.e = rep_glue_env(); ue.k = e->keep; ue.pending = e->rec_pending; ue.read = e->rec_read; ue.forget = e->rec_forget; ue.get = o_alloc; ue.put = o_release;
+        up_init(&ue);
+    }
+    {
         struct rep_mm_env me;
         zero(&MD, sizeof MD);
         MD.d = e->dns; MD.server = 0; MD.port = 0;
@@ -230,7 +236,10 @@ static void ov_frame(void)
     if (!E->net_begin()) return;
     E->net_poll(E->net);
     if (g_mm_up) rep_mm_frame(&MM);
-    if (!g_mm_up || !rep_mm_busy(&MM)) rep_glue_frame(heavy);       /* a pending report waits until the search is over */
+    if (!g_mm_up || !rep_mm_busy(&MM)) {                            /* a pending report waits until the search is over */
+        if (!up_busy()) rep_glue_frame(heavy);
+        if (up_busy() || (!rep_pending(E->keep) && !rep_busy(rep_glue_state()))) up_poll(heavy);   /* LOCAL FORK: the recordings, after the reports */
+    }
     E->net_end();
 }
 
@@ -239,6 +248,7 @@ static void ov_leave(void)
     struct sdnet *n;
     if (!g_entered) return;
     if (g_mm_up) { rep_mm_leave(&MM); g_mm_up = 0; }
+    up_abort();
     rep_glue_leave();                                               /* session aborted (RST), request and key buffers wiped, arena returned */
     n = E->net;
     if (n && g_tcp) { n->tcp_rx = 0; n->tcp_poll = 0; n->tcp = 0; } /* the stack's hooks into this block go away before the block does */
@@ -252,7 +262,7 @@ static void ov_leave(void)
 static int ov_busy(void)
 {
     const struct rep *r = rep_glue_state();
-    return (r && rep_busy(r) ? 1 : 0) | (g_mm_up && rep_mm_busy(&MM) ? 2 : 0);
+    return ((r && rep_busy(r)) || up_busy() ? 1 : 0) | (g_mm_up && rep_mm_busy(&MM) ? 2 : 0);
 }
 
 static const struct rep *ov_state(void) { return rep_glue_state(); }

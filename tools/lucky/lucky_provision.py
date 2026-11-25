@@ -5,7 +5,7 @@
   lucky_provision.py --out lucky.gci [--key-file FILE]
 
 The key is asked for without echo (or read from a 0600 file). It is never taken from the command line, printed or logged.
-Use a Multishine key from Lucky Stats > Account > API keys: it can only send game results, and can be revoked there.
+Use a Multishine key from Lucky Stats > Account > API keys: it can only send game results and game data, and can be revoked there.
 The output file holds the key unencrypted: treat it, and any card image it goes into, like a password."""
 import argparse, getpass, os, re, struct, sys, zlib
 R = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))

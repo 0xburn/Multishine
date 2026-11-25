@@ -23,6 +23,7 @@ typedef sbr_u8 u8;
 #define M_PNAME 46            /* 4 x 31 */
 #define M_OPPNAME 170
 #define M_PCODE 201           /* 4 x 10 */
+#define M_PUID 241            /* 4 x 29 (LOCAL FORK: the recording's game info carries both players' ids, as Slippi's does) */
 #define M_ERR 357             /* 241 */
 #define M_MATCH 598           /* 0x138 */
 #define M_MATCHID 910         /* 51 */
@@ -569,6 +570,8 @@ int sbra_b3(struct sbra *A, u32 now, u8 *m)
         code_for_game(m + M_PCODE + CODE_LEN * li, A->id.code);
         code_for_game(m + M_PCODE + CODE_LEN * ri, x->opp_code);
         for (i = 0; x->match_id[i] && i < 50; i++) m[M_MATCHID + i] = (u8)x->match_id[i];
+        for (i = 0; A->id.uid[i] && i < 28; i++) m[M_PUID + 29 * li + i] = (u8)A->id.uid[i];
+        for (i = 0; x->opp_uid[i] && i < 28; i++) m[M_PUID + 29 * ri + i] = (u8)x->opp_uid[i];
     }
     if (mm == SBR_ERROR) {
         et = sbr_error_text(&A->B);

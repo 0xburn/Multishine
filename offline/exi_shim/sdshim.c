@@ -6,6 +6,8 @@
  * .
  */
 #include "sdshim.h"
+/* LOCAL FORK: the game recorder (rec/rec_gc.c) takes the recording stream; absent (host tests, other images) = dropped as before */
+extern void sdshim_record_hook(const sdshim_u8 *p, sdshim_u32 n) __attribute__((weak));
 
 #define SDSHIM_MAGIC 0x53445348u /* "SDSH" */
 
@@ -308,6 +310,7 @@ static int do_cmd(struct sdshim *s, const sdshim_u8 *p, sdshim_u32 avail, sdshim
     *used = avail;
     if ((c >= 0x35 && c <= 0x41) || c == 0x60) {
         s->stats.sunk++; /* recording stream (Recording/ *.asm): host writes .slp, we drop */
+        if (sdshim_record_hook) sdshim_record_hook(p, avail);
         return 0;
     }
     ci = sdshim_cmd_lookup(c);

@@ -6,6 +6,7 @@ cd "$(dirname "$0")"
 fails=()
 step() { echo "== $*"; "$@" || fails+=("$*"); }
 step bash offline/payload_pack/run_tests.sh
+step bash offline/multishine/rec/tests/run_tests.sh
 step python3.14 tools/release/test_check_release_shape.py
 step python3.14 -m unittest -q tools/tests/test_payload_pack.py tools/tests/test_standard_save.py tools/tests/test_save_art.py
 step bash offline/multishine/menus/od/tests/run_tests.sh

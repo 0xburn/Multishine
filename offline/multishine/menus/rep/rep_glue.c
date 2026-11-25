@@ -18,7 +18,7 @@ static struct rep_keep K_OWN;
 #endif
 
 #define GLUE_RX 4096u
-#define GLUE_TX 2048u
+#define GLUE_TX 8192u            /* LOCAL FORK: recordings are hundreds of KB; 2 KB per round trip was the limit */
 static rep_u8 g_rx[GLUE_RX], g_tx[GLUE_TX];
 static struct sdtcp g_tcp;
 static struct sdtcp_conn g_conn[1];
@@ -72,6 +72,7 @@ void rep_glue_init(const struct rep_glue_host *h)
 }
 
 struct rep *rep_glue_state(void) { return g_up ? &R : 0; }
+struct rep_env *rep_glue_env(void) { return g_up ? &R.e : 0; }     /* LOCAL FORK: rec_up.c talks to the same host with the same key, clock and TCP */
 
 void rep_glue_frame(int allow_heavy)
 {

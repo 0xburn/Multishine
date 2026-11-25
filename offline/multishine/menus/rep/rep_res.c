@@ -12,6 +12,7 @@
  * Every failure leaves the game untouched; the queue stays (the report waits for the next menu visit, 30 minutes at most). */
 #include "rep_ovl.h"
 #include "rep_scene.h"
+#include "rec_gc.h"
 #include "rep_q.c"
 
 extern int br_menu_scene_ok(void);                                       /* br_glue.c: main menus, not Slippi's online submenu, no bridge or engine session */
@@ -40,7 +41,7 @@ extern volatile unsigned int ml_st[];                                    /* ml_g
 
 #define RP_ML_FRAME 2u
 #define RP_FILE_MAX 0x28000u                                             /* the file in the pack (packer budget 120 KB) */
-#define RP_BSS_BLK 0xA000u                                               /* bss room beyond the file in the block (the packer refuses a larger bss) */
+#define RP_BSS_BLK 0xC000u                                               /* bss room beyond the file in the block (the packer refuses a larger bss) */
 #define RP_WAIT_MAX 600u                                                 /* passes (about 10 s) a load may wait for the card pack / an idle card in one menu visit */
 
 volatile unsigned int rep_st[RP_N] OD_DATA = { 0x52455053u };            /* 'REPS' */
@@ -62,6 +63,7 @@ static char LK_key[72] OD_DATA;
 static int LK_have OD_DATA = -1;
 static unsigned int LK_next OD_DATA, LK_tries OD_DATA;
 static int rp_k_server(void) { return LK_have; }
+int rep_rec_wanted(void) { return LK_have == 1; }                 /* LOCAL FORK: rec_gc.c records only when the game could be uploaded */
 static void rp_lucky_read(unsigned int now)
 {
     int r;
@@ -190,6 +192,7 @@ static void rp_env_init(void)
     RENV.net_begin = ms_tls_begin; RENV.net_end = ms_tls_end; RENV.net_poll = ms_tls_poll;
     RENV.csum_add = sdnet_csum_add; RENV.csum_fold = sdnet_csum_fold; RENV.tx_ip = sdnet_tx_ip;
     RENV.build = br_rep_build(); RENV.platform = br_rep_platform();
+    RENV.rec_pending = ms_rec_pending; RENV.rec_read = ms_rec_read; RENV.rec_forget = ms_rec_forget;
     RENV.mbx = br_mm_mbx(); RENV.ident_full = br_mm_ident; RENV.udp_send = br_udp_send; RENV.udp_recv = br_udp_recv;
 }
 
@@ -290,10 +293,11 @@ static int rp_load(void)
 }
 
 /* is a report due now: the gate is open (server bit, trusted time) and neither the back-off nor the web cool-down holds it */
+static int rp_due(void) { return rep_pending(&REPK) || (LK_have == 1 && ms_rec_pending() != 0); }   /* LOCAL FORK: a report or a finished recording waits */
 static unsigned int rp_gate(unsigned int now)
 {
     unsigned int why = 0;
-    if (!rep_pending(&REPK)) why |= 1u << 0;
+    if (!rp_due()) why |= 1u << 0;
     if (rp_k_server() != 1) why |= 1u << 1;
     if (!rep_clock_unix(&REPK.clk, now)) why |= 1u << 2;
     if ((int)(now - REPK.next_ms) < 0 || (int)(now - REPK.t_cooldown_until) < 0) why |= 1u << 6;
@@ -362,7 +366,7 @@ void rep_menu_hook(void)
         return;
     }
     if (RP.blk && RP.api && (RP.api->busy() & 2)) { RP.api->frame(); rp_proof(); return; }   /* the search is over but the matchmaker's connection is still closing: the block stays until it is gone */
-    if (!rep_pending(&REPK) && !RP.blk) { rep_st[RP_WHY] = 1u << 0; return; }          /* nothing to do: a few compares per pass */
+    if (!rp_due() && !RP.blk) { rep_st[RP_WHY] = 1u << 0; return; }          /* nothing to do: a few compares per pass */
     if (rp_k_server() == 0 && rep_pending(&REPK)) {                                      /* our server answered WITHOUT the bit (or took it away): the waiting reports are forgotten, nothing is ever sent */
         unsigned int i;
         for (i = 0; i < REP_QUEUE; i++) if (REPK.q[i].used) { { volatile unsigned char *z = (volatile unsigned char *)&REPK.q[i]; unsigned int k; REPK.st.dropped_off++; for (k = 0; k < sizeof REPK.q[i]; k++) z[k] = 0; } }   /* wipe uid / match id too (review L6) */

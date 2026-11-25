@@ -554,6 +554,73 @@ def generate_hd_variant(asm):
     return {"source": HD_SRC, "generated": GENERATED_HD, "layout": "body+0 b START, body+4 blrl, body+8 flag word (byte 11), body+12 'MSHD'"}
 
 
+# flag ms-record (LOCAL FORK): Slippi's recording modules without Dolphin.  Each entry: source, edits = [(kind, anchor, replacement)]; every anchor must match exactly once.
+#   sub  one stripped line -> lines      cut  from the first line to the line before the second -> lines      after  insert after the line
+RECORD_LC = [("after", '.include "Recording/Recording.s"', ".set LCancelStatus,0x23EC # ms-record: the padding after the 0x23EC byte fighter block (its heap cell holds 0x2400)")]
+RECORD_VARIANTS = {
+    "Recording/ShouldRecord.asm": [("cut", "getMinorMajor r3", "ReturnFalse:", """b MS_RC_START
+MS_RC_DATA:
+blrl # body+4
+MS_RC_FLAG:
+.long 0 # body+8, written by the engine: 1 = record (a Slippi match, a recorder buffer, an upload key)
+.long 0x4D535243 # body+12 'MSRC'
+MS_RC_START:
+  mflr r12
+  bl MS_RC_DATA
+  mflr r3
+  mtlr r12
+  lwz r3,0(r3)
+  cmpwi r3,0
+  beq ReturnFalse
+  getMinorMajor r3
+  cmpwi r3, SCENE_ONLINE_IN_GAME
+  beq ReturnTrue
+""")],
+    "Common/IncrementFrameIndex.asm": [("cut", "# Check if its the first frame (initialize timer)", "Exit:", """# ms-record: the index follows the scene frame counter (a retail word the snapshot holds): nothing of ours to roll back
+  lis r3,0x8048
+  lwz r3,-0x62A8(r3)
+  addi r3,r3,CONST_FirstFrameIdx
+  stw r3,frameIndex(r13)
+""")],
+    "Recording/SendGameInfo.asm": [
+        ("cut", "#------------- DETERMINE SIZE OF GECKO CODE SECTION -----------------", "#------------- WRITE OUT COMMAND SIZES -------------", "  li REG_GeckoListSize, 4 # ms-record: no code list on this route; the recorder drops its announcement\n"),
+        ("cut", "#-------------- Transfer Gecko List ---------------", "# run macro to create the SendFrameStart process", ""),
+        ("sub", "li  r3,FULL_FRAME_DATA_BUF_LENGTH", "  li  r3,0x2420 # ms-record: a cell above 0x2400 bytes is not part of the rollback snapshot (the buffer is empty at every capture)"),
+        ("sub", "lbz r3,PALToggle(rtoc)", "  li r3,0 # ms-record: the recording globals past .sdata2 exist on Slippi's Dolphin only")],
+    "Recording/SendGamePostFrame.asm": RECORD_LC,
+    "Recording/GetLCancelStatus/GetLCancelStatus.asm": RECORD_LC,
+    "Recording/GetLCancelStatus/ResetLCancelStatus.asm": RECORD_LC,
+    "Recording/Stages/SendDreamlandInfo.asm": [("cut", "bl STATIC_PREVIOUS_VALUE", "#------------- INITIALIZE -------------", "  lwz r5,0xdc(r31) # ms-record: every frame, the recorder keeps the changes\n")],
+    "Recording/Stages/SendStadiumInfo.asm": [("cut", "bl STATIC_PREVIOUS_VALUE", "#------------- INITIALIZE -------------", "  lwz r5,0xdc(r31) # ms-record: every frame, the recorder keeps the changes\n")],
+}
+
+
+def generate_record_variant(asm, path):
+    lines = open(os.path.join(asm, path)).read().split("\n")
+
+    def once(text, frm=0):
+        idx = [i for i, l in enumerate(lines) if l.strip() == text and i >= frm]
+        if len(idx) != 1:
+            die("ms-record anchor %r not found exactly once in %s" % (text, path))
+        return idx[0]
+    for e in RECORD_VARIANTS[path]:
+        if e[0] == "cut":
+            a, b = once(e[1]), once(e[2])
+            if not a < b:
+                die("ms-record: %s: anchors out of order" % path)
+            lines[a:b] = e[3].split("\n")
+        elif e[0] == "sub":
+            lines[once(e[1])] = e[2]
+        else:
+            lines.insert(once(e[1]) + 1, e[2])
+    name = "Offline/Generated/Record_" + os.path.basename(path)
+    out = os.path.join(asm, name)
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, "w") as f:
+        f.write("\n".join(lines))
+    return name
+
+
 # --------------------------------------------------------------------------- manifest
 
 def build_manifest(name, sel, built, uni_by_path, dol, opts, flags, tools, selfcheck, delay_info, sizes):
@@ -803,6 +870,16 @@ def main():
                 hd_info = generate_hd_variant(asm)
         if hd_info is None:
             die("flag ms-hud-delay needs the in-game HUD module (flag net-online-spike)")
+    record_info = None
+    if "ms-record" in flags:
+        record_info = {}
+        for s in sel:
+            if s["path"] in RECORD_VARIANTS:
+                src = s["path"]
+                s.update(path=generate_record_variant(asm, src), own=True, variant_of=src, variant_flag="ms-record")
+                record_info[src] = s["path"]
+        if set(record_info) != set(RECORD_VARIANTS):
+            die("flag ms-record: missing modules %s" % sorted(set(RECORD_VARIANTS) - set(record_info)))
     netplay = load_json(os.path.join(asm, "netplay.json"))
     cfg, sel = compose(sel, netplay, name, opts, flags)   # sel re-ordered to gecko output order
 
@@ -848,6 +925,11 @@ def main():
                     die("ms-names variant changed the hook of %s" % s["variant_of"])
                 if new[0]["payload"][1] != NAMES_BLRL or new[0]["payload"][3] != NAMES_GRAN or (new[0]["payload"][0] >> 26) != 18:
                     die("ms-names variant header is not `b START; blrl; marker; Gran..`")
+            elif s.get("variant_flag") == "ms-record":
+                if [(o["type"], o["address"]) for o in orig] != [(o["type"], o["address"]) for o in new]:
+                    die("ms-record variant changed the hook of %s" % s["variant_of"])
+                if s["variant_of"] == "Recording/ShouldRecord.asm" and (new[0]["payload"][1] != HD_BLRL or new[0]["payload"][3] != 0x4D535243 or (new[0]["payload"][0] >> 26) != 18):
+                    die("ms-record ShouldRecord header is not `b START; blrl; flag; MSRC`")
             elif s.get("variant_flag") == "ms-hud-delay":
                 if [(o["type"], o["address"]) for o in orig] != [(o["type"], o["address"]) for o in new] or new[0]["type"] != "C2":
                     die("ms-hud-delay variant changed the hook of %s" % s["variant_of"])
@@ -909,6 +991,8 @@ def main():
         manifest["names_variant"] = names_info
     if hd_info:
         manifest["hud_delay_variant"] = hd_info
+    if record_info:
+        manifest["record_variants"] = record_info
 
     # audit
     sel_paths = {s["path"] for s in sel} | {s["variant_of"] for s in sel if s.get("variant_of")}

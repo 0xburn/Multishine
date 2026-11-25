@@ -19,10 +19,11 @@
 
 #define REP_OVL_PATH "/ms/rep.ovl"
 #define REP_OVL_KIND 6u                /* sgo_hdr.state_hint (0 sign-in, 1 menu, 3 hub, 5 gns) */
-#define REP_OVL_ABI 2u                 /* 2: + the Slippi 3.7.0 matchmaker: mailbox, full identity, UDP on the netplay socket, entropy gate; busy carries two bits */
+#define REP_OVL_ABI 3u                 /* 2: + the Slippi 3.7.0 matchmaker: mailbox, full identity, UDP on the netplay socket, entropy gate; busy carries two bits.  3: LOCAL FORK: the game recordings */
 
 struct sdnet;
 struct sddns;
+struct rec_pub;
 struct rep_pad { unsigned short buttons; signed char sx, sy, cx, cy; unsigned char tl, tr, err; };       /* the layout of struct sdent_pad (sdent.h) */
 
 /* resident -> block.  The block reaches the resident image only through this table (no import relocations). */
@@ -52,6 +53,9 @@ struct rep_ovl_env {
     int (*ident_full)(struct sbr_ident *out);           /* uid, play key, connect code, display name of the card identity, copied for ONE search (R7: wiped by the block when the connection ends); 1 = ok */
     int (*udp_send)(rep_u32 ip, unsigned short port, const rep_u8 *b, rep_u32 n);          /* one datagram from the NETPLAY socket (STUN must leave from the port the engine's ENet host will use); only inside the net_begin window */
     int (*udp_recv)(rep_u8 *b, rep_u32 cap, rep_u32 *ip, unsigned short *port);             /* n >= 0 one datagram from that socket, < 0 none; only inside the window */
+    struct rec_pub *(*rec_pending)(void);               /* ---- ABI 3, LOCAL FORK: finished recordings (rec/rec_gc.h) */
+    int (*rec_read)(unsigned int seq, unsigned int off, unsigned char *buf);
+    void (*rec_forget)(unsigned int seq, int why);
 };
 
 /* the block's entry table, at hdr.api_off (padded to at least sizeof(struct sgo_api): the shared loader checks the table lies inside the image) */
