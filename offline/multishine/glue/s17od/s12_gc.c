@@ -4155,6 +4155,9 @@ static void s3_tick_body(void)
 #if defined(MM_FTSTATS) && defined(MS_RB_READOUT)
     g_sp_bs = tbl();                                             /* : start of this body */
 #endif
+#ifdef MS_REP_OVL
+    { extern void rec_tick(void); rec_tick(); }                  /* LOCAL FORK: the game recorder (rec/rec_gc.c) */
+#endif
     match_store();
     ps_log();                                                    /* S19b TEST ONLY */
     fd_step();                                                   /* frozen Final Destination (see fd_step) */
@@ -5152,4 +5155,7 @@ void ms_tls_poll(struct sdnet *s)
 unsigned int ms_tls_net_size(void) { return (unsigned int)sizeof S; }
 unsigned int ms_tls_dns(void) { return S.dns; }
 void ms_tls_detach(void) { S.tcp_rx = 0; S.tcp_poll = 0; S.tcp = 0; }
+#endif
+#ifdef MS_REP_OVL
+#include "rec_gc.c"          /* LOCAL FORK: the game recorder */
 #endif

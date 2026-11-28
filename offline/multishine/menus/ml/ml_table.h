@@ -11,14 +11,14 @@ static const struct ml_row ml_rows_main[6 + ML_MOCKUPS] = {
     { "Grandmaster", "Play ranked matches", ML_A_MODE, 0, 0, 0, 1, 1, 50, 2 }, /* c2 */
     { "Game Night", "Join or create a room", ML_A_SIGN, 18, 0, 0, 1, 2, 51, 3 }, /* c5 */
     { "Tournament", "Play a bracket online", ML_A_SIGN, 25, 0, 0, 1, 3, 52, 4 }, /* tn */
-    { "More", "Mano a mano, Couch, settings", ML_A_KIND, 14, 0, 0, 1, 4, 38, 5 }, /* c9 */
+    { "More", "Slippi, Couch, settings", ML_A_KIND, 14, 0, 0, 1, 4, 38, 5 }, /* c9 */
     { "Friends", "Interact with your friends", ML_A_SIGN, 22, 0, 1, 1, 255, 0, 0 }, /* fr.f */
 #if ML_MOCKUPS
     { "Mockups", "Screens to try out, with example data", ML_A_SIGN, 10, 0, 0, 1, 9, 22, 9 }, /* mk (development builds only: -DML_MOCKUPS=1) */
 #endif
 };
 static const struct ml_row ml_rows_more[4] = {
-    { "Mano a mano", "Pair directly with code", ML_A_MODE, 2, 0, 0, 1, 5, 49, 1 }, /* c4 */
+    { "Slippi", "Slippi Unranked and Direct", ML_A_ONLINE, 0, 0, 0, 1, 5, 49, 1 }, /* LOCAL FORK: was c4 Mano a mano */
     { "Couch", "No Johns.", ML_A_SCENE, 2, 0, 0, 1, 6, 50, 2 }, /* vs.melee */
     { "Settings", "Multishine settings", ML_A_PAGE, 2, 0, 0, 1, 7, 51, 3 }, /* set.f */
     { "Original menu", "Original game menu", ML_A_KIND, 11, 0, 0, 1, 8, 52, 4 }, /* c10 */

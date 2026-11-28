@@ -12,6 +12,7 @@
  * Every failure leaves the game untouched; the queue stays (the report waits for the next menu visit, 30 minutes at most). */
 #include "rep_ovl.h"
 #include "rep_scene.h"
+#include "rec_gc.h"
 #include "rep_q.c"
 
 extern int br_menu_scene_ok(void);                                       /* br_glue.c: main menus, not Slippi's online submenu, no bridge or engine session */
@@ -40,7 +41,7 @@ extern volatile unsigned int ml_st[];                                    /* ml_g
 
 #define RP_ML_FRAME 2u
 #define RP_FILE_MAX 0x28000u                                             /* the file in the pack (packer budget 120 KB) */
-#define RP_BSS_BLK 0xA000u                                               /* bss room beyond the file in the block (the packer refuses a larger bss) */
+#define RP_BSS_BLK 0xC000u                                               /* bss room beyond the file in the block (the packer refuses a larger bss) */
 #define RP_WAIT_MAX 600u                                                 /* passes (about 10 s) a load may wait for the card pack / an idle card in one menu visit */
 
 volatile unsigned int rep_st[RP_N] OD_DATA = { 0x52455053u };            /* 'REPS' */
@@ -56,11 +57,46 @@ static unsigned int rp_k_ms(void) { return od_clock_ms(); }
 /* the only gate: our server's signed HELLO announced capability bit 15 to this console */
 /* 1 announced; 0 final: answered without it ON A DEVICE SESSION (or the console has no device identity, which no 'only' list can match); -1 not known yet: no HELLO, or only an anonymous one so far (the
    title's update check runs before the card identity is read; in the server's 'only' mode the bit comes only on a device session): the hub overlay sends ONE refresh HELLO once the identity exists (hub_gr_q[HUB_GR_HELLO] = 2) */
-static int rp_k_server(void)
+/* LOCAL FORK: the gate is the Lucky Stats key on the card (1 there, 0 definitely not, -1 not read yet); the Multishine server has no say */
+extern int sbrc_read_lucky(char *key);
+static char LK_key[72] OD_DATA;
+static int LK_have OD_DATA = -1;
+static unsigned int LK_next OD_DATA, LK_tries OD_DATA;
+static int rp_k_server(void) { return LK_have; }
+int rep_rec_wanted(void) { return LK_have == 1; }                 /* LOCAL FORK: rec_gc.c records only when the game could be uploaded */
+static void rp_lucky_read(unsigned int now)
 {
-    if (!od_o.m.have_hello) return -1;
-    if (od_o.m.srv_caps & REP_CAP_SLIPPI_REPORTS) return 1;
-    return (!od_o.m.have_id || hub_gr_q[HUB_GR_HELLO] == 2u) ? 0 : -1;
+    int r;
+    if (LK_have != -1 || (int)(now - LK_next) < 0) return;
+    LK_next = now + 1000u;
+    r = sbrc_read_lucky(LK_key);
+    if (r == 1) LK_have = 1;                                        /* SBRC_L_OK */
+    else if (r == 2 || r == 4 || r == 5) LK_have = 0;               /* NOFILE, DAMAGED, NEWER */
+    else if (r != 7 && ++LK_tries > 30u) LK_have = 0;               /* no card / errors: give up after 30 tries (a busy card is asked again for ever) */
+}
+static int rp_lucky_ident(char *uid, unsigned int uc, char *key, unsigned int kc)
+{
+    unsigned int i;
+    if (LK_have != 1 || uc < 2u || kc < 69u) return 0;
+    uid[0] = '-'; uid[1] = 0;
+    for (i = 0; i < 68u; i++) key[i] = LK_key[i];
+    key[68] = 0;
+    return 1;
+}
+/* LOCAL FORK: trusted time = the console's own clock (the Multishine HELLO is gone).  It only decides certificate validity dates; chain, host name and signatures are checked as before.
+   Melee's OSGetTime: ticks of 40.5 MHz since 2000-01-01.  A clock before the build's year is no clock (0 = none: no TLS session, the search says the matchmaker cannot be reached). */
+#define RTC_2000 946684800u
+#define RTC_MIN 1790000000u
+static unsigned int rp_rtc(void)
+{
+    unsigned long long t = ((unsigned long long (*)(void))0x8034C3F0u)();
+    unsigned int bus = *(volatile unsigned int *)0x800000F8u, div = bus ? (bus >> 2) : 40500000u;
+    unsigned int hi = (unsigned int)(t >> 32), lo = (unsigned int)t, q = 0, r = 0, i;
+    if (!div || hi >= div) return 0;
+    r = hi;                                                         /* 64 / 32 long division without libgcc: the quotient fits in 32 bits because hi < divisor */
+    for (i = 0; i < 32u; i++) { r = (r << 1) | (lo >> 31); lo <<= 1; q <<= 1; if (r >= div) { r -= div; q |= 1u; } }
+    q += RTC_2000;
+    return q >= RTC_MIN ? q : 0;
 }    /* 1 announced, 0 answered without it, -1 no HELLO yet */
 static void rp_init(void)
 {
@@ -152,11 +188,12 @@ static void rp_env_init(void)
     RENV.abi = REP_OVL_ABI; RENV.sz_sdnet = ms_tls_net_size(); RENV.sz_keep = (unsigned int)sizeof REPK; RENV.sz_rep_ovl_env = (unsigned int)sizeof RENV; RENV.sz_mbx = (unsigned int)sizeof(struct sbr_mbx);
     RENV.net = ms_tls_net(); RENV.keep = &REPK;
     RENV.dns_server = ms_tls_dns; RENV.now_ms = od_clock_ms; RENV.tb = rp_tb; RENV.scene_ok = br_menu_scene_ok;
-    RENV.ident = br_rep_ident; RENV.iso_hash = 0;                   /* no card-file MD5 of the image yet: isoHash is the empty string (what the stock client sends while its hasher is unfinished) */
+    RENV.ident = rp_lucky_ident; RENV.iso_hash = 0;                   /* no card-file MD5 of the image yet: isoHash is the empty string (what the stock client sends while its hasher is unfinished) */
     RENV.seed = rp_seed; RENV.pad = rp_pad;
     RENV.net_begin = ms_tls_begin; RENV.net_end = ms_tls_end; RENV.net_poll = ms_tls_poll;
     RENV.csum_add = sdnet_csum_add; RENV.csum_fold = sdnet_csum_fold; RENV.tx_ip = sdnet_tx_ip;
     RENV.build = br_rep_build(); RENV.platform = br_rep_platform();
+    RENV.rec_pending = ms_rec_pending; RENV.rec_read = ms_rec_read; RENV.rec_forget = ms_rec_forget;
     RENV.mbx = br_mm_mbx(); RENV.ident_full = br_mm_ident; RENV.udp_send = br_udp_send; RENV.udp_recv = br_udp_recv;
 }
 
@@ -257,10 +294,11 @@ static int rp_load(void)
 }
 
 /* is a report due now: the gate is open (server bit, trusted time) and neither the back-off nor the web cool-down holds it */
+static int rp_due(void) { return rep_pending(&REPK) || (LK_have == 1 && ms_rec_pending() != 0); }   /* LOCAL FORK: a report or a finished recording waits */
 static unsigned int rp_gate(unsigned int now)
 {
     unsigned int why = 0;
-    if (!rep_pending(&REPK)) why |= 1u << 0;
+    if (!rp_due()) why |= 1u << 0;
     if (rp_k_server() != 1) why |= 1u << 1;
     if (!rep_clock_unix(&REPK.clk, now)) why |= 1u << 2;
     if ((int)(now - REPK.next_ms) < 0 || (int)(now - REPK.t_cooldown_until) < 0) why |= 1u << 6;
@@ -314,7 +352,8 @@ void rep_menu_hook(void)
     unsigned int now, why;
     rp_init();
     now = od_clock_ms();
-    rep_clock_note(&REPK.clk, od_o.m.have_hello, od_o.m.srv_time, now);
+    { unsigned int rtc = rp_rtc(); rep_clock_note(&REPK.clk, rtc != 0u, rtc, now); }
+    if (br_menu_scene_ok()) rp_lucky_read(now);
 #ifdef MS_REP_SELFTEST
     rp_selftest();
 #endif
@@ -328,7 +367,7 @@ void rep_menu_hook(void)
         return;
     }
     if (RP.blk && RP.api && (RP.api->busy() & 2)) { RP.api->frame(); rp_proof(); return; }   /* the search is over but the matchmaker's connection is still closing: the block stays until it is gone */
-    if (!rep_pending(&REPK) && !RP.blk) { rep_st[RP_WHY] = 1u << 0; return; }          /* nothing to do: a few compares per pass */
+    if (!rp_due() && !RP.blk) { rep_st[RP_WHY] = 1u << 0; return; }          /* nothing to do: a few compares per pass */
     if (rp_k_server() == 0 && rep_pending(&REPK)) {                                      /* our server answered WITHOUT the bit (or took it away): the waiting reports are forgotten, nothing is ever sent */
         unsigned int i;
         for (i = 0; i < REP_QUEUE; i++) if (REPK.q[i].used) { { volatile unsigned char *z = (volatile unsigned char *)&REPK.q[i]; unsigned int k; REPK.st.dropped_off++; for (k = 0; k < sizeof REPK.q[i]; k++) z[k] = 0; } }   /* wipe uid / match id too (review L6) */

@@ -22,7 +22,7 @@ ALIGN = H.ALIGN
 BASE = H.PACK_BASE
 NET, TLS = os.path.join(REPO, "offline/net"), os.path.join(REPO, "offline/net/tls")
 BRIDGE = os.path.join(REPO, "offline/bridge")      # the 3.7.0 matchmaker client (sbr_ws, sbr_stun, sbr_codec) and the mailbox header live with the bridge
-SRC = [os.path.join(HERE, f) for f in ("rep_body.c", "rep_json.c", "rep_q.c", "rep_cli.c", "rep_dns.c", "rep_glue.c", "rep_mm.c", "rep_ovl.c")] + \
+SRC = [os.path.join(HERE, f) for f in ("rep_body.c", "lucky_roots.c", "rep_q.c", "rep_cli.c", "rep_dns.c", "rep_glue.c", "rep_mm.c", "rec_up.c", "rep_ovl.c")] + \
       [os.path.join(BRIDGE, f) for f in ("sbr_ws.c", "sbr_stun.c", "sbr_codec.c")] + [os.path.join(NET, "ms_ws.c")] + \
       [os.path.join(NET, "sddns.c"), os.path.join(NET, "sdtcp.c"), os.path.join(REPO, "offline/client_net/mw2_crypto.c")] + \
       [os.path.join(TLS, f) for f in ("sdent.c", "sdcrypto.c", "sdc25519.c", "sdtls.c", "sdsec.c", "sdhttp.c", "sdpk.c", "sdx509.c", "sdroots.c")]
@@ -97,8 +97,8 @@ def build(a):
     stats = {"file": os.path.basename(a.out), "image_bytes": size, "bss_bytes": bss_end - size, "nreloc": len(rel), "reloc_bytes": len(rb), "file_bytes": len(blob),
              "block_bytes": 32 + size + area + 32, "api_off": api_off, "api_bytes": api_sz, "sgo_ver": H.SGO_VER, "kind": kind(),
              "sha1": hashlib.sha1(blob).hexdigest(), "text_bytes": int(H.run([P + "-size", elf]).splitlines()[1].split()[0]), "test_roots": bool(TEST_ROOTS)}
-    if ((stats["bss_bytes"] + 31) & ~31) > stats["reloc_bytes"] + 0xA000:           # the resident's own test (rep_res.c rp_load): bss <= relocation table + RP_BSS_BLK (the table's room is reused)
-        sys.exit("bss %d exceeds the room rep_res.c allocates (relocation table %d + RP_BSS_BLK 0xA000)" % (stats["bss_bytes"], stats["reloc_bytes"]))
+    if ((stats["bss_bytes"] + 31) & ~31) > stats["reloc_bytes"] + 0xC000:           # the resident's own test (rep_res.c rp_load): bss <= relocation table + RP_BSS_BLK (the table's room is reused)
+        sys.exit("bss %d exceeds the room rep_res.c allocates (relocation table %d + RP_BSS_BLK 0xC000)" % (stats["bss_bytes"], stats["reloc_bytes"]))
     if stats["block_bytes"] > BLOCK_BUDGET or stats["file_bytes"] > FILE_BUDGET:
         sys.exit("report overlay over budget: %s (block %d > %d or file %d > %d)" % (json.dumps(stats), stats["block_bytes"], BLOCK_BUDGET, stats["file_bytes"], FILE_BUDGET))
     if a.stats:

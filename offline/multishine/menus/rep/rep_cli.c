@@ -127,7 +127,7 @@ static int oldest(const struct rep *r)
 
 static int send_request(struct rep *r)
 {
-    char uid[REP_ID_MAX + 2], key[REP_ID_MAX + 2], iso[40];
+    char uid[REP_ID_MAX + 2], key[REP_KEY_MAX + 2], iso[40];
     const char *isop = "";
     rep_u32 n;
     zero(uid, sizeof uid); zero(key, sizeof key); iso[0] = 0;
@@ -283,21 +283,21 @@ void rep_poll(struct rep *r, int allow_heavy)
             if (r->hr.state == SDHTTP_DONE) break;
         }
         if (r->hr.state == SDHTTP_DONE) {
-            int upload = 0, ok;
             note_answer(r);
-            if (r->hr.status != 200) { r->k->st.http_status_bad++; http_fail(r, now, 1); return; }
-            if (r->body_overflow) { r->k->st.parse_bad++; http_fail(r, now, 1); return; }
-            ok = rep_parse_answer(r->a->body, r->body_len, &upload);
-            if (ok == 1) {
-                r->k->st.ok++; r->k->st.last_msg[0] = 0;
-                r->k->fails_tls = 0;
-                drop_cur(r);
-                sdsec_close(&r->a->sec);
+            /* LOCAL FORK: the answer is the HTTP status.  200 stored or already there; 4xx other than 429 can never succeed on a retry (bad or revoked key, refused report): dropped, and the host left alone */
+            if (r->hr.status >= 400 && r->hr.status < 500 && r->hr.status != 429) {
+                r->k->st.http_status_bad++;
+                drop_cur(r); sdsec_close(&r->a->sec);
+                r->k->t_cooldown_until = now + (r->hr.status == 401 || r->hr.status == 403 ? REP_WEB_COOLDOWN_MS : 2000u);
                 r->state = REP_CLOSING; r->t_state = now;
                 return;
             }
-            if (ok == 0) r->k->st.success_false++; else r->k->st.graphql_errors++;
-            http_fail(r, now, 1);
+            if (r->hr.status != 200) { r->k->st.http_status_bad++; http_fail(r, now, 1); return; }
+            r->k->st.ok++; r->k->st.last_msg[0] = 0;
+            r->k->fails_tls = 0;
+            drop_cur(r);
+            sdsec_close(&r->a->sec);
+            r->state = REP_CLOSING; r->t_state = now;
             return;
         }
         if ((rep_u32)(now - r->t_attempt_ms) > REP_REQ_TIMEOUT_MS) { r->k->st.rsp_timeout++; http_fail(r, now, 0); return; }

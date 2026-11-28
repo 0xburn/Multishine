@@ -37,5 +37,6 @@ void rep_glue_frame(int allow_heavy);                   /* the per-frame body wi
 void rep_glue_match_start(void);                        /* call BEFORE the TCP mode goes to QUIESCE / PAUSED for a match: tears the session down, keeps the queue */
 void rep_glue_set_tcp(struct sdtcp *t);                 /* the overlay creates its TCP context once the pool can seed it */
 void rep_glue_leave(void);                              /* the overlay is about to be freed: tear the session down, forget the glue */
-struct rep *rep_glue_state(void);                       /* counters for the status screen / log (R.k->st) */
+struct rep *rep_glue_state(void);
+struct rep_env *rep_glue_env(void);                       /* counters for the status screen / log (R.k->st) */
 #endif

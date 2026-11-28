@@ -8,7 +8,7 @@ static const char *const ml_tex_names[ML_NTEX] = {
     "Game Night",   /* c5 */
     "Tournament",   /* tn */
     "More",   /* c9 */
-    "Mano a mano",   /* c4 */
+    "Slippi",   /* LOCAL FORK: was c4 Mano a mano */
     "Couch",   /* vs.melee */
     "Settings",   /* set.f */
     "Original menu",   /* c10 */

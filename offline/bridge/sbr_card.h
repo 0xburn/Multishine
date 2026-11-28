@@ -36,6 +36,7 @@ extern struct sbrc_status sbrc_st;
 
 /* SBRC_L_*; OK fills *id (otherwise *id is wiped); DAMAGED = a file whose payload failed sbr_ident_parse (id_parse says why) */
 int sbrc_read_ident(struct sbr_ident *id);
+int sbrc_read_lucky(char *key);   /* LOCAL FORK: SBRC_L_*; OK fills key (menus/rep/lucky.h), otherwise it is wiped */
 #ifdef SBR_NETCFG
 /* SBRC_L_*; dev/lab builds only: reads "MultishineBridge" (slot A then B) and feeds its net-config section to sbr_nc_parse_block.  Nothing is ever written. */
 int sbrc_read_netcfg(void);
