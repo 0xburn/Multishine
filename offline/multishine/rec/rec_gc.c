@@ -42,7 +42,7 @@ static u32 rc_crc[RC_NCHUNK];
 static struct rec_pub rc_q[RC_N];
 static struct rec *rc_r;                                          /* in the HSD heap of the running match, 0 outside */
 static u32 rc_blk_h, rc_lo, rc_size;                             /* pool: its heap handle, last known ARAM address, size */
-static u32 rc_wr, rc_start, rc_fill, rc_si, rc_t0, rc_seq;
+static u32 rc_wr, rc_start, rc_fill, rc_si, rc_t0, rc_seq, rc_cur_chunks;
 static u32 rc_rd_seq, rc_rd_off, rc_rd_state, rc_rd_bad;          /* reader: 0 idle, 1 in flight */
 static u32 rc_tab[256];
 
@@ -87,7 +87,20 @@ static int rc_pool_live(void)                                     /* the heap st
     return 0;
 }
 static u32 rc_pending(void) { u32 i, n = 0; for (i = 0; i < RC_N; i++) n += rc_q[i].used; return n; }
-static void rc_clear_q(void) { u32 i; for (i = 0; i < RC_N; i++) { if (rc_q[i].used) RS(28)++; rc_q[i].used = 0; } rc_wr = rc_start = 0; rc_rd_state = 0; RS(24) = 0; }   /* only before anything of the running game is in the block */
+static void rc_clear_q(void) { u32 i; for (i = 0; i < RC_N; i++) { if (rc_q[i].used) RS(28)++; rc_q[i].used = 0; } rc_wr = rc_start = rc_cur_chunks = 0; rc_rd_state = 0; RS(24) = 0; }   /* only before anything of the running game is in the block */
+static int rc_chunk_used(u32 pos)                                 /* circular pool: 1 if chunk at `pos` belongs to a waiting recording or the current one wrapped full */
+{
+    u32 i;
+    if (rc_cur_chunks * REC_CHUNK >= rc_size) return 1;
+    for (i = 0; i < RC_N; i++) {
+        u32 alen, d;
+        if (!rc_q[i].used) continue;
+        alen = (rc_q[i].len + REC_CHUNK - 1u) & ~(REC_CHUNK - 1u);
+        d = pos >= rc_q[i].off ? pos - rc_q[i].off : rc_size - rc_q[i].off + pos;
+        if (d < alen) return 1;
+    }
+    return 0;
+}
 static int rc_pool_get(void)
 {
     u32 t, b, n, blk;
@@ -110,11 +123,14 @@ static int rc_flush(u32 n)                                        /* stage buffe
 {
     u32 c;
     if (!rc_pool_get()) return -1;                                /* may start a new block (rc_wr 0): the index comes after it */
+    if (rc_wr >= rc_size) rc_wr = 0;
     c = rc_wr / REC_CHUNK;
-    if (rc_wr + REC_CHUNK > rc_size || c >= RC_NCHUNK) return -1;
+    if (c >= RC_NCHUNK || rc_chunk_used(rc_wr)) return -1;
     rc_crc[c] = rec_crc(rc_tab, 0xFFFFFFFFu, rc_stage[rc_si], n);
     rc_post(rc_si, 1u, rc_lo + rc_wr, n);
-    rc_wr += REC_CHUNK; RS(22)++;
+    rc_wr += REC_CHUNK;
+    if (rc_wr >= rc_size) rc_wr = 0;
+    rc_cur_chunks++; RS(22)++;
     rc_si ^= 1u; rc_fill = 0;
     return 0;
 }
@@ -143,12 +159,14 @@ static void rc_end(int ok)
         if (i < RC_N) {
             rc_q[i].used = 1; rc_q[i].seq = ++rc_seq; rc_q[i].off = rc_start; rc_q[i].len = r->out; rc_q[i].t_ms = rc_t0; rc_q[i].frames = r->frames; rc_q[i].raw = r->raw; rc_q[i].sent = rc_q[i].sha_ok = rc_q[i].fails = 0;
             RS(4)++; RS(24) = rc_pending();
+            rc_cur_chunks = 0;
             rc_r = 0;
             return;
         }
     }
     RS(5)++;
     rc_wr = rc_start;                                             /* this game's pieces are free again */
+    rc_cur_chunks = 0;
     rc_r = 0;
 }
 static u32 rc_flag_at(void)                                       /* ShouldRecord's flag word (0 = the module is not in this image) */
@@ -168,7 +186,7 @@ void rec_tick(void)                                               /* every scene
     m = irq_off();
     want = (sc >> 24) == 8u && ms_rules.route == MR_ROUTE_SLIPPI_BRIDGE && rep_rec_wanted && rep_rec_wanted();
     if ((sc >> 24) == 8u && (sc & 0xFFu) == 2u) { if (!W(a)) want = 0; }        /* never switched on inside a match (the buffers are made at its start) */
-    else if (rc_r) { rc_r = 0; rc_wr = rc_start; RS(1) = REC_DROPPED; RS(2) = REC_D_NOEND; RS(5)++; }   /* the scene and its heap (struct rec) are gone: never touched again; a finished recording was queued at its end */
+    else if (rc_r) { rc_r = 0; rc_wr = rc_start; rc_cur_chunks = 0; RS(1) = REC_DROPPED; RS(2) = REC_D_NOEND; RS(5)++; }   /* the scene and its heap (struct rec) are gone: never touched again; a finished recording was queued at its end */
     W(a) = want ? 1u : 0u;
     RS(29) = W(a);
     if ((sc >> 24) != 8u && rc_blk && rc_pool_live()) { LBMEM_FREE(rc_blk_h, rc_lo); rc_blk = 0; }   /* another game mode may need the whole heap: the block goes back, what is in it is read while it lasts */
@@ -181,7 +199,7 @@ void sdshim_record_hook(const u8 *p, u32 n)                       /* sdshim.c, i
     if (p[0] == 0x35) {
         struct rec *r;
         u32 t, b;
-        if (rc_r) { rc_r = 0; rc_wr = rc_start; RS(5)++; RS(2) = REC_D_NOEND; }
+        if (rc_r) { rc_r = 0; rc_wr = rc_start; rc_cur_chunks = 0; RS(5)++; RS(2) = REC_D_NOEND; }
         hsd_room(&t, &b);
         RS(18) = t;
         RS(3)++;
@@ -191,7 +209,8 @@ void sdshim_record_hook(const u8 *p, u32 n)                       /* sdshim.c, i
         rec_init(r, rc_sink, 0);
         rc_r = r;
         if (!rc_pending()) rc_wr = 0;                             /* everything before is uploaded: the pool is empty */
-        rc_start = rc_wr; rc_fill = 0; rc_t0 = clock_ms(0);
+        else if (rc_size && rc_wr >= rc_size) rc_wr = 0;
+        rc_start = rc_wr; rc_fill = 0; rc_cur_chunks = 0; rc_t0 = clock_ms(0);
         rc_rd_state = 0;
         RS(19) = RS(20) = RS(21) = RS(30) = RS(31) = 0;
     }
@@ -221,9 +240,11 @@ struct rec_pub *ms_rec_pending(void)
 int ms_rec_read(u32 seq, u32 off, u8 *buf)
 {
     int i = rc_oldest();
-    u32 n, m, c;
+    u32 n, m, c, aoff;
     if (i < 0 || rc_q[i].seq != seq || rc_r || off >= rc_q[i].len || (off & (REC_CHUNK - 1u))) return -1;
     n = rc_q[i].len - off; if (n > REC_CHUNK) n = REC_CHUNK;
+    aoff = rc_q[i].off + off;
+    if (rc_size && aoff >= rc_size) aoff -= rc_size;
     if (RC_PRELOAD_BUSY) { rc_rd_state = 0; return 0; }           /* the block may be moving */
     if (rc_rd_state && (rc_rd_seq != seq || rc_rd_off != off)) { if (rc_busy[0]) return 0; rc_rd_state = 0; }
     if (!rc_rd_state) {
@@ -231,13 +252,13 @@ int ms_rec_read(u32 seq, u32 off, u8 *buf)
         m = irq_off();
         (void)rc_pool_live();
         rc_rd_seq = seq; rc_rd_off = off; rc_rd_state = 1; RS(25)++;
-        rc_post(0u, 0u, rc_lo + rc_q[i].off + off, n);
+        rc_post(0u, 0u, rc_lo + aoff, n);
         irq_restore(m);
         return 0;
     }
     if (rc_busy[0]) return 0;
     rc_rd_state = 0;
-    c = (rc_q[i].off + off) / REC_CHUNK;
+    c = aoff / REC_CHUNK;
     RC_DCINVAL(rc_stage[0], (n + 31u) & ~31u);
     if (rec_crc(rc_tab, 0xFFFFFFFFu, rc_stage[0], n) != rc_crc[c]) {
         RS(26)++;

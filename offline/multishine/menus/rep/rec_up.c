@@ -89,7 +89,8 @@ static u32 find_num(const char *key, u32 *ok)           /* "key":number in the a
     for (i = 0; i < blen; i++) {
         for (k = 0; key[k] && i + k < blen && A->body[i + k] == (u8)key[k]; k++) {}
         if (key[k]) continue;
-        for (i += k; i < blen && A->body[i] >= '0' && A->body[i] <= '9' && v < 100000000u; i++) { v = v * 10u + (u32)(A->body[i] - '0'); *ok = 1; }
+        for (i += k; i < blen && (A->body[i] == ' ' || A->body[i] == '\t' || A->body[i] == '\r' || A->body[i] == '\n'); i++) {}
+        for (; i < blen && A->body[i] >= '0' && A->body[i] <= '9' && v < 100000000u; i++) { v = v * 10u + (u32)(A->body[i] - '0'); *ok = 1; }
         return v;
     }
     return 0;
@@ -101,9 +102,10 @@ static void answer(u32 now)
     int s = HR.status;
     up_st[3] = (u32)s; E.k->st.last_http = (rep_u16)s;
     if (!r || r->seq != seq) { down(); return; }
-    if ((s == 200 || s == 409) && ok && next <= r->len && (next == r->len || !(next % REC_CHUNK))) {
+    if (((s == 200 && next > r->sent) || s == 409) && ok && next <= r->len && (next == r->len || !(next % REC_CHUNK))) {
         E.k->fails_tls = 0;
-        if (s == 200) { up_st[2]++; if (next > r->sent) r->fails = 0; } else if (++r->fails >= UP_FAILS_MAX) { up_st[10]++; E.forget(seq, 1); sdsec_close(&A->sec); state(U_CLOSE, now); return; }
+        if (s == 200) { up_st[2]++; r->fails = 0; }
+        else if (++r->fails >= UP_FAILS_MAX) { up_st[10]++; E.forget(seq, 1); sdsec_close(&A->sec); state(U_CLOSE, now); return; }
         r->sent = next;
         if (next == r->len) { up_st[5]++; E.forget(seq, 0); sdsec_close(&A->sec); state(U_CLOSE, now); return; }
         if (HR.close || !build(r, now)) { sdsec_close(&A->sec); state(U_CLOSE, now); return; }

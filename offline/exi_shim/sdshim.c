@@ -6,8 +6,10 @@
  * .
  */
 #include "sdshim.h"
-/* LOCAL FORK: the game recorder (rec/rec_gc.c) takes the recording stream; absent (host tests, other images) = dropped as before */
-extern void sdshim_record_hook(const sdshim_u8 *p, sdshim_u32 n) __attribute__((weak));
+/* LOCAL FORK: the game recorder (rec/rec_gc.c) overrides this weak stub; absent (host tests, other images) = no-op on both ELF and Mach-O */
+#ifdef __GNUC__
+__attribute__((weak)) void sdshim_record_hook(const sdshim_u8 *p, sdshim_u32 n) { (void)p; (void)n; }
+#endif
 
 #define SDSHIM_MAGIC 0x53445348u /* "SDSH" */
 
@@ -310,7 +312,9 @@ static int do_cmd(struct sdshim *s, const sdshim_u8 *p, sdshim_u32 avail, sdshim
     *used = avail;
     if ((c >= 0x35 && c <= 0x41) || c == 0x60) {
         s->stats.sunk++; /* recording stream (Recording/ *.asm): host writes .slp, we drop */
-        if (sdshim_record_hook) sdshim_record_hook(p, avail);
+#ifdef __GNUC__
+        sdshim_record_hook(p, avail);
+#endif
         return 0;
     }
     ci = sdshim_cmd_lookup(c);

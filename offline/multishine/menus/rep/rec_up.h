@@ -12,7 +12,7 @@
 #define UP_PATH "/api/integrations/v1/console/recordings"
 #define UP_PIECE 0x10000u
 #define UP_HEAD 768u
-#define UP_RSP 384u
+#define UP_RSP 1024u
 #define UP_FAILS_MAX 8u
 #define UP_ANSWER_MS 15000u
 

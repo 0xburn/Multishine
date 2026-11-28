@@ -288,7 +288,7 @@ void rep_poll(struct rep *r, int allow_heavy)
             if (r->hr.status >= 400 && r->hr.status < 500 && r->hr.status != 429) {
                 r->k->st.http_status_bad++;
                 drop_cur(r); sdsec_close(&r->a->sec);
-                r->k->t_cooldown_until = now + REP_WEB_COOLDOWN_MS;
+                r->k->t_cooldown_until = now + (r->hr.status == 401 || r->hr.status == 403 ? REP_WEB_COOLDOWN_MS : 2000u);
                 r->state = REP_CLOSING; r->t_state = now;
                 return;
             }

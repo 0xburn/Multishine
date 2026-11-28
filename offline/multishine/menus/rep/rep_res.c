@@ -90,10 +90,11 @@ static int rp_lucky_ident(char *uid, unsigned int uc, char *key, unsigned int kc
 static unsigned int rp_rtc(void)
 {
     unsigned long long t = ((unsigned long long (*)(void))0x8034C3F0u)();
+    unsigned int bus = *(volatile unsigned int *)0x800000F8u, div = bus ? (bus >> 2) : 40500000u;
     unsigned int hi = (unsigned int)(t >> 32), lo = (unsigned int)t, q = 0, r = 0, i;
-    if (hi >= 40500000u) return 0;
+    if (!div || hi >= div) return 0;
     r = hi;                                                         /* 64 / 32 long division without libgcc: the quotient fits in 32 bits because hi < divisor */
-    for (i = 0; i < 32u; i++) { r = (r << 1) | (lo >> 31); lo <<= 1; q <<= 1; if (r >= 40500000u) { r -= 40500000u; q |= 1u; } }
+    for (i = 0; i < 32u; i++) { r = (r << 1) | (lo >> 31); lo <<= 1; q <<= 1; if (r >= div) { r -= div; q |= 1u; } }
     q += RTC_2000;
     return q >= RTC_MIN ? q : 0;
 }    /* 1 announced, 0 answered without it, -1 no HELLO yet */
